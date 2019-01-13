@@ -3,10 +3,17 @@ call dein#add('OmniSharp/omnisharp-vim', {'on_ft':['cs','csharp']})
 " OmniSharp won't work without this setting
 filetype plugin on
 
+let wsldir = '/mnt/c/OmniSharp/omnisharp.http-win-x64/OmniSharp.exe'
+
+if !has('win32') && !has('win64') && isdirectory(wsldir)
+  let g:OmniSharp_server_path = wsldir
+  let g:OmniSharp_translate_cygwin_wsl = 1
+endif
+
 let g:OmniSharp_server_type = 'roslyn'
 " Timeout in seconds to wait for a response from the server
 let g:OmniSharp_timeout = 1
-let g:OmniSharp_selecter_ui = 'ctrlp'
+let g:OmniSharp_selecter_ui = 'fzf'
 let g:Omnisharp_stop_server = 1  " Ask whether to stop the server on exit
 set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.

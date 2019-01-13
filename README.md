@@ -33,3 +33,4 @@ Plugin requirements are below:
 ### Linux
 - `git clone https://github.com/jmzagorski/vimrc.git $HOME/.vim`
 - vimproc needs make
+- For WSL c#, make sure OmniSharp.exe is in `/mnt/c/OmniSharp/omnisharp.http-win-x64/OmniSharp.exe`
