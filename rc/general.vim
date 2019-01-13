@@ -16,7 +16,7 @@ else
   set backup		" keep a backup file (restore to previous version)
   if has('persistent_undo')
     set undofile	" keep an undo file (undo changes after closing)
-    set undodir="$HOME/.vim/tmp"
+    set undodir="$MYVIMRCPATH/undo"
   endif
 endif
 
@@ -27,7 +27,6 @@ let g:mapleader = ','
 set spell
 set lazyredraw                               " don't redraw while executing macros
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
-"set autoindent                              " automatic indent new lines
 set smartindent                              " be smart about it
 set expandtab                                " expand tabs to spaces
 set smarttab                                 " no tabs
@@ -38,7 +37,7 @@ set shiftwidth=2                             " when pressing the < and > key
 set backspace=indent,eol,start               " Allow backspacing over everything in insert mode
 set clipboard^=unnamed,unnamedplus           " sync with clipboard
 set hidden                                   " allow buffer switching without saving
-set autoread                                 " reload files changed outside vim 
+set autoread                                 " reload files changed outside vim
 set showcmd
 set tags=tags;/
 set showfulltag
@@ -49,17 +48,15 @@ set noerrorbells
 set novisualbell
 set history=1000                             " number of command lines to remember default is 20
 " ---------------------- SEARCHING ----------------------
-set ignorecase " ignore case on searching
-set smartcase " do not ignore case when capitalization are in search
+set ignorecase                               " ignore case on searching
+set smartcase                                " do not ignore case when capitalization are in search
 set noswapfile
 set incsearch
 set hlsearch
-" hlsearch is in .gvimrc
 " enable menu at bottom of window (e.g. colorscheme <Tab>)
 set wildmenu
 set wildmode=list:longest,full
-" makes vimgrep and searches faster since these are normally not
-" your code
+" makes vimgrep and searches faster since these are normally not your code
 set wildignore+=*/node_modules/*
 set wildignore+=*/obj/*
 set wildignore+=*/jspm_packages/*
@@ -71,62 +68,12 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 set virtualedit=block
-" on vert split split belo
+" on vert split, split below
 set splitbelow
 " on horizontal split, split right
 set splitright
 set linebreak
 au BufRead *.spark set filetype=html
 
-" TODO list
+" Default todo list
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
-" faster, but requires act plugin
-" command prompt in windows vs linux
-if executable('Ack')
-  if has('win32') || has('win64') 
-    command! Todo Ack! "TODO | FIXME | @todo"
-  else
-    command! Todo Ack! 'TODO\|FIXME\|@todo'
-  endif
-endif
-
-" ---------------------- BACKUPS ----------------------
-" Save your backup files to a less annoying place than the current directory.
-" If you have .vim-backup in the current directory, it'll use that.
-" Otherwise it saves it to ~/.vim/backup or .
-if isdirectory($HOME . '/.vim/backup') == 0
-  :silent !mkdir -p ~/.vim/backup >/dev/null 2>&1
-endif
-set backupdir-=.
-set backupdir+=.
-set backupdir-=~/
-set backupdir^=~/.vim/backup/
-set backupdir^=./.vim-backup/
-set backup
-
-" Save your swap files to a less annoying place than the current directory.
-" If you have .vim-swap in the current directory, it'll use that.
-" Otherwise it saves it to ~/.vim/swap, ~/tmp or .
-if isdirectory($HOME . '/.vim/swap') == 0
-  :silent !mkdir -p ~/.vim/swap >/dev/null 2>&1
-endif
-set directory=./.vim-swap//
-set directory+=~/.vim/swap//
-set directory+=~/tmp//
-set directory+=.
-
-" viminfo stores the the state of your previous editing session
-set viminfo+=n~/.vim/viminfo
-
-if exists("+undofile")
-  " undofile - This allows you to use undos after exiting and restarting
-  " This, like swap and backup files, uses .vim-undo first, then ~/.vim/undo
-  " :help undo-persistence
-  " This is only present in 7.3+
-  if isdirectory($HOME . '/.vim/undo') == 0
-    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
-  endif
-  set undodir=./.vim-undo//
-  set undodir+=~/.vim/undo//
-  set undofile
-endif

@@ -5,12 +5,11 @@ if &compatible
 endif
 
 set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-set runtimepath+=$HOME/.vim/after
 
 if has('win32') || has('win64')
-  set runtimepath+=$HOME/.vim/rc
+  set runtimepath+=$MYVIMRCPATH/rc
 else
-  set runtimepath+=$HOME/.vim/rc/plugins/
+  set runtimepath+=$MYVIMRCPATH/rc/plugins/
 endif
 
 call dein#begin('$HOME/.cache/dein')

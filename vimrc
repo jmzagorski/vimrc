@@ -1,5 +1,6 @@
+let $MYVIMRCPATH=fnamemodify($MYVIMRC, ':h')
 set nocompatible
-source $HOME/.vim/rc/general.vim
-source $HOME/.vim/rc/mappings.vim
-source $HOME/.vim/rc/plugins.vim
-source $HOME/.vim/rc/ui.vim
+source $MYVIMRCPATH/rc/general.vim
+source $MYVIMRCPATH/rc/mappings.vim
+source $MYVIMRCPATH/rc/plugins.vim
+source $MYVIMRCPATH/rc/ui.vim

@@ -1,0 +1,9 @@
+/misc files*/
+tags
+tags/
+
+/*backup files*/
+*~
+
+/*netrw auto files*/
+.netrwhist
