@@ -29,5 +29,5 @@ Plugin requirements are below:
 - vimproc needs nmake, normally installed with visual studio
 
 ### Linux
-- `git clone https://github.com/jmzagorski/vimrc.git $HOME\.vim`
+- `git clone https://github.com/jmzagorski/vimrc.git $HOME/.vim`
 - vimproc needs make
