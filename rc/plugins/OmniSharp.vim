@@ -15,7 +15,6 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_timeout = 1
 let g:OmniSharp_selecter_ui = 'fzf'
 let g:Omnisharp_stop_server = 1  " Ask whether to stop the server on exit
-set completeopt=longest,menuone,preview
 " Set desired preview window height for viewing documentation.
 " You might also want to look at the echodoc plugin.
 set previewheight=5
