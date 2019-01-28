@@ -11,11 +11,18 @@ if filereadable(s:vim_defaults)
 endif
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup		        " do not keep a backup file, use versions instead
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup		          " keep a backup file (restore to previous version)
+  if isdirectory('./.backup') == 0
+    :silent !mkdir -p ./.backup >/dev/null 2>&1
+    :silent !mkdir -p ~/.backup >/dev/null 2>&1
+    :silent !mkdir -p /tmp/.backup >/dev/null 2>&1
+  endif
+  set backupdir=./.backup,~/.backup,.,/tmp " (mine) save backups to the local backup
+  set directory=./.backup,~/.backup,.,/tmp " (mine) save swap to the local backup
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile	        " keep an undo file (undo changes after closing)
     set undodir="$MYVIMRCPATH/undo"
   endif
 endif
@@ -43,7 +50,6 @@ set tags=tags;/
 set showfulltag
 set modeline
 set modelines=5
-set visualbell t_vb=                         " No beep sound
 set noerrorbells
 set novisualbell
 set history=1000                             " number of command lines to remember default is 20

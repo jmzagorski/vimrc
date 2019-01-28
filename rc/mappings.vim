@@ -3,6 +3,8 @@ inoremap kj <ESC>
 " keep the reverse search character since it is the comma and that is my leader
 noremap \ ,
 
+set shell=$SHELL\ --login
+
 " expansion of active dir
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " expansion of active dir with file extension. Useful for Aurelia switching
