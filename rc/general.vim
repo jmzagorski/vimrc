@@ -14,15 +14,31 @@ if has("vms")
   set nobackup		        " do not keep a backup file, use versions instead
 else
   set backup		          " keep a backup file (restore to previous version)
-  if isdirectory('./.backup') == 0
-    :silent !mkdir ./.backup >/dev/null 2>&1
-    :silent !mkdir ~/.backup >/dev/null 2>&1
+  "for backups go local directory then home
+  if !isdirectory('./.backup')
+    call mkdir("./.backup")
   endif
-  set backupdir=./.backup,~/.backup,.
-  set directory=./.backup,~/.backup,.
+  if !isdirectory($HOME . '/.backup')
+    call mkdir($HOME "/.backup")
+  endif
+
+  set directory=./.swp,~/.swp//
+  if !isdirectory('./.swp')
+    call mkdir('./.swp')
+  endif
+  if !isdirectory($HOME . '/.swp')
+    call mkdir($HOME . '/.swp')
+  endif
+
   if has('persistent_undo')
     set undofile	        " keep an undo file (undo changes after closing)
-    set undodir="$MYVIMRCPATH/undo"
+    set undodir=./.undo,~/.undo//
+    if !isdirectory('./.undo')
+      call mkdir('./.undo')
+    endif
+    if !isdirectory($HOME . '/.undo')
+      call mkdir($HOME '/.undo')
+    endif
   endif
 endif
 
