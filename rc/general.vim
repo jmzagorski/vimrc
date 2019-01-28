@@ -15,12 +15,11 @@ if has("vms")
 else
   set backup		          " keep a backup file (restore to previous version)
   if isdirectory('./.backup') == 0
-    :silent !mkdir -p ./.backup >/dev/null 2>&1
-    :silent !mkdir -p ~/.backup >/dev/null 2>&1
-    :silent !mkdir -p /tmp/.backup >/dev/null 2>&1
+    :silent !mkdir ./.backup >/dev/null 2>&1
+    :silent !mkdir ~/.backup >/dev/null 2>&1
   endif
-  set backupdir=./.backup,~/.backup,.,/tmp " (mine) save backups to the local backup
-  set directory=./.backup,~/.backup,.,/tmp " (mine) save swap to the local backup
+  set backupdir=./.backup,~/.backup,.
+  set directory=./.backup,~/.backup,.
   if has('persistent_undo')
     set undofile	        " keep an undo file (undo changes after closing)
     set undodir="$MYVIMRCPATH/undo"

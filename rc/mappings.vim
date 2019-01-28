@@ -3,7 +3,9 @@ inoremap kj <ESC>
 " keep the reverse search character since it is the comma and that is my leader
 noremap \ ,
 
-set shell=$SHELL\ --login
+if !has('win32') && !has('win64')
+  set shell=$SHELL\ --login
+endif
 
 " expansion of active dir
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
