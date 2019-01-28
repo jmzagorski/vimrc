@@ -10,7 +10,6 @@ set matchtime=2
 " MUST BE PUT BEFORE COLORSCHEME
 highlight OverLength ctermbg=lightred ctermfg=lightgray guibg=#592929
 highlight ExtraWhitespace ctermbg=red guibg=red
-highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 if has('matchadd')
   au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
@@ -29,9 +28,11 @@ endif
 
 au ColorScheme * highlight OverLength ctermbg=lightred ctermfg=lightgray guibg=#592929
 au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-au ColorScheme * highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-colorscheme apprentice
+if !exists('g:colors_name') || g:colors_name != 'base16-onedark'
+  colorscheme base16-onedark
+endif
+
 " show line numbers
 set number
 set lazyredraw
