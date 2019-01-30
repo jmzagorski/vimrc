@@ -17,8 +17,6 @@
 Plugin requirements are below:
 - Tag plugins need https://github.com/universal-ctags/ctags
 - C# needs Omnisharp-Roslyn server. See [omnisharp-vim](https://github.com/OmniSharp/omnisharp-vim)
-  - If using with WSL, my [config-linux](https://github.com/jmzagorski/config-linux) sets the $USERNAME
-  variable to try and find your exe
 - Typscript needs `npm install -g typescript`
 - fzf.vim needs [ripgrep](https://github.com/BurntSushi/ripgrep) or ack
 - Git plugins need [git](https://git-scm.com/downloads)
@@ -38,5 +36,6 @@ Plugin requirements are below:
 ### Linux
 - `git clone https://github.com/jmzagorski/vimrc.git $HOME/.vim`
 - vimproc needs make
-- For WSL c#, make sure OmniSharp.exe is in `/mnt/c/OmniSharp/omnisharp.http-win-x64/OmniSharp.exe`
-- For dbext make sure you have wget or curl and zip then run this in ~/.cache/dein/repos/vim.org `wget -O dbext.zip <script download url> && unzip -d dbext dbext.zip`
+- For Omnisharp: If using with WSL, my [config-linux](https://github.com/jmzagorski/config-linux)
+  sets the $USERNAME variable to try and find your exe
+- For dbext make sure you have wget or curl and zip then run this in ~/.cache/dein/repos/vim.org `wget -O dbext.zip <script download url> && unzip -d dbext dbext.zip && rm dbext.zip` or `curl <script download url> > dbext.zip && unzip dbext.zip -d dbext && rm dbext.zip`
