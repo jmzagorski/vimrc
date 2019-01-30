@@ -3,10 +3,10 @@ call dein#add('OmniSharp/omnisharp-vim', {'on_ft':['cs','csharp']})
 " OmniSharp won't work without this setting
 filetype plugin on
 
-let wsldir = '/mnt/c/OmniSharp/omnisharp.http-win-x64/OmniSharp.exe'
+let wsldir = expand('/mnt/c/Users/$USERNAME/.omnisharp/omnisharp-roslyn/')
 
-if !has('win32') && !has('win64') && isdirectory(wsldir)
-  let g:OmniSharp_server_path = wsldir
+if isdirectory(wsldir)
+  let g:OmniSharp_server_path = wsldir . 'OmniSharp.exe'
   let g:OmniSharp_translate_cygwin_wsl = 1
 endif
 

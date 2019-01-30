@@ -45,3 +45,5 @@ set vb t_vb=
 " accessing and sourcing gvimrc easily
 nmap <silent> <leader>sgv :source $MYGVIMRC
 nmap <silent> <leader>egv :e $MYGVIMRC<CR>
+
+set visualbell t_vb=        " No beep sound

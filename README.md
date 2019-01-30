@@ -17,12 +17,15 @@
 Plugin requirements are below:
 - Tag plugins need https://github.com/universal-ctags/ctags
 - C# needs Omnisharp-Roslyn server. See [omnisharp-vim](https://github.com/OmniSharp/omnisharp-vim)
+  - If using with WSL, my [config-linux](https://github.com/jmzagorski/config-linux) sets the $USERNAME
+  variable to try and find your exe
 - Typscript needs `npm install -g typescript`
 - fzf.vim needs [ripgrep](https://github.com/BurntSushi/ripgrep) or ack
 - Git plugins need [git](https://git-scm.com/downloads)
 - Rust plugins need [rust](https://www.rust-lang.org) and  i would recommend [rustfmt](https://github.com/rust-lang/rustfmt)
 - dbext.vim is not maintained on github. Download and place it in ~/.cache/dein/repos/vim.org
   - I have the dadbod plugin too if you would rather use that
+  - To get dbext from terminal curl <url> > dbext.zip && unzip dbext.zip -d dbext && rm dbext.zip
 
 ### Windows
 - `git clone https://github.com/jmzagorski/vimrc.git %USERPROFILE%\vimfiles`

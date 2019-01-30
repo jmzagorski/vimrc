@@ -8,30 +8,21 @@ set matchtime=2
 
 " highlight white space at end of line and anything over 80 lines
 " MUST BE PUT BEFORE COLORSCHEME
-highlight OverLength ctermbg=lightred ctermfg=lightgray guibg=#592929
 highlight ExtraWhitespace ctermbg=red guibg=red
 
 if has('matchadd')
   au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
-  au BufWinEnter * let w:m2=matchadd('OverLength', '\%>80v.\+', -1)
 else
   match ExtraWhitespace /\s\+$/
   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  match OverLength /\%>80v.\+/
-  autocmd BufWinEnter * match OverLength /\s\+$/
   autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
   autocmd InsertLeave * match ExtraWhitespace /\s\+$/
   autocmd BufWinLeave * call clearmatches()
 endif
 
-au ColorScheme * highlight OverLength ctermbg=lightred ctermfg=lightgray guibg=#592929
 au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-if !exists('g:colors_name') || g:colors_name != 'base16-onedark'
-  colorscheme base16-onedark
-endif
 
 " show line numbers
 set number
@@ -97,3 +88,8 @@ let g:netrw_browse_split = 4
 " split right
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+"true colors
+if (has('termguicolors'))
+  set termguicolors
+endif

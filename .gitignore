@@ -3,7 +3,9 @@ tags
 tags/
 
 /*backup files*/
-*~
+.undo
+.swp
+.backup
 
 /*netrw auto files*/
 .netrwhist
