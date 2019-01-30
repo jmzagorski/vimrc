@@ -15,6 +15,7 @@ if has("vms")
 else
   set backup		          " keep a backup file (restore to previous version)
   "for backups go local directory then home
+  set backupdir=./.backup,~/.backup//
   if !isdirectory('./.backup')
     call mkdir("./.backup")
   endif
