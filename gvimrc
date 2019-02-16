@@ -36,8 +36,6 @@ set background=dark
 let g:solarized_termcolors=16
 " terminal color
 set t_Co=16
-silent! colorscheme apprentice
-highlight ColorColumn guibg=Black
 
 set noerrorbells
 set vb t_vb=
