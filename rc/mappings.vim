@@ -80,3 +80,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
 " change local directory on tab entering
 au TabEnter * if exists("t:wd") | exe "lcd" t:wd | endif
+
+
+" Abbreviations ---------------------------------------------------------------
+iab <expr> dts strftime("%c")
