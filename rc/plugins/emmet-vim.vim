@@ -11,4 +11,4 @@ function! s:zen_html_tab()
 	return "\<c-y>n"
 endfunction
 
-autocmd FileType html,cjsx,jsx imap <buffer><expr><tab> <sid>zen_html_tab()
+autocmd FileType html,cjsx,jsx,rs imap <buffer><expr><tab> <sid>zen_html_tab()
