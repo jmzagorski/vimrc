@@ -1,6 +1,7 @@
 # vimrc - Inititaion files for vim and gvim
 
 * [Requirements](#requirements)
+* [Supports](#supports)
 * [Plugins](#plugins)
 * [Windows](#windows)
 * [Linux](#linux)
@@ -9,12 +10,21 @@
 - Vim 8.0 or above
 - Plugin manager [dein](https://github.com/Shougo/dein.vim)
 
-### Plugins
+### Supports
+- Rust
+- Powershell
+- Sql Server
+- C#
+- Documentation (markdown, toml, yaml)
+- HTML / CSS
+- Javascript / Typescript
+- Docker
 - Support for database development
 - Support for server development - c#, rust, powershell
 - Support for client development -  html/css/less/javascript/typescript
 
 Plugin requirements are below:
+- base16 for GVIM or windows users you need to create a .vimrc_background file in your home directory
 - Tag plugins need https://github.com/universal-ctags/ctags
 - C# needs Omnisharp-Roslyn server. See [omnisharp-vim](https://github.com/OmniSharp/omnisharp-vim)
 - Typscript needs `npm install -g typescript`
@@ -23,7 +33,8 @@ Plugin requirements are below:
 - Rust plugins need [rust](https://www.rust-lang.org) and  i would recommend [rustfmt](https://github.com/rust-lang/rustfmt)
 - dbext.vim is not maintained on github. Download and place it in ~/.cache/dein/repos/vim.org
   - I have the dadbod plugin too if you would rather use that
-  - To get dbext from terminal curl <url> > dbext.zip && unzip dbext.zip -d dbext && rm dbext.zip
+  - To get dbext from terminal `curl <url> > dbext.zip && unzip dbext.zip -d dbext && rm dbext.zip`
+  - SQLCMD utility is required
 
 ### Windows
 - `git clone https://github.com/jmzagorski/vimrc.git %USERPROFILE%\vimfiles`
