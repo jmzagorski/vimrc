@@ -7,7 +7,6 @@ set showmatch
 set matchtime=2
 
 " highlight white space at end of line and anything over 80 lines
-" MUST BE PUT BEFORE COLORSCHEME
 highlight ExtraWhitespace ctermbg=red guibg=red
 
 if has('matchadd')
@@ -22,13 +21,15 @@ else
   autocmd BufWinLeave * call clearmatches()
 endif
 
-au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup myBetterColors
+  au!
+  au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup END
 
+colorscheme desert
 " show line numbers
 set number
 set lazyredraw
-set laststatus=2
-set noshowmode
 "enable folds by default
 set foldenable
 "fold via syntax of files
@@ -93,3 +94,32 @@ let g:netrw_winsize = 25
 if (has('termguicolors'))
   set termguicolors
 endif
+
+function! ReadOnly() abort
+  if &readonly || !&modifiable
+    return ''
+  else
+    return ''
+endfunction
+
+set laststatus=2
+set statusline=
+set statusline+=%{ReadOnly()}
+set statusline+=\ [%n]                      " buffer number
+set statusline+=\ %t                        " filename
+set statusline+=\ %*                        " restore highlight
+set statusline+=\ %M                        " modified flag
+set statusline+=%=                          " end of left side
+set statusline+=\ %{&fileformat}
+set statusline+=\ %*                        " restore highlight
+set statusline+=\|
+set statusline+=\ %{(&fenc!=''?&fenc:&enc)} " file encoding
+set statusline+=\ %*                        " restore highlight
+set statusline+=\|
+set statusline+=\ %{&ft!=#''?&ft:'no\ ft'}  " file type
+set statusline+=\ %*                        " restore highlight
+set statusline+=\|
+set statusline+=\ %p%%                      " percentage in lines
+set statusline+=\ %l,%c                     " current line & column
+set statusline+=\ %*                        " restore highlight
+set statusline+=\|
