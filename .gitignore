@@ -1,11 +1,8 @@
 /misc files*/
 tags
 tags/
-
-/*backup files*/
-.undo
-.swp
-.backup
+view
+sessions
 
 /*netrw auto files*/
 .netrwhist
