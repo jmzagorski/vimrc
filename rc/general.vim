@@ -15,28 +15,19 @@ if has("vms")
 else
   set backup		          " keep a backup file (restore to previous version)
   "for backups go local directory then home
-  set backupdir=./.backup,~/.backup//
-  if !isdirectory('./.backup')
-    call mkdir("./.backup")
-  endif
+  set backupdir=~/.backup//
   if !isdirectory($HOME . '/.backup')
     call mkdir($HOME "/.backup")
   endif
 
-  set directory=./.swp,~/.swp//
-  if !isdirectory('./.swp')
-    call mkdir('./.swp')
-  endif
+  set directory=~/.swp//
   if !isdirectory($HOME . '/.swp')
     call mkdir($HOME . '/.swp')
   endif
 
   if has('persistent_undo')
     set undofile	        " keep an undo file (undo changes after closing)
-    set undodir=./.undo,~/.undo//
-    if !isdirectory('./.undo')
-      call mkdir('./.undo')
-    endif
+    set undodir=~/.undo//
     if !isdirectory($HOME . '/.undo')
       call mkdir($HOME '/.undo')
     endif
@@ -49,6 +40,7 @@ let mapleader = ','
 let g:mapleader = ','
 set spell
 set lazyredraw                               " don't redraw while executing macros
+set regexpengine=1                           " older regex, suppose to make WSL faster
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
 set smartindent                              " be smart about it
 set expandtab                                " expand tabs to spaces
