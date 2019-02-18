@@ -1,1 +1,1 @@
-call dein#add('tpop/vim-commentary')
+call dein#add('tpope/vim-commentary')
