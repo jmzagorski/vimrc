@@ -40,7 +40,6 @@ let mapleader = ','
 let g:mapleader = ','
 set spell
 set lazyredraw                               " don't redraw while executing macros
-set regexpengine=1                           " older regex, suppose to make WSL faster
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
 set smartindent                              " be smart about it
 set expandtab                                " expand tabs to spaces
