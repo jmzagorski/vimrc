@@ -1,1 +1,1 @@
-call dein#add('tpope/vim-surround')
+Plugin 'tpope/vim-surround'

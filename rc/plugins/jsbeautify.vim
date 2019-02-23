@@ -1,3 +1,3 @@
 "Formats javascript files by js-beautify
-call dein#add('maksimr/vim-jsbeautify', {'on_ft':['javascript']})
+Plugin 'maksimr/vim-jsbeautify', {'type': 'opt', 'for':'javascript'}
 nnoremap <leader>fjs :call JsBeautify()<cr>

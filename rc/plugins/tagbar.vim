@@ -1,4 +1,4 @@
-call dein#add('majutsushi/tagbar')
+Plugin 'majutsushi/tagbar'
 
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 

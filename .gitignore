@@ -1,8 +1,8 @@
-/misc files*/
-tags
-tags/
+/* vim ignore */
 view
 sessions
+pack
 
-/*netrw auto files*/
-.netrwhist
+/* misc files */
+tags
+tags*

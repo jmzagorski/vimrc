@@ -1,4 +1,4 @@
-call dein#add('mattn/emmet-vim')
+Plugin 'mattn/emmet-vim'
 let g:user_emmet_leader_key = '<C-e>'
 
 " get the current line under the cursor
@@ -11,4 +11,4 @@ function! s:zen_html_tab()
 	return "\<c-y>n"
 endfunction
 
-autocmd FileType html,cjsx,jsx,rs imap <buffer><expr><tab> <sid>zen_html_tab()
+autocmd vimrc FileType html,cjsx,jsx,rs imap <buffer><expr><tab> <sid>zen_html_tab()

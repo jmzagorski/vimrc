@@ -62,6 +62,7 @@ set novisualbell
 set history=1000                             " number of command lines to remember default is 20
 " ---------------------- SEARCHING ----------------------
 set ignorecase                               " ignore case on searching
+set infercase
 set smartcase                                " do not ignore case when capitalization are in search
 set noswapfile
 set incsearch
@@ -72,6 +73,7 @@ set wildmode=list:longest,full
 " makes vimgrep and searches faster since these are normally not your code
 set wildignore+=*/node_modules/*
 set wildignore+=*/obj/*
+set wildignore+=*/bin/*
 set wildignore+=*/jspm_packages/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
 " ---------------------- END SEARCHING ----------------------
@@ -86,7 +88,19 @@ set splitbelow
 " on horizontal split, split right
 set splitright
 set linebreak
-au BufRead *.spark set filetype=html
 
 " Default todo list
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
+
+" make sure our buffer is always up to date
+autocmd vimrc CursorHold * silent! checktime
+
+" useful for the find command
+if has('win16') || has('win32') || has('win64')
+  set path+=.\**
+else
+  set path+=$PWD/**
+endif
+
+set breakindent
+set showbreak=\\\\\

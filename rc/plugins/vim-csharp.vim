@@ -1,1 +1,1 @@
-call dein#add('OrangeT/vim-csharp')
+Plugin 'OrangeT/vim-csharp', {'type': 'opt', 'for': 'cs'}

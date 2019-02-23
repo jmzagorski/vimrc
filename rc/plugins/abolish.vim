@@ -1,1 +1,1 @@
-call dein#add('tpope/vim-abolish')
+Plugin 'tpope/vim-abolish'

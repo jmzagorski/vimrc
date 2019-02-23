@@ -1,1 +1,1 @@
-call dein#add('jiangmiao/auto-pairs')
+Plugin 'jiangmiao/auto-pairs'

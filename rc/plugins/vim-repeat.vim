@@ -1,1 +1,1 @@
-call dein#add('tpope/vim-repeat')
+Plugin 'tpope/vim-repeat'

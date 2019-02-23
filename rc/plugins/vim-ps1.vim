@@ -1,1 +1,1 @@
-call dein#add('PProvost/vim-ps1')
+Plugin 'PProvost/vim-ps1', {'type': 'opt', 'for': 'ps1'}

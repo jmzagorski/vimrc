@@ -10,21 +10,18 @@ set matchtime=2
 highlight ExtraWhitespace ctermbg=red guibg=red
 
 if has('matchadd')
-  au BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
+  autocmd vimrc BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
 else
   match ExtraWhitespace /\s\+$/
-  autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd BufWinLeave * call clearmatches()
+  autocmd vimrc BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd vimrc InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd vimrc InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd vimrc InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd vimrc InsertLeave * match ExtraWhitespace /\s\+$/
+  autocmd vimrc BufWinLeave * call clearmatches()
 endif
 
-augroup myBetterColors
-  au!
-  au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-augroup END
+autocmd vimrc ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 colorscheme desert
 " show line numbers
@@ -39,6 +36,7 @@ set foldlevelstart=99
 set foldnestmax=10
 set foldlevel=2
 let g:xml_syntax_folding=1                          "enable xml folding
+set synmaxcol=200                                   "only highlight first 200 line since this can slow vim
 
 set timeoutlen=200
 set ttimeoutlen=200
@@ -52,6 +50,9 @@ set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
 "set textwidth=80
 " make a mark for column 80
 set colorcolumn=80,100
+
+" Equal splits
+autocmd vimrc VimResized * wincmd =
 
 
 "" Terminal setttings {{{
@@ -95,16 +96,8 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-function! ReadOnly() abort
-  if &readonly || !&modifiable
-    return ''
-  else
-    return ''
-endfunction
-
 set laststatus=2
 set statusline=
-set statusline+=%{ReadOnly()}
 set statusline+=\ [%n]                      " buffer number
 set statusline+=\ %t                        " filename
 set statusline+=\ %*                        " restore highlight

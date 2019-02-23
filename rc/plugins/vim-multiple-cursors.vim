@@ -1,1 +1,1 @@
-call dein#add('terryma/vim-multiple-cursors')
+Plugin 'terryma/vim-multiple-cursors'

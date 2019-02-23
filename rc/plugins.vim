@@ -1,31 +1,28 @@
-" Load all the plugins automatically on startup
-" DO NOT NAME THE ~/.vim/plugin, dein does not like it
 if &compatible
  set nocompatible
 endif
 
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+source $MYVIMRCPATH/rc/minautopac.vim
 
-if has('win32') || has('win64')
-  set runtimepath+=$MYVIMRCPATH/rc
-else
-  set runtimepath+=$MYVIMRCPATH/rc/plugins/
-endif
-
-call dein#begin('$HOME/.cache/dein')
-
-call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-"" FIXME: bug
-if has('win32') || has('win64')
-  runtime! plugins/*.vim
-else
-  runtime! rc/plugins/*.vim
-endif
-
-call dein#end()
+runtime! OPT ftdetect/**/*.vim
+runtime! OPT after/ftdetect/**/*.vim
+runtime! rc/plugins/*.vim
 
 filetype plugin indent on
 syntax enable
 
-runtime macros/matchit.vim
+runtime! macros/matchit.vim
+
+" some plugins name (e.g. Dockerfile.vim) may have similar names in their ftdetch files
+autocmd vimrc BufRead,BufNewFile *.vim set ft=vim
+
+function! ReadOnly() abort
+  if &readonly || !&modifiable
+    return ''
+  else
+    return ''
+endfunction
+
+" make sure this is the first thing on the status line after all plugins are loaded
+set statusline^=%{ReadOnly()}
+set statusline+=\ %*

@@ -1,4 +1,4 @@
-call dein#add('godlygeek/tabular')
+Plugin 'godlygeek/tabular'
 
 function! AlignSqlTable()
   :Tabularize /\v\s(,\s|"[^"]*")("[^"]*"|[A-Za-z]*)\zs

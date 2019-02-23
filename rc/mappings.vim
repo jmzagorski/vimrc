@@ -52,7 +52,7 @@ map <leader>bd :Bclose<cr>
 nnoremap <leader><leader> :b#<CR>
 
 " easier sorting key stroke in visual mode
-xnoremap <C-s> :sort u<CR>
+xnoremap <C-s> :sort ui<CR>
 vnoremap // y/<C-R>"<CR>
 
 " semi colin at end of line
@@ -72,15 +72,14 @@ nnoremap <C-Right> :tabnext<CR>
 
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+autocmd vimrc BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 " accessing and sourcing vimrc easily
 nmap <silent> <leader>sv :source $MYVIMRC
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 
-" change local directory on tab entering
-au TabEnter * if exists("t:wd") | exe "lcd" t:wd | endif
-
+" dictionary complete word
+inoremap <C-k> <C-x><C-k>
 
 " Abbreviations ---------------------------------------------------------------
 iab <expr> dts strftime("%c")

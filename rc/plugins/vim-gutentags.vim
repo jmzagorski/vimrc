@@ -1,1 +1,1 @@
-call dein#add('ludovicchabant/vim-gutentags')
+Plugin 'ludovicchabant/vim-gutentags'

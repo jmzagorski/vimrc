@@ -1,1 +1,1 @@
-call dein#add('junegunn/limelight.vim')
+Plugin 'junegunn/limelight.vim'

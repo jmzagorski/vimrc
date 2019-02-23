@@ -1,4 +1,4 @@
-call dein#add('justinmk/vim-dirvish')
+Plugin 'justinmk/vim-dirvish'
 
 "disable netrw (too buggy)
 let g:loaded_netrwPlugin = 1

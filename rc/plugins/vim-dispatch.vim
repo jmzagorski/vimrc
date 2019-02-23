@@ -1,1 +1,1 @@
-call dein#add('tpope/vim-dispatch')
+Plugin 'tpope/vim-dispatch'

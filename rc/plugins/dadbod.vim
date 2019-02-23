@@ -1,2 +1,2 @@
 " Modern database interface for Vim
-call dein#add('tpope/vim-dadbod')
+Plugin 'tpope/vim-dadbod', {'type': 'opt', 'for': 'sql'}

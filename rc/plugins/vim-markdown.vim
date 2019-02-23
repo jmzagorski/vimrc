@@ -1,1 +1,1 @@
-call dein#add('plasticboy/vim-markdown')
+Plugin 'plasticboy/vim-markdown', {'type': 'opt', 'for': 'md'}

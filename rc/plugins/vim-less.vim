@@ -1,1 +1,1 @@
-call dein#add('groenewege/vim-less', {'on_ft':['less']})
+Plugin 'groenewege/vim-less', {'type': 'opt', 'for': 'less'}
