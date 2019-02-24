@@ -1,8 +1,12 @@
 " continuously updated session files
 Plugin 'tpope/vim-obsession'
 
-set statusline+=%{ObsessionStatus()}
-set statusline+=\ %*
+" plugin might not be downloaded yet
+if exists('*ObsessionStatus')
+  set statusline+=%{ObsessionStatus()}
+  set statusline+=\ %*
+endif
+
 let g:vimrc_session_path = $MYVIMRCPATH . '/sessions'
 let g:vimrc_default_session_name = 'Session'
 
