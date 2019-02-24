@@ -1,4 +1,8 @@
-function! s:hook(hooktype, name)
+"TODO cannot find the hook function
+Plugin 'danielwe/base16-vim', {'type': 'opt', 'do': {-> function('PostInstall_base16_vim')}}
+" Plugin 'chriskempson/base16-vim', {'type': 'opt', 'do': {-> function('s:hook')}}
+
+function! PostInstall_base16_vim(hooktype, name)
   let config_dir = $HOME . '/.config'
   let git_dir = $HOME . '/.config'
   let color_file = $HOME . '/.vimrc_background'
@@ -11,14 +15,11 @@ function! s:hook(hooktype, name)
   end
 endfunction
 
-Plugin 'danielwe/base16-vim', {'type': 'opt', 'do': {-> function('s:hook')}}
-" Plugin 'chriskempson/base16-vim', {'type': 'opt', 'do': {-> function('s:hook')}}
-
-if filereadable(expand("~/.vimrc_background"))
+if !empty(glob($MYVIMRCPATH . '/pack/**/base16-vim')) && filereadable(expand("~/.vimrc_background"))
   "per the docs only enable this if the ~/.cofig/base16/colortest does not show blue for 17-21
+  packadd base16-vim
   let base16colorspace=256
   source ~/.vimrc_background
-  :packadd base16-vim
   autocmd vimrc ColorScheme * call s:base16_customize()
 endif
 

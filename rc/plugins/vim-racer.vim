@@ -1,11 +1,20 @@
-function! s:hook(hooktype, name)
+" this has ftplugin so it will lazy load
+" it will not work with packadd
+"TODO cannot find the hook function
+Plugin 'racer-rust/vim-racer', {'do': {-> function('PostInstall_vim_racer')}}
+
+function! PostInstall_vim_racer(hooktype, name)
   if !executable('cargo')
-    echom 'cargo is not installed, skipping vim-racer installation'
+    echohl WarningMsg
+    echom 'Skipping vim-racer installation. cargo is not installed'
+    echohl None
     finish
   endif
 
   if !executable('rustup')
-    echom 'rustup is not installed, skipping vim-racer installation'
+    echohl WarningMsg
+    echom 'Skipping vim-racer installation. rustup is not installed'
+    echohl None
     finish
   endif
 
@@ -27,12 +36,14 @@ function! s:hook(hooktype, name)
   endif
 endfunction
 
-" this has ftplugin so it will lazy load
-" it will not work with packadd
-Plugin 'racer-rust/vim-racer', {'do': {-> function('s:hook')}}
-
-silent let s:rust_root = system('rustc --print sysroot')
-let $RUST_SRC_PATH = substitute(s:rust_root, '\n', '', '') . '/lib/rustlib/src/rust/src'
+if executable('rustc')
+  silent let s:rust_root = system('rustc --print sysroot')
+  let $RUST_SRC_PATH = substitute(s:rust_root, '\n', '', '') . '/lib/rustlib/src/rust/src'
+else
+  echohl WarningMsg
+  echom 'Skipping vim-racer setup. vim-racer requires rustc to set the RUST_SRC_PATH.'
+  echohl None
+endif
 
 autocmd vimrc FileType rust nmap gd <Plug>(rust-def)
 autocmd vimrc FileType rust nmap gs <Plug>(rust-def-split)
