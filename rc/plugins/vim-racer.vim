@@ -1,7 +1,5 @@
-" this has ftplugin so it will lazy load
-" it will not work with packadd
-"TODO cannot find the hook function
-Plugin 'racer-rust/vim-racer', {'do': {-> function('PostInstall_vim_racer')}}
+" XXX ftplugin does not work with packadd, or i am doing something wrong
+Plugin 'racer-rust/vim-racer', {'type': 'opt', 'for': 'rust', 'do': {-> function('PostInstall_vim_racer')}}
 
 function! PostInstall_vim_racer(hooktype, name)
   if !executable('cargo')
@@ -18,32 +16,33 @@ function! PostInstall_vim_racer(hooktype, name)
     finish
   endif
 
-  let l:get_rust_nightly = '!rustup toolchain add nightly'
-  let l:get_racer = '!cargo +nightly install racer'
-  let l:get_rust_source = '!rustup component add rust-src'
+  silent !clear
+  execute '!rustup toolchain add nightly'
+  execute '!cargo +nightly install racer'
+  execute '!rustup component add rust-src'
 
-  if has('job')
-    " make sure we have the nighltly
-    " first build racer
-    job_start(l:get_rust_nightly)
-    job_start(l:get_racer)
-    job_start(l:get_rust_source)
-  else
-    silent !clear
-    execute l:get_rust_nightly
-    execute l:get_racer
-    execute l:get_rust_source
+  if !empty($RUST_SRC_PATH)
+    finish
   endif
-endfunction
 
-if executable('rustc')
-  silent let s:rust_root = system('rustc --print sysroot')
-  let $RUST_SRC_PATH = substitute(s:rust_root, '\n', '', '') . '/lib/rustlib/src/rust/src'
-else
-  echohl WarningMsg
-  echom 'Skipping vim-racer setup. vim-racer requires rustc to set the RUST_SRC_PATH.'
-  echohl None
-endif
+  if !executable('rustc')
+    echohl WarningMsg
+    echom 'Skipping vim-racer installation. rustc is not installed'
+    echohl None
+    finish
+  endif
+
+  let s:rust_root = system('rustc --print sysroot')
+  let s:rust_src_path = substitute(s:rust_root, '\n', '', '') . '/lib/rustlib/src/rust/src'
+
+  if has('win32')
+    execute '!setx RUST_SRC_PATH ' . s:rust_src_path
+  else
+    execute printf('echo "export RUST_SRC_PATH=%s" >> ~/.profile', s:rust_src_path)
+  endif
+
+  echom "Please restart your terminal since RUST_SRC_PATH"
+endfunction
 
 autocmd vimrc FileType rust nmap gd <Plug>(rust-def)
 autocmd vimrc FileType rust nmap gs <Plug>(rust-def-split)

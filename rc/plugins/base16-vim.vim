@@ -15,9 +15,16 @@ function! PostInstall_base16_vim(hooktype, name)
   end
 endfunction
 
-if !empty(glob($MYVIMRCPATH . '/pack/**/base16-vim')) && filereadable(expand("~/.vimrc_background"))
+if filereadable(expand("~/.vimrc_background"))
   "per the docs only enable this if the ~/.cofig/base16/colortest does not show blue for 17-21
-  packadd base16-vim
+  try
+    packadd base16-vim
+  catch e
+    echohl WarningMsg
+    echom 'Failed to packadd base16 colors. Check to make sure it is downloaded'
+    echom e
+    echohl None
+  endtry
   let base16colorspace=256
   source ~/.vimrc_background
   autocmd vimrc ColorScheme * call s:base16_customize()

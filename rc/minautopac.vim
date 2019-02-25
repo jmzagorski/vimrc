@@ -18,7 +18,7 @@ packadd minpac
 
 if !exists('*minpac#init')
   echohl WarningMsg
-  echom 'minpac package manager is not installed. Skipping minpac setup'
+  echom 'Skipping minpac setup. minpac package manager is not installed.'
   echohl None
   finish
 endif
