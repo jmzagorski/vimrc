@@ -30,7 +30,7 @@ function! s:get_session_name(...) abort
   let l:file = empty(get(a:, 1)) ? g:vimrc_default_session_name : get(a:, 1)
   let l:replace = '/'
   if (exists('+shellslash') && &shellslash) || has('win16') || has('win32') || has('win64')
-    let l:replace = '\'
+    let l:replace = '\\'
   endif
   " turn special characters into percent signs, similar to undo/swap
   let l:dir = substitute(getcwd(), '\(' . l:replace . '\|:\|\.\)', '%', 'g')
