@@ -59,7 +59,6 @@ autocmd vimrc VimResized * wincmd =
 if !has("gui_running")
   set noerrorbells novisualbell t_vb=
   set termencoding=utf8
-  set term=xterm
   set t_ut= " setting for looking properly in tmux
   set t_BE= " disable bracketed-paste mode
   let &t_Co = 256
@@ -74,10 +73,6 @@ if !has("gui_running")
   inoremap <esc>[63~ <c-x><c-y>
   nnoremap <esc>[62~ 3<c-e>
   nnoremap <esc>[63~ 3<c-y>
-  if has('win32') || has('win64')
-    " this gets rid of funng characters
-    !chcp 65001
-  endif
 endif
 
 "explorer
