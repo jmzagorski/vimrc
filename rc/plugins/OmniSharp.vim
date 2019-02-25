@@ -18,10 +18,6 @@ let g:Omnisharp_stop_server = 1  " Ask whether to stop the server on exit
 " You might also want to look at the echodoc plugin.
 set previewheight=5
 let g:OmniSharp_want_snippet=1
-let g:syntastic_cs_checkers = ['code_checker']
-
-" Automatic syntax check on events (TextChanged requires Vim 7.4)
-autocmd vimrc BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
 
 " Show type information automatically when the cursor stops moving
 autocmd vimrc CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()

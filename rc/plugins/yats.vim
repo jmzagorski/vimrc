@@ -1,3 +1,3 @@
 " An advanced typescript syntax highlighting (complements the other typescript
-" plugin
-Plugin 'HerringtonDarkholme/yats.vim', {'type': 'opt', 'for' : 'typescript'}
+" plugin. Uses ftplugin so no need for optional
+Plugin 'HerringtonDarkholme/yats.vim'
