@@ -73,6 +73,11 @@ if !has("gui_running")
   inoremap <esc>[63~ <c-x><c-y>
   nnoremap <esc>[62~ 3<c-e>
   nnoremap <esc>[63~ 3<c-y>
+  if exists($CONEMU)
+    set term=screen
+    !chcp 65001
+    " this gets rid of funny characters
+  endif
 endif
 
 "explorer
