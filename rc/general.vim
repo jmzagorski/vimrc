@@ -103,4 +103,4 @@ else
 endif
 
 set breakindent
-set showbreak=\\\\\
+set showbreak=\\\ \ 
