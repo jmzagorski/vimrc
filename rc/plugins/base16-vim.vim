@@ -22,7 +22,6 @@ if filereadable(expand("~/.vimrc_background"))
   catch e
     echohl WarningMsg
     echom 'Failed to packadd base16 colors. Check to make sure it is downloaded'
-    echom e
     echohl None
   endtry
   let base16colorspace=256
