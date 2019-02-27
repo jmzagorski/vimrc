@@ -137,10 +137,16 @@ function! s:setup_command()
 endfunction
 
 function! s:init_minpac()
-  packadd minpac
+  try
+    packadd minpac
 
-  call minpac#init()
-  for [repo, opts] in items(s:repos)
-    call minpac#add(repo, opts)
-  endfor
+    call minpac#init()
+    for [repo, opts] in items(s:repos)
+      call minpac#add(repo, opts)
+    endfor
+  catch e
+    echohl WarningMsg
+    echom '[plugpac] Skipping minpac installation. Plugins will not be installed'
+    echohl None
+  endtry
 endfunction

@@ -1,5 +1,5 @@
 " Requires external editorconfig
-Plugin 'editorconfig/editorconfig-vim', { 'do': {-> function('PostInstall_editorconfig_vim')}}
+Plugin 'editorconfig/editorconfig-vim', { 'do': {-> function('PostInstall_editorconfig_vim')} }
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 

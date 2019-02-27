@@ -1,1 +1,1 @@
-Plugin 'cespare/vim-toml', {'type': 'opt', 'for': 'toml'}
+Plugin 'cespare/vim-toml', { 'for': 'toml' }

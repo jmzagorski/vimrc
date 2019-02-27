@@ -1,4 +1,4 @@
-Plugin 'OmniSharp/omnisharp-vim', {'type': 'opt', 'for': 'cs'}
+Plugin 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 
 " OmniSharp won't work without this setting
 filetype plugin on

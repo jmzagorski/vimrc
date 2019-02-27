@@ -12,7 +12,7 @@
 
 ### Setup
 - When opening vim for the first time, the *minpac* plugin will attempt to download
-- Run `:PackUpdate`
+- Run `:PackInstall`
 - Exit and reopen vim...enjoy!
 
 ### Supports
@@ -33,7 +33,6 @@
 
 ### Windows
 - `git clone https://github.com/jmzagorski/vimrc.git %USERPROFILE%\vimfiles`
-- *base16* for GVIM or windows users you need to create a .vimrc_background file in your home directory
 - ConEmu: Make sure to set the CONEMU variable to any value before opening vim. There are a few ui settings that need to take place, but will mess up the default powershell and command prompt
 
 ### Linux

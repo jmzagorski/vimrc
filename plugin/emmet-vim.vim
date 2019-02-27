@@ -1,4 +1,5 @@
 Plugin 'mattn/emmet-vim'
+
 let g:user_emmet_leader_key = '<C-e>'
 
 " get the current line under the cursor

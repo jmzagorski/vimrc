@@ -1,3 +1,3 @@
-Plugin 'rust-lang/rust.vim', {'type': 'opt', 'for': 'rust'}
+Plugin 'rust-lang/rust.vim', { 'for': 'rust' }
 
 let g:rustfmt_autosave = 1

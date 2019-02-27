@@ -1,4 +1,4 @@
-Plugin 'mrk21/yaml-vim', {'type': 'opt', 'for': 'yaml'}
+Plugin 'mrk21/yaml-vim', { 'for': 'yaml' }
 
 autocmd vimrc BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd vimrc FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

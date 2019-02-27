@@ -1,5 +1,5 @@
 " XXX ftplugin does not work with packadd, or i am doing something wrong
-Plugin 'racer-rust/vim-racer', {'type': 'opt', 'for': 'rust', 'do': {-> function('PostInstall_vim_racer')}}
+Plugin 'racer-rust/vim-racer', { 'for': 'rust', 'do': {-> function('PostInstall_vim_racer')} }
 
 function! PostInstall_vim_racer(hooktype, name)
   if !executable('cargo')

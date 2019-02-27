@@ -1,1 +1,1 @@
-Plugin 'hail2u/vim-css3-syntax', {'type': 'opt', 'for': 'css'}
+Plugin 'hail2u/vim-css3-syntax', { 'for': 'css' }
