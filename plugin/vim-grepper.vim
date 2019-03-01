@@ -1,5 +1,5 @@
 " use your favorite grep tool
-Plugin 'mhinz/vim-grepper', { 'on': 'Grepper' }
+Plugin 'mhinz/vim-grepper', { 'on': [ 'Grepper' ] }
 
 " by default ignore case
 command! -nargs=+ Rg :GrepperRg <args>

@@ -1,19 +1,5 @@
-"TODO cannot find the hook function
-Plugin 'danielwe/base16-vim', { 'type': 'opt', 'do': {-> function('PostInstall_base16_vim')} }
+Plugin 'danielwe/base16-vim', { 'type': 'opt', 'do': {-> function('plugin#base16#post_install')} }
 " Plugin 'chriskempson/base16-vim', {'type': 'opt', 'do': {-> function('s:hook')}}
-
-function! PostInstall_base16_vim(hooktype, name)
-  let config_dir = $HOME . '/.config'
-  let git_dir = $HOME . '/.config'
-  let color_file = $HOME . '/.vimrc_background'
-
-  if !isdirectory(config_dir)
-    silent !mkdir ~/.config
-  end
-  if !isdirectory(git_dir)
-    silent !git clone https://github.com/chriskempson/base16-shell.git git_dir
-  end
-endfunction
 
 if filereadable(expand("~/.vimrc_background"))
   "per the docs only enable this if the ~/.cofig/base16/colortest does not show blue for 17-21
@@ -33,7 +19,8 @@ if filereadable(expand("~/.vimrc_background"))
     autocmd vimrc ColorScheme * call s:base16_customize()
   catch e
     echohl WarningMsg
-    echom 'Failed to packadd base16 colors. Check to make sure it is downloaded'
+    echom '~/.vimrc_background found, but base16 colors is not downloaded.
+          \ Check to make sure it is downloaded'
     echohl None
   endtry
 endif

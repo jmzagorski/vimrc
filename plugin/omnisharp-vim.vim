@@ -1,4 +1,4 @@
-Plugin 'OmniSharp/omnisharp-vim', { 'type': 'opt' }
+Plugin 'nickspoons/omnisharp-vim', { 'type': 'opt', 'branch': 'highlight-syn-options' }
 
 " OmniSharp won't work without this setting
 filetype plugin on
