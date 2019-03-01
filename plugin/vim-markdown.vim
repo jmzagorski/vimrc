@@ -1,1 +1,1 @@
-Plugin 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plugin 'plasticboy/vim-markdown', { 'type': 'opt' }

@@ -1,5 +1,4 @@
-" XXX ftplugin does not work with packadd, or i am doing something wrong
-Plugin 'racer-rust/vim-racer', { 'for': 'rust', 'do': {-> function('PostInstall_vim_racer')} }
+Plugin 'racer-rust/vim-racer', { 'type': 'opt', 'do': {-> function('PostInstall_vim_racer')} }
 
 function! PostInstall_vim_racer(hooktype, name)
   if !executable('cargo')
@@ -43,8 +42,3 @@ function! PostInstall_vim_racer(hooktype, name)
 
   echom "Please restart your terminal since RUST_SRC_PATH"
 endfunction
-
-autocmd vimrc FileType rust nmap gd <Plug>(rust-def)
-autocmd vimrc FileType rust nmap gs <Plug>(rust-def-split)
-autocmd vimrc FileType rust nmap gx <Plug>(rust-def-vertical)
-autocmd vimrc FileType rust nmap <leader>gd <Plug>(rust-doc)

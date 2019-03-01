@@ -2,10 +2,8 @@
 Plugin 'tpope/vim-obsession'
 
 " plugin might not be downloaded yet
-if exists('*ObsessionStatus')
-  set statusline+=%{ObsessionStatus()}
-  set statusline+=\ %*
-endif
+set statusline+=%{ObsessionStatus()}
+set statusline+=\ %*
 
 let g:vimrc_session_path = $MYVIMRCPATH . '/sessions'
 let g:vimrc_default_session_name = 'Session'

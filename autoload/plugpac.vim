@@ -42,12 +42,6 @@ function! plugpac#end()
 
   runtime! OPT ftdetect/**/*.vim
   runtime! OPT after/ftdetect/**/*.vim
-
-  for [name, fts] in items(s:lazy.ft)
-    augroup PlugPac
-      execute printf('autocmd FileType %s packadd %s', fts, name)
-    augroup END
-  endfor
 endfunction
 
 " https://github.com/k-takata/minpac/issues/28
@@ -55,14 +49,8 @@ function! plugpac#add(repo, ...) abort
   let l:opts = get(a:000, 0, {})
   let l:name = substitute(a:repo, '^.*/', '', '')
 
-  " `for` and `on` implies optional
-  if has_key(l:opts, 'for') || has_key(l:opts, 'on')
+  if has_key(l:opts, 'on')
     let l:opts['type'] = 'opt'
-  endif
-
-  if has_key(l:opts, 'for')
-    let l:ft = type(l:opts.for) == type([]) ? join(l:opts.for, ',') : l:opts.for
-    let s:lazy.ft[l:name] = l:ft
   endif
 
   if has_key(l:opts, 'on')
@@ -121,10 +109,14 @@ function! s:do_map(map, with_prefix, prefix)
         let prefix = "\<esc>" . prefix
       endif
       let prefix .= v:operator
-    endif
     call feedkeys(prefix, 'n')
   endif
   call feedkeys(substitute(a:map, '^<Plug>', "\<Plug>", '') . extra)
+endfunction
+
+function! s:plugin_list(...)
+  call s:init_minpac()
+  return join(sort(keys(minpac#getpluglist())), "\n")
 endfunction
 
 function! s:setup_command()
@@ -134,12 +126,31 @@ function! s:setup_command()
   command! -bar PackUpdate  call s:init_minpac() | call minpac#update('', {'do': 'call minpac#status()'})
   command! -bar PackClean   call s:init_minpac() | call minpac#clean()
   command! -bar PackStatus  call s:init_minpac() | call minpac#status()
+
+  command! -nargs=1 -complete=custom,s:plugin_list PackOpenDir
+    \ call term_start(&shell,
+    \    {'cwd': minpac#getpluginfo(<q-args>).dir,
+    \     'term_finish': 'close'})
 endfunction
 
 function! s:init_minpac()
   try
-    packadd minpac
+    let s:dir = $MYVIMRCPATH . '/pack/minpac/opt/minpac'
 
+    " TODO dont check for directory check for init function,
+    " maybe try to packadd it first
+    if !isdirectory(s:dir) && !exists('*minpac#init')
+      if confirm('minpac is not installed. Would you like to install it now?', "&Yes\n&No", 2) == 1
+        if executable('git')
+          silent! call mkdir(s:dir, 'p')
+          silent! execute printf('!git clone https://github.com/k-takata/minpac.git %s', s:dir)
+        else
+          throw '[plugpac] Git is not installed. minpac cannot be installed'
+        endif
+      endif
+    endif
+
+    packadd minpac
     call minpac#init()
     for [repo, opts] in items(s:repos)
       call minpac#add(repo, opts)
@@ -147,6 +158,8 @@ function! s:init_minpac()
   catch e
     echohl WarningMsg
     echom '[plugpac] Skipping minpac installation. Plugins will not be installed'
+    " TODO rethrow e
     echohl None
   endtry
+
 endfunction

@@ -1,4 +1,4 @@
-Plugin 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+Plugin 'OmniSharp/omnisharp-vim', { 'type': 'opt' }
 
 " OmniSharp won't work without this setting
 filetype plugin on
@@ -18,29 +18,6 @@ let g:Omnisharp_stop_server = 1  " Ask whether to stop the server on exit
 " You might also want to look at the echodoc plugin.
 set previewheight=5
 let g:OmniSharp_want_snippet=1
-
-" Show type information automatically when the cursor stops moving
-autocmd vimrc CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-" The following commands are contextual, based on the cursor position.
-autocmd vimrc FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>ft :OmniSharpFindType<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-
-" Finds members in the current buffer
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
-
-" Cursor can be anywhere on the line containing an issue
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>x  :OmniSharpFixIssue<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-
-" Navigate up and down by method/property/field
-autocmd vimrc FileType cs nnoremap <buffer> <leader>k :OmniSharpNavigateUp<CR>
-autocmd vimrc FileType cs nnoremap <buffer> <leader>j :OmniSharpNavigateDown<CR>
 
 " Contextual code actions (requires fzf, CtrlP or unite.vim)
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>

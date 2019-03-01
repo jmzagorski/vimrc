@@ -1,1 +1,1 @@
-Plugin 'groenewege/vim-less', { 'for': 'less' }
+Plugin 'groenewege/vim-less', { 'type' : 'opt' }

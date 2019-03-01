@@ -37,7 +37,7 @@ endif
 " ----------------------------------------------------------------
 
 let mapleader = ','
-let g:mapleader = ','
+let maplocalleader = ','
 set spell
 set lazyredraw                               " don't redraw while executing macros
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection

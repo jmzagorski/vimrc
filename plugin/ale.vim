@@ -10,5 +10,3 @@ let g:ale_linters = {
   \'typescript': ['tsserver'],
   \'rust': ['cargo', 'rustfmt']
 \}
-
-autocmd FileType cs nnoremap <buffer> gd :ALEGoToDefinition<CR>
