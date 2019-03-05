@@ -69,6 +69,8 @@ set incsearch
 set hlsearch
 " enable menu at bottom of window (e.g. colorscheme <Tab>)
 set wildmenu
+" ignore case on buffer switching
+set wildignorecase
 set wildmode=list:longest,full
 " makes vimgrep and searches faster since these are normally not your code
 set wildignore+=*/node_modules/*

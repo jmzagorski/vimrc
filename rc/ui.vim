@@ -96,18 +96,9 @@ if (has('termguicolors'))
 endif
 
 
-function! ReadOnly() abort
-  if &readonly || !&modifiable
-    return ''
-  else
-    return ''
-endfunction
-
 " make sure this is the first thing on the status line after all plugins are loaded
 set laststatus=2
 set statusline=
-set statusline+=%{ReadOnly()}
-set statusline+=\ %*
 set statusline+=\ [%n]                      " buffer number
 set statusline+=\ %t                        " filename
 set statusline+=\ %*                        " restore highlight
