@@ -6,5 +6,4 @@ else
   autocmd vimrc BufReadPost fugitive:\\* set bufhidden=delete
 endif
 
-set statusline^=\ %*
 set statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}

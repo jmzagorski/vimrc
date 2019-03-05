@@ -34,3 +34,6 @@ nnoremap <buffer> <LocalLeader>dc :OmniSharpDocumentation<CR>
 " Navigate up and down by method/property/field
 nnoremap <buffer> <LocalLeader>k :OmniSharpNavigateUp<CR>
 nnoremap <buffer> <LocalLeader>j :OmniSharpNavigateDown<CR>
+
+nnoremap <buffer> <LocalLeader>cf :OmniSharpCodeFormat<CR>
+nnoremap <buffer> <LocalLeader>dc :OmniSharpDocumentation<CR>
