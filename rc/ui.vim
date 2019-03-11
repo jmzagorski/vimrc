@@ -95,6 +95,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
+set background=light
 
 " make sure this is the first thing on the status line after all plugins are loaded
 set laststatus=2
