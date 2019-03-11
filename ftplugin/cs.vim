@@ -21,6 +21,7 @@ nnoremap <buffer> <LocalLeader>fi :OmniSharpFindImplementations<CR>
 nnoremap <buffer> <LocalLeader>ft :OmniSharpFindType<CR>
 nnoremap <buffer> <LocalLeader>fs :OmniSharpFindSymbol<CR>
 nnoremap <buffer> <LocalLeader>fu :OmniSharpFindUsages<CR>
+nnoremap <buffer> <LocalLeader>rn :OmniSharpRename<CR>
 
 " Finds members in the current buffer
 nnoremap <buffer> <LocalLeader>fm :OmniSharpFindMembers<CR>
