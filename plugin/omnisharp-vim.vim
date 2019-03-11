@@ -1,8 +1,5 @@
 Plugin 'nickspoons/omnisharp-vim', { 'type': 'opt', 'branch': 'highlight-syn-options' }
 
-" OmniSharp won't work without this setting
-filetype plugin on
-
 let wsldir = expand('/mnt/c/Users/$USERNAME/.omnisharp/omnisharp-roslyn/')
 
 if isdirectory(wsldir)
