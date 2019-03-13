@@ -1,4 +1,4 @@
-Plugin 'nickspoons/omnisharp-vim', { 'type': 'opt', 'branch': 'highlight-syn-options' }
+Plugin 'nickspoons/omnisharp-vim'
 
 let wsldir = expand('/mnt/c/Users/$USERNAME/.omnisharp/omnisharp-roslyn/')
 

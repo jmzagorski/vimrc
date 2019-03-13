@@ -1,1 +1,1 @@
-Plugin 'racer-rust/vim-racer', { 'type': 'opt', 'do': {-> function('plugin#vim_racer#post_install')} }
+Plugin 'racer-rust/vim-racer', { 'do': {-> function('plugin#vim_racer#post_install')} }

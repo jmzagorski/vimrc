@@ -9,3 +9,6 @@ let g:ale_linters = {
   \'typescript': ['tsserver'],
   \'rust': ['cargo', 'rustfmt']
 \}
+
+nnoremap gd :ALEGoToDefinition<CR>
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')

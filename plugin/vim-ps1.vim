@@ -1,1 +1,1 @@
-Plugin 'PProvost/vim-ps1', { 'type': 'opt' }
+Plugin 'PProvost/vim-ps1'

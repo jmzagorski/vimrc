@@ -1,1 +1,1 @@
-Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/limelight.vim', { 'type': 'opt' }

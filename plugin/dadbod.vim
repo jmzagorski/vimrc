@@ -1,2 +1,2 @@
 " Modern database interface for Vim
-Plugin 'tpope/vim-dadbod', { 'type': 'opt' }
+Plugin 'tpope/vim-dadbod'

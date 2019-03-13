@@ -1,17 +1,3 @@
-if exists("b:did_ftplugin")
-  finish
-endif
-
-let b:did_ftplugin = 1
-
-if &runtimepath !~# 'omnisharp-vim'
-  packadd omnisharp-vim
-endif
-
-if &runtimepath !~# 'vim-csharp'
-  packadd vim-csharp
-endif
-
 " Show type information automatically when the cursor stops moving
 autocmd vimrc CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
