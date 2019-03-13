@@ -40,7 +40,6 @@ set synmaxcol=200                                   "only highlight first 200 li
 set timeoutlen=200
 set ttimeoutlen=200
 
-set mouse=a                                         "enable mouse
 set mousehide                                       "hide when characters are typed
 set ttyfast                                         "assume fast terminal connection
 set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility

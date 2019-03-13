@@ -12,7 +12,6 @@ endif
 if !has('windows')
   set transparency=2 " does not work on windows
 endif
-
 "ligature support for Fira Code
 set renderoptions=type:directx
 set encoding=utf-8
@@ -32,15 +31,16 @@ if &term =~ '^screen'
 endif
 
 
-let g:solarized_termcolors=16
 " terminal color
 set t_Co=16
-
-set noerrorbells
-set vb t_vb=
 
 " accessing and sourcing gvimrc easily
 nmap <silent> <leader>sgv :source $MYGVIMRC
 nmap <silent> <leader>egv :e $MYGVIMRC<CR>
 
-set visualbell t_vb=        " No beep sound
+" No beep sound
+set noerrorbells
+set visualbell t_vb=
+
+"enable mouse
+set mouse=a
