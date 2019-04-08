@@ -1,1 +1,1 @@
-Plugin 'OrangeT/vim-csharp', { 'type': 'opt' }
+Plugin 'OrangeT/vim-csharp'

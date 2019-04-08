@@ -1,3 +1,3 @@
-Plugin 'pangloss/vim-javascript', { 'type': 'opt' }
+Plugin 'pangloss/vim-javascript'
 
 let g:javascript_plugin_jsdoc = 1
