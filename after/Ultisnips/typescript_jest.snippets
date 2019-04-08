@@ -1,0 +1,18 @@
+extends javascript
+
+snippet jest "sets up a unit test"
+describe('${1}', () => {
+  beforeEach(() => {
+    ${2}
+  });
+
+  it('${3}', () => {
+    /* Arrange */
+		${0}
+
+    /* Act */
+
+    /* Assert */
+  });
+});
+endsnippet
