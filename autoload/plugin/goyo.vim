@@ -1,5 +1,6 @@
 function! plugin#goyo#enter()
-  if match(&runtimepath, "limelight") != -1
+  if match(&runtimepath, "limelight") == -1
+    packadd limelight.vim
     Limelight
   endif
 endfunction
