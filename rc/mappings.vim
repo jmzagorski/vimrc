@@ -81,5 +81,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 " dictionary complete word
 inoremap <C-k> <C-x><C-k>
 
+nnoremap <leader>rm :call delete(expand('%')) \| bdelete!<CR>
+
 " Abbreviations ---------------------------------------------------------------
 iab <expr> dts strftime("%c")
