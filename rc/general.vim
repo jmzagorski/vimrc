@@ -106,3 +106,4 @@ endif
 
 set breakindent
 set showbreak=\\\ \ 
+set diffopt+=iwhite
