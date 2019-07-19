@@ -4,7 +4,6 @@ nnoremap <buffer> <LocalLeader>fi :OmniSharpFindImplementations<CR>
 nnoremap <buffer> <LocalLeader>ft :OmniSharpFindType<CR>
 nnoremap <buffer> <LocalLeader>fs :OmniSharpFindSymbol<CR>
 nnoremap <buffer> <LocalLeader>fu :OmniSharpFindUsages<CR>
-nnoremap <buffer> <LocalLeader>rn :OmniSharpRename<CR>
 nnoremap <buffer> <LocalLeader>ca :OmniSharpGetCodeActions<CR>
 nnoremap <buffer> <LocalLeader>tl :OmniSharpTypeLookup<CR>
 
