@@ -156,3 +156,13 @@ EXEC sp_${1: AddOrupdate}extendedproperty
 	,@level1type = N'Table',  @level1name = '${4}'
 	,@level2type = N'Column', @level2name = '${5}';
 endsnippet
+
+snippet restore "Script to restore a database from another"
+RESTORE FILELISTONLY FROM DISK='${1}'
+
+RESTORE DATABASE ShelfLife_Staging FROM DISK='$1'
+WITH
+   MOVE '${2: DataName}' TO ${3}
+   MOVE '$2_log' TO $3_log.ldf
+${0}
+endsnippet
