@@ -17,7 +17,7 @@ else
   "for backups go local directory then home
   set backupdir=~/.backup//
   if !isdirectory($HOME . '/.backup')
-    call mkdir($HOME "/.backup")
+    call mkdir($HOME . "/.backup")
   endif
 
   set directory=~/.swp//
@@ -29,7 +29,7 @@ else
     set undofile	        " keep an undo file (undo changes after closing)
     set undodir=~/.undo//
     if !isdirectory($HOME . '/.undo')
-      call mkdir($HOME '/.undo')
+      call mkdir($HOME . '/.undo')
     endif
   endif
 endif
@@ -53,7 +53,7 @@ set clipboard^=unnamed,unnamedplus           " sync with clipboard
 set hidden                                   " allow buffer switching without saving
 set autoread                                 " reload files changed outside vim
 set showcmd
-set tags=tags;/
+set tags=./.git/tags;,./tags,tags;
 set showfulltag
 set modeline
 set modelines=5
@@ -99,9 +99,9 @@ autocmd vimrc CursorHold * silent! checktime
 
 " useful for the find command
 if has('win16') || has('win32') || has('win64')
-  set path+=.\**
+  set path=.\**
 else
-  set path+=$PWD/**
+  set path=$PWD/**
 endif
 
 set breakindent

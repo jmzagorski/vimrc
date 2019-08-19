@@ -50,7 +50,7 @@ set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
 set colorcolumn=80,100
 
 " Equal splits
-autocmd vimrc VimResized * wincmd =
+" autocmd vimrc VimResized * wincmd =
 
 
 "" Terminal setttings {{{
