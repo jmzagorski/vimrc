@@ -21,3 +21,7 @@ nnoremap <buffer> <LocalLeader>k :OmniSharpNavigateUp<CR>
 nnoremap <buffer> <LocalLeader>j :OmniSharpNavigateDown<CR>
 
 nnoremap <buffer> <LocalLeader>cf :OmniSharpCodeFormat<CR>
+
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
