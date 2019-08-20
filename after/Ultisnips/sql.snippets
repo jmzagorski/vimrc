@@ -158,11 +158,23 @@ EXEC sp_${1: AddOrupdate}extendedproperty
 endsnippet
 
 snippet restore "Script to restore a database from another"
-RESTORE FILELISTONLY FROM DISK='${1}'
+BACKUP DATABASE ${1: DatabaseName}
+TO DISK = N'${2}'
+	WITH  COPY_ONLY, NOFORMAT, NOINIT,
+	NAME = N'$1-CopyOnly',
+	SKIP, NOREWIND, NOUNLOAD,  STATS = 10
 
-RESTORE DATABASE ShelfLife_Staging FROM DISK='$1'
+RESTORE FILELISTONLY FROM DISK='$2'
+
+use master
+go
+alter database [$3] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+drop database [$3]
+go
+
+RESTORE DATABASE ${3:NewDatabaseName} FROM DISK='$2'
 WITH
-   MOVE '${2: DataName}' TO ${3}
-   MOVE '$2_log' TO $3_log.ldf
+   MOVE '${4: DataName}' TO ${5}.mdf,
+   MOVE '$4_log' TO $5_log.ldf
 ${0}
 endsnippet
