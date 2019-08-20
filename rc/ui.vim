@@ -44,14 +44,8 @@ set mousehide                                       "hide when characters are ty
 set ttyfast                                         "assume fast terminal connection
 set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
 
-" auto wrap lines at 80
-"set textwidth=80
 " make a mark for column 80
 set colorcolumn=80,100
-
-" Equal splits
-" autocmd vimrc VimResized * wincmd =
-
 
 "" Terminal setttings {{{
 if !has("gui_running")
@@ -78,8 +72,6 @@ if !has("gui_running")
   endif
 endif
 
-"explorer
-"let g:netrw_banner = 0
 "tree
 " new files are with %
 let g:netrw_liststyle = 3
@@ -93,9 +85,6 @@ let g:netrw_winsize = 25
 if (has('termguicolors'))
   set termguicolors
 endif
-
-set background=light
-set cursorline
 
 " make sure this is the first thing on the status line after all plugins are loaded
 set laststatus=2
