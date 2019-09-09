@@ -10,13 +10,13 @@ let g:ale_sign_style_warning = '☠'
 let g:ale_linters = {
   \'cs': ['OmniSharp'],
   \'javascript': ['eslint'],
-  \'typescript': ['tsserver'],
+  \'typescript': ['eslint'],
   \'rust': ['cargo', 'rustfmt']
 \}
 
 let g:ale_fixers = {
 \    'javascript': ['eslint'],
-\    'typescript': ['prettier'],
+\    'typescript': ['eslint'],
 \    'scss': ['prettier'],
 \    'html': ['prettier']
 \}
