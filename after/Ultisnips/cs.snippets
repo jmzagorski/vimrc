@@ -1,5 +1,10 @@
 priority 1
 
+snippet na
+namespace$1
+class$2
+endsnippet
+
 #`echo $USER` or $USERNAME throws error
 snippet todo "TODO reminder" b
 // TODO: `!p import getpass
@@ -9,17 +14,25 @@ endsnippet
 snippet eq "Equals override" b
 public override bool Equals(object obj)
 {
-	${1:`vim_snippets#Filename()`} ${2: var} = obj as $1
-
-	if ($2 == null) return false;
-
-	${0}
-	return base.Equals(thisType);
+		if (obj is ${1:`vim_snippets#Filename()`} other)
+		{
+			${0}
+		}
+	
+		return base.Equals(thisType);
 }
 
 public override int GetHashCode()
 {
-	return base.GetHashCode();
+		unchecked
+		{
+				// Choose large primes to avoid hashing collisions
+				const int HashingBase = (int)2166136261;
+				const int HashingMultiplier = 16777619;
+				int hash = (HashingBase * HashingMultiplier) ^ ${1: Property}?.GetHashCode() ?? 0;
+
+				return (hash * HashingMultiplier) ^ ${2: Other Property}?.GetHashCode() ?? 0;
+		}
 }
 endsnippet
 

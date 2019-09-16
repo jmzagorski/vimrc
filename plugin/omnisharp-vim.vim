@@ -3,7 +3,7 @@ Plugin 'OmniSharp/omnisharp-vim'
 let wsldir = expand('/mnt/c/Users/$USERNAME/.omnisharp/omnisharp-roslyn/')
 
 let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 2
+let g:OmniSharp_highlight_types = 1
 
 if isdirectory(wsldir)
   let g:OmniSharp_server_path = wsldir . 'OmniSharp.exe'
@@ -37,6 +37,3 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 
 " Add syntax highlighting for types and interfaces
 nnoremap <Leader>th :OmniSharpHighlightTypes<CR>
-
-" Enable snippet completion, requires completeopt-=preview
-let g:OmniSharp_want_snippet=1
