@@ -55,8 +55,7 @@ set autoread                                 " reload files changed outside vim
 set showcmd
 set tags=./.git/tags;,./tags,tags;
 set showfulltag
-set modeline
-set modelines=5
+set nomodeline
 set noerrorbells
 set novisualbell
 set history=1000                             " number of command lines to remember default is 20
@@ -107,3 +106,7 @@ endif
 set breakindent
 set showbreak=\\\ \ 
 set diffopt+=iwhite
+
+if executable('rg')
+  setglobal grepprg=rg\ -H\ --no-heading\ --vimgrep
+endif
