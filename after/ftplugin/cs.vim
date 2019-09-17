@@ -25,3 +25,6 @@ nnoremap <buffer> <LocalLeader>cf :OmniSharpCodeFormat<CR>
 setlocal tabstop=4
 setlocal softtabstop=4
 setlocal shiftwidth=4
+
+" https://vi.stackexchange.com/questions/9936/set-tabulation-size-when-functions-parameters-are-written-on-multiple-lines
+set cinoptions=(4,W4
