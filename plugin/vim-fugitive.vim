@@ -7,3 +7,5 @@ else
 endif
 
 set statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
+
+set tags^=./.git/tags;

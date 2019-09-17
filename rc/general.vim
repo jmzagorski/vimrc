@@ -53,7 +53,6 @@ set clipboard^=unnamed,unnamedplus           " sync with clipboard
 set hidden                                   " allow buffer switching without saving
 set autoread                                 " reload files changed outside vim
 set showcmd
-set tags=./.git/tags;,./tags,tags;
 set showfulltag
 set nomodeline
 set noerrorbells
@@ -76,7 +75,7 @@ set wildignore+=*/node_modules/*
 set wildignore+=*/obj/*
 set wildignore+=*/bin/*
 set wildignore+=*/jspm_packages/*
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
+set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
 " ---------------------- END SEARCHING ----------------------
 set exrc
 set secure
