@@ -33,8 +33,6 @@ set foldmethod=syntax
 "open all folds by default
 set foldlevelstart=99
 set foldnestmax=10
-set foldlevel=2
-let g:xml_syntax_folding=1                          "enable xml folding
 set synmaxcol=200                                   "only highlight first 200 line since this can slow vim
 
 set timeoutlen=200
