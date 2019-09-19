@@ -97,7 +97,7 @@ autocmd vimrc CursorHold * silent! checktime
 
 " useful for the find command
 if has('win16') || has('win32') || has('win64')
-  set path=.\**
+  exec "set path=" . escape(getcwd(), '\') . "**"
 else
   set path=$PWD/**
 endif
