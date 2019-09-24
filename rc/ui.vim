@@ -106,25 +106,27 @@ set statusline+=\ %l,%c                     " current line & column
 set statusline+=\ %*                        " restore highlight
 set statusline+=\|
 
+
+set showtabline=2
+set tabline=%!MyTabLine()
+
 function! MyTabLine()
   let s = ''
 
   for i in range(tabpagenr('$'))
     let tabnr = i + 1 " range() starts at 0
     let winnr = tabpagewinnr(tabnr)
+    " local work directory
+    let lwd = fnamemodify(getcwd(winnr, tabnr), ':t')
+    " if the current tab is in the loop, select it
+    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tabnr
+    let s .= ' ' . lwd . ' '
+
     let buflist = tabpagebuflist(tabnr)
     let bufnr = buflist[winnr - 1]
     let bufname = fnamemodify(bufname(bufnr), ':t')
-    let s .= '%' . tabnr . 'T'
-    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tabnr
-    let n = tabpagewinnr(tabnr,'$')
-
-    if n > 1 | let s .= ':' . n | endif
-
-    let s .= empty(bufname) ? ' [No Name] ' : ' ' . bufname . ' '
     let bufmodified = getbufvar(bufnr, "&mod")
-
     if bufmodified | let s .= '+ ' | endif
   endfor
 
@@ -132,5 +134,3 @@ function! MyTabLine()
 
   return s
 endfunction
-
-set tabline=%!MyTabLine()"
