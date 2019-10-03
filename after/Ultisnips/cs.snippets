@@ -11,10 +11,11 @@ public override bool Equals(object obj)
 {
 		if (obj is ${1:`vim_snippets#Filename()`} other)
 		{
-			${0}
+			return $2.Equals(other.$2) && $3.Equals(other.$3);
 		}
 	
-		return base.Equals(thisType);
+		${0}
+		return base.Equals(obj);
 }
 
 public override int GetHashCode()
@@ -24,9 +25,9 @@ public override int GetHashCode()
 				// Choose large primes to avoid hashing collisions
 				const int HashingBase = (int)2166136261;
 				const int HashingMultiplier = 16777619;
-				int hash = (HashingBase * HashingMultiplier) ^ ${1: Property}?.GetHashCode() ?? 0;
+				int hash = (HashingBase * HashingMultiplier) ^ ${2: Property}?.GetHashCode() ?? 0;
 
-				return (hash * HashingMultiplier) ^ ${2: Other Property}?.GetHashCode() ?? 0;
+				return (hash * HashingMultiplier) ^ ${3: Other Property}?.GetHashCode() ?? 0;
 		}
 }
 endsnippet
