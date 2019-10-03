@@ -72,6 +72,7 @@ set wildignorecase
 set wildmode=list:longest,full
 " makes vimgrep and searches faster since these are normally not your code
 set wildignore+=*/node_modules/*
+set wildignore+=*/.git/*
 set wildignore+=*/obj/*
 set wildignore+=*/bin/*
 set wildignore+=*/jspm_packages/*
@@ -95,12 +96,7 @@ command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 " make sure our buffer is always up to date
 autocmd vimrc CursorHold * silent! checktime
 
-" useful for the find command
-if has('win16') || has('win32') || has('win64')
-  exec "set path=" . escape(getcwd(), '\') . "**"
-else
-  set path=$PWD/**
-endif
+set path=.,,**
 
 set breakindent
 set showbreak=\\\ \ 
