@@ -39,7 +39,7 @@ nnoremap n nzz
 nnoremap } }zz
 
 "find all occurences of word under cursor
-nnoremap K :vimgrep! "\b<cfile>\b"<CR>:cw<CR>
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " do nothing
 nnoremap <F1> <nop>
