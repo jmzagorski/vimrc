@@ -1,3 +1,7 @@
+if get(b:, 'current_compiler', '') ==# ''
+  compiler msbuild
+endif
+
 " The following commands are contextual, based on the cursor position.
 nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
 nnoremap <buffer> <LocalLeader>fi :OmniSharpFindImplementations<CR>
@@ -28,3 +32,5 @@ setlocal shiftwidth=4
 
 " https://vi.stackexchange.com/questions/9936/set-tabulation-size-when-functions-parameters-are-written-on-multiple-lines
 set cinoptions=(4,W4
+set foldmethod=indent
+let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
