@@ -3,7 +3,7 @@ Plugin 'OmniSharp/omnisharp-vim'
 let wsldir = expand('/mnt/c/Users/$USERNAME/AppData/Local/omnisharp-vim/omnisharp-roslyn/')
 
 let g:OmniSharp_server_stdio = 1
-let g:OmniSharp_highlight_types = 1
+" let g:OmniSharp_highlight_types = 1
 
 if isdirectory(wsldir)
   let g:OmniSharp_server_path = wsldir . 'OmniSharp.exe'
