@@ -5,11 +5,10 @@ augroup vimrc
   autocmd!
 augroup END
 
-
 """"""""""""""""""""""""
 " GENERAL STUFF
 """"""""""""""""""""""""
-" ---------------------- FROM VIM 80 Exmaple ----------------------
+" FROM VIM 80 Defaults --------------------------------------------------------
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -44,12 +43,9 @@ else
     endif
   endif
 endif
-
-" ----------------------------------------------------------------
-
+" -----------------------------------------------------------------------------
 let mapleader = ','
 let maplocalleader = ','
-set spell
 set lazyredraw                               " don't redraw while executing macros
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
 set smartindent                              " be smart about it
@@ -69,7 +65,7 @@ set nomodeline
 set noerrorbells
 set novisualbell
 set history=1000                             " number of command lines to remember default is 20
-" ---------------------- SEARCHING ----------------------
+" SEARCHING -----------------------------------------------------------------
 set ignorecase                               " ignore case on searching
 set infercase
 set smartcase                                " do not ignore case when capitalization are in search
@@ -88,12 +84,11 @@ set wildignore+=*/obj/*
 set wildignore+=*/bin/*
 set wildignore+=*/jspm_packages/*
 set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
-" ---------------------- END SEARCHING ----------------------
+" -----------------------------------------------------------------------------
 set exrc
 set secure
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-set showmode
 set virtualedit=block
 " on vert split, split below
 set splitbelow
@@ -166,6 +161,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 " do nothing
 nnoremap <F1> <nop>
 nnoremap Q <nop>
+nnoremap Q <nop>
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
@@ -188,9 +184,45 @@ if bufwinnr(1)
   nnoremap <S-Right> <c-w>>
 endif
 
-" navigate between tabs tab move to CTRL+Arrow
+
+" Tabs -----------------------------------------------------------------------
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
+
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+set showtabline=2
+set tabline=%!MyTabLine()
+
+function! MyTabLine()
+  let s = ''
+
+  for i in range(tabpagenr('$'))
+    let tabnr = i + 1 " range() starts at 0
+    let winnr = tabpagewinnr(tabnr)
+    " local work directory
+    let lwd = fnamemodify(getcwd(winnr, tabnr), ':t')
+    " if the current tab is in the loop, select it
+    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tabnr
+    let s .= ' ' . lwd . ' '
+
+    let buflist = tabpagebuflist(tabnr)
+    let bufnr = buflist[winnr - 1]
+    let bufname = fnamemodify(bufname(bufnr), ':t')
+    let bufmodified = getbufvar(bufnr, "&mod")
+    if bufmodified | let s .= '+ ' | endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+
+  return s
+endfunction
+" -----------------------------------------------------------------------------
 
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
@@ -225,6 +257,7 @@ set encoding=utf-8
 set showmatch
 "tens of a second to show matching parentheses
 set matchtime=2
+set showmode
 
 " highlight white space at end of line and anything over 80 lines
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -325,35 +358,6 @@ set statusline+=\ %p%%                      " percentage in lines
 set statusline+=\ %l,%c                     " current line & column
 set statusline+=\ %*                        " restore highlight
 set statusline+=\|
-
-
-set showtabline=2
-set tabline=%!MyTabLine()
-
-function! MyTabLine()
-  let s = ''
-
-  for i in range(tabpagenr('$'))
-    let tabnr = i + 1 " range() starts at 0
-    let winnr = tabpagewinnr(tabnr)
-    " local work directory
-    let lwd = fnamemodify(getcwd(winnr, tabnr), ':t')
-    " if the current tab is in the loop, select it
-    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    let s .= ' ' . tabnr
-    let s .= ' ' . lwd . ' '
-
-    let buflist = tabpagebuflist(tabnr)
-    let bufnr = buflist[winnr - 1]
-    let bufname = fnamemodify(bufname(bufnr), ':t')
-    let bufmodified = getbufvar(bufnr, "&mod")
-    if bufmodified | let s .= '+ ' | endif
-  endfor
-
-  let s .= '%#TabLineFill#'
-
-  return s
-endfunction
 
 
 """"""""""""""""""""""""

@@ -10,7 +10,7 @@ let g:ale_sign_style_warning = '☠'
 let g:ale_linters = {
   \'cs': ['OmniSharp'],
   \'javascript': ['eslint'],
-  \'typescript': ['eslint'],
+  \'typescript': ['tsserver', 'eslint'],
   \'rust': ['cargo', 'rustfmt']
 \}
 
@@ -20,8 +20,6 @@ let g:ale_fixers = {
 \    'scss': ['prettier'],
 \    'html': ['prettier']
 \}
-
-" let g:ale_fix_on_save = 1
-
+let g:ale_lint_delay=1000
 nnoremap gd :ALEGoToDefinition<CR>
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
