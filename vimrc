@@ -126,8 +126,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " from view to view model files
 cnoremap <expr> %T getcmdtype() == ':' ? expand('%:r').'.' : '%R'
 
-" show invisible characters
-nmap <leader>l :set list!<CR>
 " needs to be set before listchars
 set encoding=utf8
 set listchars=tab:¶\ ,eol:¬,trail:☠
