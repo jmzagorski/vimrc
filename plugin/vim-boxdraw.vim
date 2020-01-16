@@ -1,2 +1,2 @@
 " Ascii drawing tool
-Plugin 'gyim/vim-boxdraw'
+Plugin 'gyim/vim-boxdraw', { 'type': 'opt' }
