@@ -1,3 +1,8 @@
+snippet job_start "Starts a sql job"
+exec msdb.dbo.sp_start_job N'${1:Job_Name}';
+exec msdb.dbo.sp_help_job @Job_name = '$5'
+endsnippet
+
 snippet jobs "List of all jobs"
 select
 	s.name
@@ -27,7 +32,7 @@ order by
 	, RunDateTime desc
 endsnippet
 
-snippet failedjobs "MSSQL query for failed jobs"
+snippet jobstaus "MSSQL query for failed jobs"
 select
 	j.name
 	, js.step_name

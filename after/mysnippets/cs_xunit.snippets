@@ -30,10 +30,10 @@ snippet xfactthrow "xunit fact test checking for exception"
 public void ${1:`!v vim_snippets#Filename('$1', 'title')`}_${2:StateUnderTest}_${3:ExceptionThrown}()
 {
 	/* Arrange */
-	void shouldthrow() => ${4:Action}
+	void shouldThrow() => ${4:Action}
 
 	/* Act */
-	var ex = Record.Exception((Action)shouldThrow);
+	var ex = Record.Exception(shouldThrow);
 
 	/* Assert */
 	Assert.IsType<${5:Exception}>(ex);${0}
@@ -41,16 +41,10 @@ public void ${1:`!v vim_snippets#Filename('$1', 'title')`}_${2:StateUnderTest}_$
 endsnippet
 
 snippet xtheorythrow "xunit theory test to check when multiple args should throw"
-public static IEnumerable<object[]> $1
+public static IEnumerable<object[]> $1 => new[]
 {
-	get
-	{
-		return new []
-		{
-			new object[] { ${8:arg} }${0}
-		};
-	}
-}
+	new object[] { ${8:arg} }${0}
+};
 
 [Theory, MemberData(nameof(${1:ArgName}))]
 public void ${2:`!v vim_snippets#Filename('$1', 'title')`}_$1_${4:ExceptionThrown}(${5:Args})
@@ -59,7 +53,7 @@ public void ${2:`!v vim_snippets#Filename('$1', 'title')`}_$1_${4:ExceptionThrow
 	void shouldThrow() => ${6:Action};
 
 	/* Act */
-	var ex = Record.Exception((Action)shouldThrow);
+	var ex = Record.Exception(shouldThrow);
 
 	/* Assert */
 	Assert.IsType<${7:Exception}>(ex);${0}
@@ -67,16 +61,10 @@ public void ${2:`!v vim_snippets#Filename('$1', 'title')`}_$1_${4:ExceptionThrow
 endsnippet
 
 snippet xtheorydata "xunit theory test with data"
-public static IEnumerable<object[]> $1
+public static IEnumerable<object[]> $1 => new[]
 {
-	get
-	{
-		return new []
-		{
-			new object[] { ${8:arg} }${0}
-		};
-	}
-}
+	new object[] { ${8:arg} }${0}
+};
 
 [Theory, MemberData(nameof(${1:ArgName}))]
 public void ${2:`!v vim_snippets#Filename('$1', 'title')`}_$1_${4:ExpectedBehavior}(${5:Args})
