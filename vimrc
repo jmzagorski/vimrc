@@ -146,11 +146,10 @@ nnoremap Y y$
 nnoremap J mzJ`z
 
 "center screen after moving
-nnoremap n nzz
 nnoremap } }zz
 
 "find all occurences of word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K :grep! "\b<cword>\b"<CR>:cw<CR>
 
 " do nothing
 nnoremap <F1> <nop>
@@ -166,9 +165,6 @@ nnoremap <leader><leader> :b#<CR>
 " easier sorting key stroke in visual mode
 xnoremap <C-s> :sort ui<CR>
 vnoremap // y/<C-R>"<CR>
-
-" semi colin at end of line
-inoremap <leader>; <C-o>A;
 
 " window sizing if there is one
 if bufwinnr(1)
