@@ -11,7 +11,9 @@ let g:ale_linters = {
   \'cs': ['OmniSharp'],
   \'javascript': ['eslint'],
   \'typescript': ['tsserver', 'eslint'],
-  \'rust': ['cargo', 'rls', 'rustfmt']
+  \'rust': ['cargo', 'rls', 'rustfmt'],
+  \'markdown':['languagetool','proselint'],
+  \'text':['languagetool','proselint']
 \}
 
 let g:ale_fixers = {
@@ -29,3 +31,8 @@ let b:ale_rust_rls_config = {
       \   'clippy_preference': 'on'
       \ }
 \}
+
+if has("unix")
+  let g:ale_languagetool_executable = "/usr/bin/java"
+  let g:ale_languagetool_options = "-jar ~/languagetool/languagetool-commandline.jar"
+endif

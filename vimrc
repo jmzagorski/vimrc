@@ -46,6 +46,7 @@ endif
 " -----------------------------------------------------------------------------
 let mapleader = ','
 let maplocalleader = ','
+set thesaurus+=~/.thesaurus.txt
 set lazyredraw                               " don't redraw while executing macros
 set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
 set smartindent                              " be smart about it
@@ -83,6 +84,8 @@ set wildignore+=*/.git/*
 set wildignore+=*/obj/*
 set wildignore+=*/bin/*
 set wildignore+=*/jspm_packages/*
+set wildignore+=*/wwwroot/*
+set wildignore+=*/dist/*
 set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
 " -----------------------------------------------------------------------------
 set exrc
