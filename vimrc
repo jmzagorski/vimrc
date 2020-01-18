@@ -128,7 +128,7 @@ cnoremap <expr> %T getcmdtype() == ':' ? expand('%:r').'.' : '%R'
 
 " needs to be set before listchars
 set encoding=utf8
-set listchars=tab:¶\ ,eol:¬,trail:☠
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»,trail:☠
 
 " remap buffer switching left/right/up/down
 nnoremap <C-h> <C-w>h
@@ -348,7 +348,6 @@ set statusline+=\ %p%%                      " percentage in lines
 set statusline+=\ %l,%c                     " current line & column
 set statusline+=\ %*                        " restore highlight
 set statusline+=\|
-
 
 """"""""""""""""""""""""
 " PLUGIN STUFF
