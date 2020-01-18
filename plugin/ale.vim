@@ -11,15 +11,21 @@ let g:ale_linters = {
   \'cs': ['OmniSharp'],
   \'javascript': ['eslint'],
   \'typescript': ['tsserver', 'eslint'],
-  \'rust': ['cargo', 'rustfmt']
+  \'rust': ['cargo', 'rls', 'rustfmt']
 \}
 
 let g:ale_fixers = {
 \    'javascript': ['eslint'],
 \    'typescript': ['eslint'],
-\    'scss': ['prettier'],
-\    'html': ['prettier']
+\    'scss': ['prettir'],
+\    'html': ['prettier'],
+\    'rust': ['rustfmt']
 \}
 let g:ale_lint_delay=1000
 nnoremap gd :ALEGoToDefinition<CR>
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let b:ale_rust_rls_config = {
+      \ 'rust': {
+      \   'clippy_preference': 'on'
+      \ }
+\}
