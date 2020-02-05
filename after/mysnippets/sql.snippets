@@ -179,7 +179,20 @@ go
 
 RESTORE DATABASE ${3:NewDatabaseName} FROM DISK='$2'
 WITH
-   MOVE '${4: DataNameFromBackup}' TO '${5}.mdf',
-   MOVE '$4_log' TO '$5_log.ldf'
+    MOVE '${4: DataNameFromBackup}' TO '${5}.mdf',
+    MOVE '$4_log' TO '$5_log.ldf'
 ${0}
+endsnippet
+
+snippet trans "Script for simple transaction"
+BEGIN TRANSACTION
+BEGIN TRY
+	  ${0}
+
+    COMMIT
+END TRY
+BEGIN CATCH
+    SELECT ERROR_MESSAGE()
+ROLLBACK
+END CATCH
 endsnippet
