@@ -66,6 +66,7 @@ set nomodeline
 set noerrorbells
 set novisualbell
 set history=1000                             " number of command lines to remember default is 20
+set viminfo+=n$VIM/viminfo " set vim info in vim directory, out of sight
 " SEARCHING -----------------------------------------------------------------
 set ignorecase                               " ignore case on searching
 set infercase
