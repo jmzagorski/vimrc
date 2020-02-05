@@ -102,6 +102,9 @@ set linebreak
 " Default todo list
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 
+" Default split when open quickfix
+autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
+
 " make sure our buffer is always up to date
 autocmd vimrc CursorHold * silent! checktime
 
@@ -152,7 +155,7 @@ nnoremap J mzJ`z
 nnoremap } }zz
 
 "find all occurences of word under cursor
-nnoremap K :grep! "\b<cword>\b"<CR>:cw<CR>
+nnoremap K :grep! -i "\b<cword>\b"<CR>:cw<CR>
 
 " do nothing
 nnoremap <F1> <nop>
@@ -295,25 +298,6 @@ set colorcolumn=80,100
 if !has("gui_running")
   set noerrorbells novisualbell t_vb=
   set termencoding=utf8
-  set t_ut= " setting for looking properly in tmux
-  set t_BE= " disable bracketed-paste mode
-  let &t_Co = 256
-  " del key will be backspace, so stop that from happening
-  inoremap <Char-0x07F> <BS>
-  nnoremap <Char-0x07F> <BS>
-  " src: https://conemu.github.io/en/VimXterm.html
-  " trick to support 256 colors and scroll in conemu
-  let &t_AB="\e[48;5;%dm"
-  let &t_AF="\e[38;5;%dm"
-  inoremap <esc>[62~ <c-x><c-e>
-  inoremap <esc>[63~ <c-x><c-y>
-  nnoremap <esc>[62~ 3<c-e>
-  nnoremap <esc>[63~ 3<c-y>
-  if exists('$CONEMU')
-    set term=xterm
-    !chcp 65001
-    " this gets rid of funny characters
-  endif
 endif
 
 "tree
