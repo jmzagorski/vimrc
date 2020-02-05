@@ -15,5 +15,4 @@ autocmd vimrc BufEnter * if &ft ==# 'cs' | MUcompleteAutoOn | else | MUcompleteA
 
 " Ultisnip config so they do not mess up this plugin
 let g:UltiSnipsExpandTrigger = "<f5>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
