@@ -55,8 +55,8 @@ order by
 endsnippet
 
 snippet sp "MSSQL default for creating a stored procedure"
-create procedure ${4:dbo}.${5:}
-	@${6}
+create procedure ${1:dbo}.${2}
+	@${3}
 as
 begin
 
@@ -71,7 +71,7 @@ begin
 		if @trancount = 0
 			begin transaction
 		else
-			save transaction $5;
+			save transaction $2;
 
 		-- store procedure logic
 		${0}
@@ -93,9 +93,9 @@ begin
 			rollback
 		-- the transaction is commitable and this is a nested transaction
 		if @xstate = 1 and @trancount > 0
-			rollback transaction $5;
+			rollback transaction $2;
 		-- rethrow the error to the caller so we do not swallow it
-		raiserror ('$5: %d: %s', 16, 1, @error, @message) ;
+		raiserror ('$2: %d: %s', 16, 1, @error, @message) ;
 	end catch
 end
 go
