@@ -99,6 +99,7 @@ set splitbelow
 " on horizontal split, split right
 set splitright
 set linebreak
+set winfixwidth
 
 " Default todo list
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
@@ -181,6 +182,7 @@ if bufwinnr(1)
   nnoremap <S-Right> <c-w>>
 endif
 
+nnoremap <Leader>vr :silent vertical resize 60<CR>
 
 " Tabs -----------------------------------------------------------------------
 nnoremap <C-Left> :tabprevious<CR>
@@ -250,6 +252,7 @@ iab <expr> dts strftime("%c")
 " MUST BE BEFORE THE COLOR HIGHLIGHTING WHEN NOT USING MATCH
 syntax on
 set encoding=utf-8
+set cursorline
 "automatically highlight matching braces/brackets/etc.
 set showmatch
 "tens of a second to show matching parentheses
