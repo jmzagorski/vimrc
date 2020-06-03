@@ -3,32 +3,32 @@ priority 1
 #`echo $USER` or $USERNAME throws error
 snippet todo "TODO reminder" b
 // TODO: `!p import getpass
-snip.rv=getpass.getuser()` ${1:description} `!v strftime("%c")` 
+snip.rv=getpass.getuser()` ${1:description} `!v strftime("%c")`
 endsnippet
 
 snippet eq "Equals override" b
 public override bool Equals(object obj)
 {
-		if (obj is ${1:`vim_snippets#Filename()`} other)
-		{
-			return $2.Equals(other.$2) && $3.Equals(other.$3);
-		}
-	
-		${0}
-		return base.Equals(obj);
+	if (obj is ${1:`!p snip.rv = snip.basename`} other)
+	{
+		return $2.Equals(other.$2) && $3.Equals(other.$3);
+	}
+
+	${0:throw new NotImplementedException();}
+	return base.Equals(obj);
 }
 
 public override int GetHashCode()
 {
-		unchecked
-		{
-				// Choose large primes to avoid hashing collisions
-				const int HashingBase = (int)2166136261;
-				const int HashingMultiplier = 16777619;
-				int hash = (HashingBase * HashingMultiplier) ^ ${2: Property}?.GetHashCode() ?? 0;
+	unchecked
+	{
+			// Choose large primes to avoid hashing collisions
+		const int HashingBase = (int)2166136261;
+		const int HashingMultiplier = 16777619;
+		int hash = (HashingBase * HashingMultiplier) ^ ${2: Property}?.GetHashCode() ?? 0;
 
-				return (hash * HashingMultiplier) ^ ${3: Other Property}?.GetHashCode() ?? 0;
-		}
+		return (hash * HashingMultiplier) ^ ${3: Other Property}?.GetHashCode() ?? 0;${0}
+	}
 }
 endsnippet
 
