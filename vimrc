@@ -53,6 +53,7 @@ set smartindent                              " be smart about it
 set expandtab                                " expand tabs to spaces
 set smarttab                                 " no tabs
 set tabstop=2
+set relativenumber
 "important: keep next 2 lines the same values for spaces
 set softtabstop=2                            " backspace will have same behavior
 set shiftwidth=2                             " when pressing the < and > key
@@ -71,7 +72,6 @@ set viminfo+=n$VIM/viminfo " set vim info in vim directory, out of sight
 set ignorecase                               " ignore case on searching
 set infercase
 set smartcase                                " do not ignore case when capitalization are in search
-set noswapfile
 set incsearch
 set hlsearch
 " enable menu at bottom of window (e.g. colorscheme <Tab>)
@@ -123,8 +123,6 @@ endif
 """"""""""""""""""""""""
 " VARIOUS MAPPINGS
 """"""""""""""""""""""""
-inoremap jk <ESC>
-inoremap kj <ESC>
 " keep the reverse search character since it is the comma and that is my leader
 noremap \ ,
 
@@ -136,13 +134,11 @@ cnoremap <expr> %T getcmdtype() == ':' ? expand('%:r').'.' : '%R'
 
 " needs to be set before listchars
 set encoding=utf8
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»,trail:☠
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 
 " remap buffer switching left/right/up/down
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>w
+nnoremap <C-k> <C-w>W
 
 " Enable folding with the spacebar
 nnoremap <space> za
