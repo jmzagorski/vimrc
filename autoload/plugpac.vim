@@ -155,10 +155,10 @@ function! s:init_minpac()
     for [repo, opts] in items(s:repos)
       call minpac#add(repo, opts)
     endfor
-  catch e
+  catch /.*/
     echohl WarningMsg
     echom '[plugpac] Skipping minpac installation. Plugins will not be installed'
-    " TODO rethrow e
+    throw v:exception
     echohl None
   endtry
 
