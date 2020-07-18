@@ -6,9 +6,9 @@ set guioptions-=L  " remove left-hand scroll bar
 set guioptions-=e  " remove left-hand scroll bar
 set hlsearch
 if has('gui_win32')
-  set guifont=JetBrains_Mono:h10
+  set guifont=Cascadia_Code:h10
 else
-  set guifont=JetBrains\ Mono\ 10
+  set guifont=Cascadia\ Code\ 10
 endif
 if !has('windows')
   set transparency=2 " does not work on windows
