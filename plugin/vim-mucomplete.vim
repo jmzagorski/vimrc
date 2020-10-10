@@ -14,7 +14,7 @@ let g:mucomplete#user_mappings = { 'sqla' : "\<c-c>a" }
 let g:mucomplete#chains.default = ['ulti', 'file'] + g:mucomplete#chains.default
 let g:mucomplete#chains.sql = ['file', 'sqla', 'keyn']
 
-autocmd vimrc BufEnter * if &ft ==# 'cs' | MUcompleteAutoOn | else | MUcompleteAutoOff | endif
+autocmd vimrc BufEnter * if &ft ==# 'cs' | MUcompleteAutoOff | else | MUcompleteAutoOn | endif
 
 " Ultisnip config so they do not mess up this plugin
 let g:UltiSnipsExpandTrigger = "<f5>"

@@ -8,7 +8,7 @@ let g:ale_sign_style_warning = '👀'
 " highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
 let g:ale_linters = {
-  \'cs': ['OmniSharp'],
+  \'cs': ['omnisharp'],
   \'javascript': ['eslint'],
   \'typescript': ['tsserver', 'eslint'],
   \'rust': ['cargo', 'rls', 'rustfmt'],
