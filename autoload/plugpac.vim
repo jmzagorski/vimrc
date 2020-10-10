@@ -1,14 +1,14 @@
-function! plugpac#begin()
+function! plugpac#begin() abort
   let s:repos = {}
   call s:setup_commands()
 endfunction
 
-function! plugpac#end()
+function! plugpac#end() abort
   runtime! OPT ftdetect/**/*.vim
   runtime! OPT after/ftdetect/**/*.vim
 endfunction
 
-function! s:plugin_list(...)
+function! s:plugin_list(...) abort
   call s:init_minpac()
   return join(sort(keys(minpac#getpluglist())), "\n")
 endfunction
@@ -18,7 +18,7 @@ function! plugpac#add(repo, ...) abort
   let s:repos[a:repo] = l:opts
 endfunction
 
-function! s:setup_commands()
+function! s:setup_commands() abort
   command! -bar -nargs=+ Pack call plugpac#add(<args>)
   command! -bar PackInstall call s:init_minpac() | call minpac#update(keys(filter(copy(minpac#pluglist), {-> !isdirectory(v:val.dir . '/.git')})))
   command! -bar PackUpdate  call s:init_minpac() | call minpac#update('', {'do': 'call minpac#status()'})
@@ -30,7 +30,7 @@ function! s:setup_commands()
     \     'term_finish': 'close'})
 endfunction
 
-function! s:init_minpac()
+function! s:init_minpac() abort
   try
     let s:dir = $MYVIMRCPATH . '/pack/minpac/opt/minpac'
 

@@ -1,5 +1,7 @@
 let $MYVIMRCPATH=fnamemodify($MYVIMRC, ':h')
-set nocompatible
+if &compatible
+  set nocompatible
+endif
 
 "{{{ vimrc autocommands
 augroup vimrc
@@ -62,19 +64,11 @@ set thesaurus+=~/.thesaurus.txt
 set lazyredraw
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
-" be smart about it
-set smartindent
 " expand tabs to spaces
 set expandtab
 " no tabs
 set smarttab
-set tabstop=2
 set relativenumber
-"important: keep next 2 lines the same values for spaces
-"" backspace will have same behavior
-set softtabstop=2
-" when pressing the < and > key
-set shiftwidth=2
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 " sync with clipboard
@@ -94,8 +88,6 @@ set history=1000
 set viminfo+=n$VIM/viminfo
 set exrc
 set secure
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
 set virtualedit=block
 " on vert split, split below
 set splitbelow
@@ -144,7 +136,7 @@ endif
 " {{{ Mappings
 " keep the reverse search character since it is the comma and that is my leader
 inoremap kj <esc>
-noremap \ ,
+nnoremap \ ,
 " expansion of active dir
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " expansion of active dir without file extension.
@@ -167,7 +159,7 @@ nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap Q <nop>
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+nnoremap <leader>bd :Bclose<cr>
 " switch to last open buffer
 nnoremap <leader><leader> :b#<CR>
 " easier sorting key stroke in visual mode
@@ -182,8 +174,8 @@ if bufwinnr(1)
 endif
 nnoremap <Leader>vr :silent vertical resize 60<CR>
 " accessing and sourcing vimrc easily
-nmap <silent> <leader>sv :source $MYVIMRC
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC
+nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 " dictionary complete word
 inoremap <C-k> <C-x><C-k>
 
@@ -193,7 +185,6 @@ function! ConfirmDelete() abort
   endif
 endfunction
 nnoremap <leader>rm :call ConfirmDelete()<cr>
-
 "}}}
 
 "{{{ Tabs
@@ -207,7 +198,7 @@ nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 set showtabline=2
-function! MyTabLine()
+function! MyTabLine() abort
   let s = ''
 
   for i in range(tabpagenr('$'))
@@ -252,9 +243,7 @@ set showmatch
 "tens of a second to show matching parentheses
 set matchtime=2
 set showmode
-" highlight white space at end of line and anything over 80 lines
-highlight ExtraWhitespace ctermbg=red guibg=red
-augroup ui
+augroup vimrc_ui
   autocmd!
   if has('matchadd')
     autocmd BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
@@ -267,6 +256,7 @@ augroup ui
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave * call clearmatches()
   endif
+  " highlight white space at end of line and anything over 80 lines
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup end
 " show line numbers

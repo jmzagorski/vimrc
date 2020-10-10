@@ -1,4 +1,4 @@
-function! plugin#racer#post_install(hooktype, name)
+function! plugin#racer#post_install(hooktype, name) abort
   if !executable('cargo')
     echohl WarningMsg
     echom 'Skipping vim-racer installation. cargo is not installed'

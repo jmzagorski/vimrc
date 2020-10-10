@@ -1,4 +1,4 @@
-function! plugin#editorconfig#post_install(hooktype, name)
+function! plugin#editorconfig#post_install(hooktype, name) abort
   if !executable('editorconfig')
     echohl WarningMsg
     echom 'editorconfig-vim required editorconfig.'
