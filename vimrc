@@ -115,6 +115,8 @@ set diffopt+=iwhite
 
 if executable('rg')
   setglobal grepprg=rg\ -H\ --no-heading\ --vimgrep
+else
+  setglobal grepprg=grep\ -n\ -r\ $*\ /dev/null
 endif
 
 """"""""""""""""""""""""
