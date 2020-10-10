@@ -124,6 +124,7 @@ endif
 " VARIOUS MAPPINGS
 """"""""""""""""""""""""
 " keep the reverse search character since it is the comma and that is my leader
+inoremap kj <esc>
 noremap \ ,
 
 " expansion of active dir
