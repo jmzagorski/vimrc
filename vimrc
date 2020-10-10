@@ -104,9 +104,6 @@ set winfixwidth
 " Default todo list
 command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
 
-" Default split when open quickfix
-autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
-
 " make sure our buffer is always up to date
 autocmd vimrc CursorHold * silent! checktime
 
@@ -182,6 +179,8 @@ endif
 nnoremap <Leader>vr :silent vertical resize 60<CR>
 
 " Tabs -----------------------------------------------------------------------
+cnoreabbrev <expr> tabnew (getcmdtype() ==# ':' && getcmdline() =~# '^tabnew') ? 'tabnew \| lcd' : 'tabnew'
+
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
@@ -223,6 +222,12 @@ endfunction
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
 autocmd vimrc BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+" open quickfix/locationlix automatically
+autocmd vimrc QuickFixCmdPost [^l]* cwindow
+autocmd vimrc QuickFixCmdPost l* lwindow
+" Default split when open quickfix
+autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
+
 
 " accessing and sourcing vimrc easily
 nmap <silent> <leader>sv :source $MYVIMRC
@@ -242,6 +247,7 @@ nnoremap <leader>rm :call ConfirmDelete()<cr>
 " Abbreviations ---------------------------------------------------------------
 iab <expr> dts strftime("%c")
 
+cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
 
 """"""""""""""""""""""""
 " UI STUFF
