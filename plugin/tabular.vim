@@ -1,1 +1,1 @@
-Plugin 'godlygeek/tabular', { 'on': ['Tabularize'] }
+Plugin 'godlygeek/tabular', { 'type': 'opt' }
