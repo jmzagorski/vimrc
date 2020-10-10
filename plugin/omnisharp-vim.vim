@@ -23,7 +23,7 @@ let g:OmniSharp_timeout = 5
 let g:Omnisharp_stop_server = 1
 
 
-augroup omnisharp_commands
+augroup vimrc_omnisharp_commands
   autocmd!
 
   " The following commands are contextual, based on the cursor position.

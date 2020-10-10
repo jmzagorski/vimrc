@@ -1,10 +1,13 @@
 Plugin 'tpope/vim-fugitive'
 
-if !has('win32')
-  autocmd vimrc BufReadPost fugitive://* set bufhidden=delete
-else
-  autocmd vimrc BufReadPost fugitive:\\* set bufhidden=delete
-endif
+augroup vimrc_fugitive_commands
+  autocmd!
+  if !has('win32')
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+  else
+    autocmd BufReadPost fugitive:\\* set bufhidden=delete
+  endif
+augroup END
 
 set statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
 
@@ -18,3 +21,5 @@ nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>gc :Gcommit<CR>
+command! -bar -nargs=? Gbranch :Git checkout -b <q-args>
+command! -bar Gpushnewbranch execute(':Git push -u origin ' . FugitiveHead())
