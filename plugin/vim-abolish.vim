@@ -1,2 +1,2 @@
-" More robust search and find/replace
-Plugin 'tpope/vim-abolish', { 'type': 'opt' }
+" fixes abbreviation, has powerful substitution, and coercion case styles
+Plugin 'tpope/vim-abolish'
