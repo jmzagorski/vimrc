@@ -11,7 +11,8 @@ else
   set guifont=Cascadia\ Code\ 10
 endif
 if !has('windows')
-  set transparency=2 " does not work on windows
+  " does not work on windows
+  set transparency=2
 endif
 "ligature support for Fira Code
 set renderoptions=type:directx
@@ -30,7 +31,6 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
-
 
 " terminal color
 set t_Co=16

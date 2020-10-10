@@ -1,14 +1,23 @@
 let $MYVIMRCPATH=fnamemodify($MYVIMRC, ':h')
 set nocompatible
 
+"{{{ vimrc autocommands
 augroup vimrc
   autocmd!
+  " make sure our buffer is always up to date
+  autocmd CursorHold * silent! checktime
+  " In the quickfix window, <CR> is used to jump to the error under the
+  " cursor, so undefine the mapping there.
+  autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+  " open quickfix/locationlix automatically
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l* lwindow
+  " Default split when open quickfix
+  autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
 augroup END
+"}}}
 
-""""""""""""""""""""""""
-" GENERAL STUFF
-""""""""""""""""""""""""
-" FROM VIM 80 Defaults --------------------------------------------------------
+" {{{ VIM 80 Defaults
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
@@ -43,35 +52,72 @@ else
     endif
   endif
 endif
-" -----------------------------------------------------------------------------
+" }}}
+
+" {{{ Variables & Options
 let mapleader = ','
 let maplocalleader = ','
 set thesaurus+=~/.thesaurus.txt
-set lazyredraw                               " don't redraw while executing macros
-set fileformats=unix,mac,dos                 " Automatic end-of-file format detection
-set smartindent                              " be smart about it
-set expandtab                                " expand tabs to spaces
-set smarttab                                 " no tabs
+" don't redraw while executing macros
+set lazyredraw
+" Automatic end-of-file format detection
+set fileformats=unix,mac,dos
+" be smart about it
+set smartindent
+" expand tabs to spaces
+set expandtab
+" no tabs
+set smarttab
 set tabstop=2
 set relativenumber
 "important: keep next 2 lines the same values for spaces
-set softtabstop=2                            " backspace will have same behavior
-set shiftwidth=2                             " when pressing the < and > key
-set backspace=indent,eol,start               " Allow backspacing over everything in insert mode
-set clipboard^=unnamed,unnamedplus           " sync with clipboard
-set hidden                                   " allow buffer switching without saving
-set autoread                                 " reload files changed outside vim
+"" backspace will have same behavior
+set softtabstop=2
+" when pressing the < and > key
+set shiftwidth=2
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+" sync with clipboard
+set clipboard^=unnamed,unnamedplus
+" allow buffer switching without saving
+set hidden
+" reload files changed outside vim
+set autoread
 set showcmd
 set showfulltag
 set nomodeline
 set noerrorbells
 set novisualbell
-set history=1000                             " number of command lines to remember default is 20
-set viminfo+=n$VIM/viminfo " set vim info in vim directory, out of sight
-" SEARCHING -----------------------------------------------------------------
-set ignorecase                               " ignore case on searching
+" number of command lines to remember default is 20
+set history=1000
+ " set vim info in vim directory, out of sight
+set viminfo+=n$VIM/viminfo
+set exrc
+set secure
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set virtualedit=block
+" on vert split, split below
+set splitbelow
+" on horizontal split, split right
+set splitright
+set linebreak
+set winfixwidth
+" needs to be set before listchars
+set encoding=utf8
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+" }}}
+
+"{{{ Commands
+command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
+"}}}
+
+"{{{ SEARCHING
+set path+=**
+set ignorecase
 set infercase
-set smartcase                                " do not ignore case when capitalization are in search
+" do not ignore case when capitalization are in search
+set smartcase
 set incsearch
 set hlsearch
 " enable menu at bottom of window (e.g. colorscheme <Tab>)
@@ -88,88 +134,45 @@ set wildignore+=*/jspm_packages/*
 set wildignore+=*/wwwroot/*
 set wildignore+=*/dist/*
 set wildignore+=*/.hg/*,*/.svn/*,*/.idea/*,*/.DS_Store,*/.mimosa
-" -----------------------------------------------------------------------------
-set exrc
-set secure
-nnoremap <F2> :set invpaste paste?<CR>
-set pastetoggle=<F2>
-set virtualedit=block
-" on vert split, split below
-set splitbelow
-" on horizontal split, split right
-set splitright
-set linebreak
-set winfixwidth
-
-" Default todo list
-command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
-
-" make sure our buffer is always up to date
-autocmd vimrc CursorHold * silent! checktime
-
-set path=.,,**
-
-set breakindent
-set showbreak=\\\ \ 
-set diffopt+=iwhite
-
 if executable('rg')
   setglobal grepprg=rg\ -H\ --no-heading\ --vimgrep
 else
   setglobal grepprg=grep\ -n\ -r\ $*\ /dev/null
 endif
+"}}}
 
-""""""""""""""""""""""""
-" VARIOUS MAPPINGS
-""""""""""""""""""""""""
+" {{{ Mappings
 " keep the reverse search character since it is the comma and that is my leader
 inoremap kj <esc>
 noremap \ ,
-
 " expansion of active dir
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-" expansion of active dir with file extension. Useful for Aurelia switching
-" from view to view model files
+" expansion of active dir without file extension.
 cnoremap <expr> %T getcmdtype() == ':' ? expand('%:r').'.' : '%R'
-
-" needs to be set before listchars
-set encoding=utf8
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-
 " remap buffer switching left/right/up/down
 nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
-
 " Enable folding with the spacebar
 nnoremap <space> za
-
 "yank from cursors to end of line
 nnoremap Y y$
-
 "keep cursor where it is while joining lines
 nnoremap J mzJ`z
-
 "center screen after moving
 nnoremap } }zz
-
 "find all occurences of word under cursor
 nnoremap K :grep! -i "\b<cword>\b"<CR>:cw<CR>
-
 " do nothing
 nnoremap <F1> <nop>
 nnoremap Q <nop>
 nnoremap Q <nop>
-
 " Close the current buffer
 map <leader>bd :Bclose<cr>
-
 " switch to last open buffer
 nnoremap <leader><leader> :b#<CR>
-
 " easier sorting key stroke in visual mode
 xnoremap <C-s> :sort ui<CR>
 vnoremap // y/<C-R>"<CR>
-
 " window sizing if there is one
 if bufwinnr(1)
   nnoremap <S-Up> <C-W>+
@@ -177,15 +180,26 @@ if bufwinnr(1)
   nnoremap <S-Left> <c-w><
   nnoremap <S-Right> <c-w>>
 endif
-
 nnoremap <Leader>vr :silent vertical resize 60<CR>
+" accessing and sourcing vimrc easily
+nmap <silent> <leader>sv :source $MYVIMRC
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+" dictionary complete word
+inoremap <C-k> <C-x><C-k>
 
-" Tabs -----------------------------------------------------------------------
+function! ConfirmDelete() abort
+  if (confirm('Are you sure you want to delete ' . expand('%:p')))
+    call delete(expand('%')) | bdelete!
+  endif
+endfunction
+nnoremap <leader>rm :call ConfirmDelete()<cr>
+
+"}}}
+
+"{{{ Tabs
 cnoreabbrev <expr> tabnew (getcmdtype() ==# ':' && getcmdline() =~# '^tabnew') ? 'tabnew \| lcd' : 'tabnew'
-
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
-
 if !exists('g:lasttab')
   let g:lasttab = 1
 endif
@@ -193,8 +207,6 @@ nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 set showtabline=2
-set tabline=%!MyTabLine()
-
 function! MyTabLine()
   let s = ''
 
@@ -219,41 +231,18 @@ function! MyTabLine()
 
   return s
 endfunction
-" -----------------------------------------------------------------------------
+set tabline=%!MyTabLine()
+"}}}
 
-" In the quickfix window, <CR> is used to jump to the error under the
-" cursor, so undefine the mapping there.
-autocmd vimrc BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-" open quickfix/locationlix automatically
-autocmd vimrc QuickFixCmdPost [^l]* cwindow
-autocmd vimrc QuickFixCmdPost l* lwindow
-" Default split when open quickfix
-autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
-
-
-" accessing and sourcing vimrc easily
-nmap <silent> <leader>sv :source $MYVIMRC
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-
-" dictionary complete word
-inoremap <C-k> <C-x><C-k>
-
-function! ConfirmDelete() abort
-  if (confirm('Are you sure you want to delete ' . expand('%:p')))
-    call delete(expand('%')) | bdelete!
-  endif
-endfunction
-
-nnoremap <leader>rm :call ConfirmDelete()<cr>
-
-" Abbreviations ---------------------------------------------------------------
+" {{{ Abbreviations
 iab <expr> dts strftime("%c")
-
 cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() =~# '^grep') ? 'silent grep' : 'grep'
+" }}}
 
-""""""""""""""""""""""""
-" UI STUFF
-""""""""""""""""""""""""
+" {{{ UI
+set breakindent
+set showbreak=\\\ \ 
+set diffopt+=iwhite
 " MUST BE BEFORE THE COLOR HIGHLIGHTING WHEN NOT USING MATCH
 syntax on
 set encoding=utf-8
@@ -263,24 +252,23 @@ set showmatch
 "tens of a second to show matching parentheses
 set matchtime=2
 set showmode
-
 " highlight white space at end of line and anything over 80 lines
 highlight ExtraWhitespace ctermbg=red guibg=red
-
-if has('matchadd')
-  autocmd vimrc BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
-else
-  match ExtraWhitespace /\s\+$/
-  autocmd vimrc BufWinEnter * match ExtraWhitespace /\s\+$/
-  autocmd vimrc InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd vimrc InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd vimrc InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-  autocmd vimrc InsertLeave * match ExtraWhitespace /\s\+$/
-  autocmd vimrc BufWinLeave * call clearmatches()
-endif
-
-autocmd vimrc ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
+augroup ui
+  autocmd!
+  if has('matchadd')
+    autocmd BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
+  else
+    match ExtraWhitespace /\s\+$/
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+  endif
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+augroup end
 " show line numbers
 set number
 set lazyredraw
@@ -291,41 +279,18 @@ set foldmethod=syntax
 "open all folds by default
 set foldlevelstart=99
 set foldnestmax=10
-set synmaxcol=200                                   "only highlight first 200 line since this can slow vim
-
+"only highlight first 200 line since this can slow vim
+set synmaxcol=200
 set timeoutlen=200
 set ttimeoutlen=200
-
-set mousehide                                       "hide when characters are typed
-set ttyfast                                         "assume fast terminal connection
-set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
-
+"hide when characters are typed
+set mousehide
+"assume fast terminal connection
+set ttyfast
+"unix/windows compatibility
+set viewoptions=folds,options,cursor,unix,slash
 " make a mark for column 80
 set colorcolumn=80,100
-
-"" Terminal setttings {{{
-if !has("gui_running")
-  set noerrorbells novisualbell t_vb=
-  set termencoding=utf8
-endif
-
-" new files are with %
-let g:netrw_banner=0
-"tree
-let g:netrw_liststyle = 3
-" open in previous window
-let g:netrw_browse_split = 4
-" split right
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-" FIXME might be a bug, does not work in windows
-let g:netrw_browsex_viewer="firefox"
-
-"true colors
-if (has('termguicolors'))
-  set termguicolors
-endif
-
 " make sure this is the first thing on the status line after all plugins are loaded
 set laststatus=2
 set statusline=
@@ -347,15 +312,37 @@ set statusline+=\ %p%%                      " percentage in lines
 set statusline+=\ %l,%c                     " current line & column
 set statusline+=\ %*                        " restore highlight
 set statusline+=\|
+"}}}
 
-""""""""""""""""""""""""
-" PLUGIN STUFF
-""""""""""""""""""""""""
+" {{{ Terminal
+if !has("gui_running")
+  set noerrorbells novisualbell t_vb=
+  set termencoding=utf8
+endif
+"true colors
+if (has('termguicolors'))
+  set termguicolors
+endif
+" }}}
+
+" {{{ Browser
+let g:netrw_banner=0
+"tree
+let g:netrw_liststyle = 3
+" open in previous window
+let g:netrw_browse_split = 4
+" split right
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" FIXME might be a bug, does not work in windows
+let g:netrw_browsex_viewer="firefox"
+"}}}
+
+" {{{ Plugins
 " custom Plugin wrapper in case i switch out managers
 command! -nargs=+ -bar Plugin call plugpac#add(<args>)
 command! -nargs=? -bar PackUpdate call minpac#update(<args>)
 command! PackClean call minpac#clean()
-
 call plugpac#begin()
-
 runtime! macros/matchit.vim
+" }}}
