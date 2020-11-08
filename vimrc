@@ -245,10 +245,10 @@ set matchtime=2
 set showmode
 augroup vimrc_ui
   autocmd!
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
   if has('matchadd')
     autocmd BufWinEnter * let w:m1=matchadd('ExtraWhitespace', '\s\+$', -1)
   else
-    match ExtraWhitespace /\s\+$/
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave * match ExtraWhitespace /\s\+$/
@@ -257,7 +257,6 @@ augroup vimrc_ui
     autocmd BufWinLeave * call clearmatches()
   endif
   " highlight white space at end of line and anything over 80 lines
-  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 augroup end
 " show line numbers
 set number
