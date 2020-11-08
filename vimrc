@@ -16,6 +16,7 @@ augroup vimrc
   autocmd QuickFixCmdPost l* lwindow
   " Default split when open quickfix
   autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
+  autocmd FileType * execute 'setlocal dict+='.$MYVIMRCPATH.'/words/'.&filetype.'.txt'
 augroup END
 "}}}
 
