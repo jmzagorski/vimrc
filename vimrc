@@ -101,7 +101,7 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:�
 " }}}
 
 "{{{ Commands
-command! Todo noautocmd vimgrep /TODO\|FIXME/j ** | cw
+command! Todo noautocmd grep  -i \"TODO\|FIXME\"
 "}}}
 
 "{{{ SEARCHING
@@ -184,6 +184,10 @@ nnoremap <leader>rm :call ConfirmDelete()<cr>
 
 "{{{ Tabs
 cnoreabbrev <expr> tabnew (getcmdtype() ==# ':' && getcmdline() =~# '^tabnew') ? 'tabnew \| lcd' : 'tabnew'
+cnoreabbrev grpe grep
+cnoreabbrev Ggrpe Ggrep
+cnoreabbrev GIt Git
+cnoreabbrev todo Todo
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 if !exists('g:lasttab')

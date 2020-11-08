@@ -9,6 +9,3 @@ Abolish reponse{,s} response
 Abolish buisness business
 Abolish ouput{,s} output
 Abolish identifer identifier
-Abolish grpe grep
-Abolish Ggrpe Ggrep
-Abolish GIt Git
