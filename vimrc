@@ -131,6 +131,7 @@ if executable('rg')
 else
   setglobal grepprg=grep\ -n\ -r\ $*\ /dev/null
 endif
+vnoremap // y/<C-R>"<CR>
 "}}}
 
 " {{{ Mappings
@@ -157,14 +158,10 @@ nnoremap K :grep! -i "\b<cword>\b"<CR>:cw<CR>
 " do nothing
 nnoremap <F1> <nop>
 nnoremap Q <nop>
-nnoremap Q <nop>
 " Close the current buffer
 nnoremap <leader>bd :Bclose<cr>
 " switch to last open buffer
 nnoremap <leader><leader> :b#<CR>
-" easier sorting key stroke in visual mode
-xnoremap <C-s> :sort ui<CR>
-vnoremap // y/<C-R>"<CR>
 " window sizing if there is one
 if bufwinnr(1)
   nnoremap <S-Up> <C-W>+
@@ -176,8 +173,6 @@ nnoremap <Leader>vr :silent vertical resize 60<CR>
 " accessing and sourcing vimrc easily
 nnoremap <silent> <leader>sv :source $MYVIMRC
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-" dictionary complete word
-inoremap <C-k> <C-x><C-k>
 
 function! ConfirmDelete() abort
   if (confirm('Are you sure you want to delete ' . expand('%:p')))

@@ -2,7 +2,7 @@
 " not sure where else to put this kind of logic
 function! ReadOnly() abort
   if &readonly || !&modifiable
-    return ''
+    return '👁'
   else
     return ''
 endfunction
