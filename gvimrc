@@ -45,3 +45,5 @@ set visualbell t_vb=
 
 "enable mouse
 set mouse=a
+
+map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
