@@ -1,0 +1,12 @@
+USE [master]
+GO
+CREATE LOGIN [${~1:login}] FROM WINDOWS WITH DEFAULT_DATABASE=[${~2:dbname}}]
+GO
+USE [${~2}]
+GO
+CREATE USER [${~1}] FOR LOGIN [${~1}]
+GO
+GRANT DELETE ON ${3:TableName} TO [${~1}]
+GRANT INSERT ON ${3:TableName} TO [${~1}]
+GRANT UPDATE ON ${3:TableName} TO [${~1}]
+GO

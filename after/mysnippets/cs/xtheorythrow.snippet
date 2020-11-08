@@ -1,0 +1,17 @@
+public static IEnumerable<object[]> ${1:TheoryName} => new[]
+{
+	new object[] { ${2:TestArgs} }
+};
+
+[Theory, MemberData(nameof(${~1}))]
+public void ${~1}_ExceptionThrown(${~2})
+{
+	/* Arrange */
+	void shouldThrow() => new ${sut}
+
+	/* Act */
+	var ex = Record.Exception(shouldThrow);
+
+	/* Assert */
+	Assert.NotNull(ex);
+}
