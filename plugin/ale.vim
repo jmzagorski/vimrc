@@ -1,5 +1,7 @@
 Plugin 'w0rp/ale'
 
+" less than ffff (in hex format): press u (lower case), followed by its four-digit hex representation.
+" less than 7fffffff (in hex format): press U (upper case), followed by its eight-digit hex
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '👀'
 let g:ale_sign_style_error = '✗'

@@ -22,7 +22,6 @@ let g:OmniSharp_timeout = 5
 " Ask whether to stop the server on exit
 let g:Omnisharp_stop_server = 1
 
-
 augroup vimrc_omnisharp_commands
   autocmd!
 

@@ -1,1 +1,1 @@
-autocmd ui ColorScheme * highlight clear ExtraWhitespace
+highlight clear ExtraWhitespace
