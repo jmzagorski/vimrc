@@ -14,7 +14,7 @@ let g:ale_linters = {
   \'rust': ['cargo', 'rls', 'rustfmt'],
   \'markdown':['languagetool','proselint'],
   \'text':['languagetool','proselint'],
-  \'org':['languagetool','proselint']
+  \'vimwiki':['languagetool','proselint'],
 \}
 
 let g:ale_fixers = {
