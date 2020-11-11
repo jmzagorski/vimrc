@@ -66,6 +66,9 @@ set lazyredraw
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 " expand tabs to spaces
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 " no tabs
 set smarttab
