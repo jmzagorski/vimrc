@@ -246,6 +246,7 @@ set showmatch
 "tens of a second to show matching parentheses
 set matchtime=2
 set showmode
+highlight ExtraWhitespace ctermbg=red guibg=red
 augroup vimrc_ui
   autocmd!
   autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
