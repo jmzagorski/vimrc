@@ -37,21 +37,21 @@ if has("vms")
 else
   set backup		          " keep a backup file (restore to previous version)
   "for backups go local directory then home
-  set backupdir=$VIM/.backup//
-  if !isdirectory($VIM . '/.backup')
-    call mkdir($VIM . "/.backup")
+  set backupdir=$MYVIMRCPATH/.backup//
+  if !isdirectory($MYVIMRCPATH . '/.backup')
+    call mkdir($MYVIMRCPATH . "/.backup")
   endif
 
-  set directory=$VIM/.swp//
-  if !isdirectory($VIM . '/.swp')
-    call mkdir($VIM . '/.swp')
+  set directory=$MYVIMRCPATH/.swp//
+  if !isdirectory($MYVIMRCPATH . '/.swp')
+    call mkdir($MYVIMRCPATH . '/.swp')
   endif
 
   if has('persistent_undo')
     set undofile
-    set undodir=$VIM/.undo//
-    if !isdirectory($VIM . '/.undo')
-      call mkdir($VIM . '/.undo')
+    set undodir=$MYVIMRCPATH/.undo//
+    if !isdirectory($MYVIMRCPATH . '/.undo')
+      call mkdir($MYVIMRCPATH . '/.undo')
     endif
   endif
 endif
