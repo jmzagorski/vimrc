@@ -15,15 +15,16 @@ IF ["%VCINSTALLDIR%"] == [] (
   exit /b %errorlevel%
 )
 
-if exist src (
-  cd src
-  git pull
-  cd ..
-) else (
-  git clone https://github.com/vim/vim src
-)
+set CWD=%cd%
+set SRC_DIR=%TMP%
+set SRC=%SRC_DIR%\vim
+set DST=%LOCALAPPDATA%\vim\current
+set RUNTIME=%LOCALAPPDATA%\vim\runtime
+set BACKUP=%LOCALAPPDATA%\vim\prior
 
-IF NOT EXIST src  (
+git clone https://github.com/vim/vim "%SRC%"
+
+IF NOT EXIST "%SRC%"  (
   echo "Cannot find vim source code. Maybe there was a problem with 'git clone'?"
   echo %errorlevel%
   exit /b %errorlevel%
@@ -50,39 +51,40 @@ set RUBY=
 set RUBY_VER=
 set RUBY_API_VER_LONG=
 
-set SRC=%USERPROFILE%\builds\vim\src
-set DST=%USERPROFILE%\vim\current
+if exist "%RUNTIME%" (
+  rmdir /S /Q "%RUNTIME%"
+)
 
-if exist "%USERPROFILE%\vim\runtime" (
-  rmdir /S /Q "%USERPROFILE%\vim\runtime"
+if exist "%BACKUP%" (
+  rmdir /S /Q "%BACKUP%"
 )
 
 if exist "%DST%" (
-  move /Y "%DST%" "%USERPROFILE%\vim\prior"
+  move /Y "%DST%" "%BACKUP%"
 )
+
+cd "%SRC%\src\"
 
 for /l %%x in (1, 1, 2) do (
   if %%x==2 set GUI=yes
 
-  cd src\src\
   nmake -f Make_mvc.mak clean
   nmake -f Make_mvc.mak
-  cd ..
-  cd ..
 
-  xcopy %SRC%\runtime "%DST%" /D /E /H /I /Y %*
-  xcopy %SRC%\src\xxd\xxd.exe "%DST%\*" /D /Y %*
-  xcopy %SRC%\src\GvimExt\gvimext.dll "%DST%\*" /D /Y %*
-  xcopy %SRC%\src\*.exe "%DST%\*" /D /Y %*
+  xcopy "%SRC%\runtime" "%DST%" /D /E /H /I /Y %*
+  xcopy "%SRC%\src\xxd\xxd.exe" "%DST%\*" /D /Y %*
+  xcopy "%SRC%\src\GvimExt\gvimext.dll" "%DST%\*" /D /Y %*
+  xcopy "%SRC%\src\*.exe" "%DST%\*" /D /Y %*
 )
 
+mklink /D "%RUNTIME%" "%DST%"
 
-mklink /D "%USERPROFILE%\vim\runtime" "%USERPROFILE%\vim\current"
+cd %CWD%
 
-rmdir /S /Q src
+rmdir /S /Q "%SRC%"
 
 echo ==========================================================================
-echo ** vim installed in %USERPROFILE%\vim\current
-echo ** vim runtime in %USERPROFILE%\vim\runtime
-echo ** prior vim moved to %USERPROFILE%\vim\prior
+echo ** vim installed in %DST%
+echo ** vim runtime in %RUNTIME%
+echo ** prior vim moved to %BACKUP%
 echo ==========================================================================
