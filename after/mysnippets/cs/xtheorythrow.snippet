@@ -1,17 +1,17 @@
 public static IEnumerable<object[]> ${1:TheoryName} => new[]
 {
-	new object[] { ${2:TestArgs} }
+    new object[] { A.Dummy<${~2}>()${+} }
 };
 
 [Theory, MemberData(nameof(${~1}))]
-public void ${~1}_ExceptionThrown(${~2})
+public void ${~1}_ExceptionThrown(${~2} ${3:input_name})
 {
-	/* Arrange */
-	void shouldThrow() => new ${sut}
+    /* Arrange */
+    void shouldThrow() => new ${sut}(${~3})
 
-	/* Act */
-	var ex = Record.Exception(shouldThrow);
+    /* Act */
+    var ex = Record.Exception(shouldThrow);
 
-	/* Assert */
-	Assert.NotNull(ex);
+    /* Assert */
+    Assert.NotNull(ex);
 }
