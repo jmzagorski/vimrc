@@ -2,10 +2,10 @@ Plugin 'w0rp/ale'
 
 " less than ffff (in hex format): press u (lower case), followed by its four-digit hex representation.
 " less than 7fffffff (in hex format): press U (upper case), followed by its eight-digit hex
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '👀'
-let g:ale_sign_style_error = '✗'
-let g:ale_sign_style_warning = '👀'
+let g:ale_sign_error = '8('
+let g:ale_sign_warning = '8\'
+let g:ale_sign_style_error = '8('
+let g:ale_sign_style_warning = '8\'
 
 let g:ale_linters = {
   \'cs': ['omnisharp'],
@@ -20,7 +20,8 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \    'javascript': ['eslint'],
 \    'typescript': ['eslint'],
-\    'scss': ['prettir'],
+\    'css': ['prettier'],
+\    'scss': ['prettier'],
 \    'html': ['prettier'],
 \    'rust': ['rustfmt']
 \}
@@ -48,7 +49,7 @@ function! LinterStatus() abort
     let l:all_non_errors = l:counts.total - l:all_errors
 
     return l:counts.total == 0 ? 'OK' : printf(
-        \   '%d👀 %d✗',
+        \   '%d!%dX',
         \   all_non_errors,
         \   all_errors
         \)
