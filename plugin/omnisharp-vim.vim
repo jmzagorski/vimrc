@@ -45,4 +45,18 @@ augroup vimrc_omnisharp_commands
   autocmd FileType cs nmap <silent> <buffer> <Leader>rs <Plug>(omnisharp_restart_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>ss <Plug>(omnisharp_start_server)
   autocmd FileType cs nmap <silent> <buffer> <Leader>sp <Plug>(omnisharp_stop_server)
+  autocmd FileType cs noremap <buffer> ]m :OmniSharpNavigateDown<cr>
+  autocmd FileType cs nnoremap <buffer> [m :OmniSharpNavigateUp<cr>
+  autocmd FileType cs nnoremap <buffer> ]M :OmniSharpNavigateDown<cr>
+  autocmd FileType cs nnoremap <buffer> [M :OmniSharpNavigateUp<cr>
+
+  autocmd FileType cs xnoremap <buffer> ]m :OmniSharpNavigateDown<cr>
+  autocmd FileType cs xnoremap <buffer> [m :OmniSharpNavigateUp<cr>
+  autocmd FileType cs xnoremap <buffer> ]M :OmniSharpNavigateDown<cr>
+  autocmd FileType cs xnoremap <buffer> [M :OmniSharpNavigateUp<cr>
+
+  autocmd FileType cs onoremap <buffer> ]m :OmniSharpNavigateDown<cr>
+  autocmd FileType cs onoremap <buffer> [m :OmniSharpNavigateUp<cr>
+  autocmd FileType cs onoremap <buffer> ]M :OmniSharpNavigateDown<cr>
+  autocmd FileType cs onoremap <buffer> [M :OmniSharpNavigateUp<cr>
 augroup END
