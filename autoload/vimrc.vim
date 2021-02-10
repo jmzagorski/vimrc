@@ -32,3 +32,10 @@ function! vimrc#open_project(bang, dir, ...) abort
     echoerr printf("Zero or more sessions exists for project %s session %s", a:dir, l:session_name)
   endif
 endfunction
+
+function! vimrc#get_modifiable_flag(...) abort
+  if &readonly  || !&modifiable
+    return '-'
+  else
+    return ''
+endfunction

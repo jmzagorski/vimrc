@@ -55,7 +55,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smarttab
-set relativenumber
+set number relativenumber
 set backspace=indent,eol,start
 " sync with clipboard
 set clipboard^=unnamed,unnamedplus
@@ -82,6 +82,7 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 set listchars=tab:...,space:.,nbsp:~,trail:_,precedes:>,extends:<
+set noerrorbells visualbell t_vb=
 " }}}
 "{{{ Commands
 command! Todo noautocmd grep -i \"TODO\|FIXME\"
@@ -107,6 +108,7 @@ endif
 vnoremap // y/<C-R>"<CR>
 "find all occurences of word under cursor
 nnoremap K :grep! -i "\b<cword>\b"<CR>:cw<CR>
+nnoremap <C-]> g<C-]>
 "}}}
 
 " {{{ Mappings
@@ -203,7 +205,6 @@ augroup vimrc_ui
     autocmd BufWinLeave * call clearmatches()
   endif
 augroup end
-set number
 if has('folding')
   "open all folds by default
   set foldlevelstart=99
@@ -219,11 +220,11 @@ set colorcolumn=80,100
 " make sure this is the first thing on the status line after all plugins are loaded
 set laststatus=2
 set statusline=
-set statusline+=%r                          "read only flag
+set statusline+=%{vimrc#get_modifiable_flag()}
 set statusline+=\ [%n]                       " buffer number
 set statusline+=\ %t                        " filename
-set statusline+=%M                          " modified flag
 set statusline+=\ %*                        " restore highlight
+set statusline+=\ %M                        " modified flag
 set statusline+=%=                          " end of left side
 set statusline+=\ %{&fileformat}
 set statusline+=\ %*                        " restore highlight
@@ -243,6 +244,9 @@ set statusline+=\|
 " {{{ Terminal
 if (has('termguicolors'))
   set termguicolors
+endif
+if &term=="win32"
+  :silent execute "!chcp 65001"
 endif
 " }}}
 
