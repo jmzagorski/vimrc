@@ -12,7 +12,7 @@ where /q git || ECHO Git must be installed. && EXIT /B
 
 IF ["%VCINSTALLDIR%"] == [] (
   echo "Cannot find VC install dir. Make sure you ran this in the visual studio command prompt"
-  exit /b %errorlevel%
+  exit /b 1
 )
 
 set CWD=%cd%
@@ -27,17 +27,12 @@ git clone https://github.com/vim/vim "%SRC%"
 IF NOT EXIST "%SRC%"  (
   echo "Cannot find vim source code. Maybe there was a problem with 'git clone'?"
   echo %errorlevel%
-  exit /b %errorlevel%
+  exit /b 1
 )
 
 call "%VCINSTALLDIR%\Auxiliary\Build\vcvars32.bat"
 
 set GUI=no
-set DYNAMIC_PYTHON=yes
-set PYTHON=C:\Program Files (x86)\Python27
-set PYTHON_VER=
-set DYNAMIC_PYTHON3=yes
-set PYTHON3=%LOCALAPPDATA%\Programs\Python\Python36-32
 set NETBEANS=no
 set FEATURES=HUGE
 set CPUNR=i686
@@ -45,7 +40,6 @@ set WINVER=0x501
 set OLE=no
 set OPTIMIZE=SPEED
 set CSCOPE=yes
-set LIB=%LIB%;%LOCALAPPDATA%\Programs\Python\Python36-32\libs
 set DYNAMIC_RUBY=
 set RUBY=
 set RUBY_VER=
