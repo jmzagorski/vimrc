@@ -2,12 +2,12 @@ import { bootstrap } from "aurelia-bootstrapper";
 import { StageComponent } from "aurelia-testing";
 import { PLATFORM } from "aurelia-pal";
 
-describe("${Component}", () => {
+describe("${1:Component}", () => {
   let component;
 
   beforeEach(() => {
     component = StageComponent
-      .withResources(PLATFORM.moduleName("app"))
+      .withResources(PLATFORM.moduleName(""))
       .inView("<app></app>");
   });
 

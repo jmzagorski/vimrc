@@ -1,0 +1,4 @@
+ALTER TABLE ${dbo}.${2:Table}
+   ADD CONSTRAINT FK_${~2}_${3:OtherTable}_${4:ColumnName} FOREIGN KEY (${~4})
+      REFERENCES ${dbo}.${~3} (${~4})
+      ON ${DELETE CASCADE}${+}

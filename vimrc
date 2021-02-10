@@ -267,20 +267,3 @@ command! PackClean call minpac#clean()
 call plugpac#begin()
 runtime! macros/matchit.vim
 " }}}
-
-" {{{ Templates
-function! LoadTemplate() abort
-  let buf = expand('%:t')
-  " grab all parts after first dot, allows for spec.ts file for example
-  let parts = split(buf, '\.')[1:]
-  let skeleton = $MYVIMRCPATH .'/templates/skeleton.' . join(parts, '.')
-  if filereadable(skeleton)
-    execute '0read ' . skeleton
-  endif
-endfunction
-
-" dont add the read file as alternative buffer (skeleton)
-set cpoptions-=a
-
-autocmd vimrc BufNewFile * call LoadTemplate()
-"}}}

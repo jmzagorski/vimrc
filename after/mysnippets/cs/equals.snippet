@@ -1,12 +1,11 @@
-public override bool Equals(object obj)
+public override bool Equals(object unknown)
 {
-    if (obj is ${1} other)
+    if (unknown is ${!substitute(expand('%:t'), '\.cs', '', '')} other)
     {
-	return ${2}.Equals(other.${~2});
+	return ${PropertyName}.Equals(other.${~2});
     }
 
-    ${+}
-    return base.Equals(obj);
+    return base.Equals(unknown);${+}
 }
 
 public override int GetHashCode()
