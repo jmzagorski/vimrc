@@ -1,0 +1,16 @@
+select
+    j.name as 'JobName'
+    , run_date,
+    , run_time,
+    , msdb.dbo.agent_datetime(run_date, run_time) as 'RunDateTime'
+from
+    msdb.dbo.sysjobs j
+    inner join
+        msdb.dbo.sysjobhistory h
+            on j.job_id = h.job_id
+where
+    j.enabled = 1  --Only Enabled Jobs
+order by
+    JobName
+    , RunDateTime desc
+

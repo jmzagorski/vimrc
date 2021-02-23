@@ -1,0 +1,8 @@
+select
+    s.name
+    ,l.name
+from
+    msdb..sysjobs AS s
+    left outer join
+	master.sys.syslogins AS l
+		on s.owner_sid = l.sid

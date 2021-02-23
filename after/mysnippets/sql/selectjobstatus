@@ -1,0 +1,19 @@
+select
+    j.name
+    , js.step_name
+    , jh.sql_severity
+    , jh.message
+    , jh.run_date
+    , jh.run_time
+from
+    msdb.dbo.sysjobs AS j
+    inner join
+        msdb.dbo.sysjobsteps AS js
+            on js.job_id = j.job_id
+    inner join
+        msdb.dbo.sysjobhistory AS jh
+            on jh.job_id = j.job_id
+where
+    jh.run_status = 0
+order by
+    run_date desc
