@@ -1,10 +1,10 @@
 public static IEnumerable<object[]> ${1:TheoryName} => new[]
 {
-    new object[] { A.Dummy<${~2}>()${+} }
+    new object[] { ${+} }
 };
 
 [Theory, MemberData(nameof(${~1}))]
-public void ${~1}_ExceptionThrown(${~2} ${3:input_name})
+public void ${~1}_ExceptionThrown(${~2} ${args})
 {
     /* Arrange */
     void shouldThrow() => new ${sut}(${~3})
