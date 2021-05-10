@@ -45,8 +45,6 @@ endif
 " }}}
 
 " {{{ Variables & Options
-let mapleader = ','
-let maplocalleader = ','
 set thesaurus+=~/.thesaurus.txt
 set lazyredraw
 set fileformats=unix,mac,dos
@@ -84,6 +82,7 @@ endif
 set listchars=tab:...,space:.,nbsp:~,trail:_,precedes:>,extends:<
 set noerrorbells visualbell t_vb=
 " }}}
+
 "{{{ Commands
 command! Todo noautocmd grep -i \"TODO\|FIXME\"
 "}}}
@@ -112,8 +111,6 @@ nnoremap <C-]> g<C-]>
 "}}}
 
 " {{{ Mappings
-" keep the reverse search character since it is the comma and that is my leader
-nnoremap \ ,
 " expansion of active dir
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " expansion of active dir without file extension.
