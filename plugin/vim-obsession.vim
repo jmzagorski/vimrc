@@ -4,7 +4,12 @@ Plugin 'tpope/vim-obsession'
 " plugin might not be downloaded yet
 set statusline+=\ %{(exists('*ObsessionStatus')?ObsessionStatus():'')}
 
-let g:vimrc_session_path = $MYVIMRCPATH . '/sessions'
+if has("unix")
+  let g:vimrc_session_path = $MYVIMRCPATH . '/sessions'
+else
+  let g:vimrc_session_path = $LOCALAPPDATA . '/vim/sessions'
+endif
+
 let g:vimrc_default_session_name = 'Session'
 
 " global do no play well with packadd

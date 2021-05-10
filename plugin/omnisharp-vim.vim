@@ -21,6 +21,16 @@ let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_timeout = 5
 " Ask whether to stop the server on exit
 let g:Omnisharp_stop_server = 1
+let g:OmniSharp_diagnostic_showid = 1
+
+let g:OmniSharp_diagnostic_exclude_paths = [
+\ 'bin\\',
+\ 'obj\\',
+\ '[Tt]emp\\',
+\ '[Tt]ests\.cs',
+\ '\.nuget\\',
+\ '\<AssemblyInfo\.cs\>'
+\]
 
 augroup vimrc_omnisharp_commands
   autocmd!

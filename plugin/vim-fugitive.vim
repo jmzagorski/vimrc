@@ -20,6 +20,7 @@ nnoremap <Leader>gl :0Gclog
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gc :Git commit<CR>
 command! -bar -nargs=? Gbranch :Git checkout -b <q-args>
 command! -bar Gpushnewbranch execute(':Git push -u origin ' . FugitiveHead())
+command! -bar Gpullstash execute(':Git stash | Git pull | Git stash pop')

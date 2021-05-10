@@ -18,3 +18,6 @@ endif
 map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
 set visualbell t_vb=
+
+" shrinks the cmdheight, which looks bigger in gvim
+set linespace=0
