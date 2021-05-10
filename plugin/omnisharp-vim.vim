@@ -4,9 +4,10 @@ let wsldir = expand('/mnt/c/Users/$USERNAME/AppData/Local/omnisharp-vim/omnishar
 
 let g:OmniSharp_server_stdio = 1
 
+let g:OmniSharp_loglevel = 'debug'
+
 if isdirectory(wsldir)
   let g:OmniSharp_server_path = wsldir . 'OmniSharp.exe'
-  let g:OmniSharp_translate_cygwin_wsl = 1
 endif
 
 if has('patch-8.1.1880')
