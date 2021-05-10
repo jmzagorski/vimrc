@@ -4,7 +4,7 @@ function! vimrc#get_session_name(...) abort
   if (exists('+shellslash') && &shellslash) || has('win16') || has('win32') || has('win64')
     let l:replace = '\\'
   endif
-  " turn special characters into percent signs, similar to undo/swap
+ " turn special characters into percent signs, similar to undo/swap
   let l:dir = substitute(getcwd(), '\(' . l:replace . '\|:\|\.\)', '%', 'g')
 
   return expand(g:vimrc_session_path . l:replace . l:dir . '_' . l:file . '.vim')
@@ -38,4 +38,10 @@ function! vimrc#get_modifiable_flag(...) abort
     return '-'
   else
     return ''
+endfunction
+
+function! vimrc#open_testfile(...) abort
+  let testing = get(g:, 'vimrc_testing_' . &filetype, {})
+
+  return expand("%:t:r") . testing.suffix
 endfunction

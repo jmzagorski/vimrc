@@ -263,6 +263,10 @@ let g:netrw_winsize = 25
 let g:netrw_browsex_viewer="firefox"
 "}}}
 
+" {{{ Abbreviation
+cnoreabbrev tf <C-R>=vimrc#open_testfile()<CR>
+"}}}
+
 " {{{ Plugins
 " custom Plugin wrapper in case i switch out managers
 command! -nargs=+ -bar Plugin call plugpac#add(<args>)
