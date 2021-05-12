@@ -63,7 +63,7 @@ set showcmd
 set showfulltag
 set nomodeline
 set history=200
-set viminfo+=n$VIM/viminfo
+set viminfo+=n$MYVIMRCPATH/.viminfo
 set secure
 set virtualedit=block
 set splitbelow

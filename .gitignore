@@ -2,9 +2,7 @@
 view
 sessions
 pack
-.swp
-.backup
-.undo
+.*/
 
 /* misc files */
 tags
