@@ -56,7 +56,7 @@ function! LinterStatus() abort
 endfunction
 
 set statusline+=%=
-set statusline+=\ %{LinterStatus()}
+set statusline^=\ %{(exists('*ale#Env')?LinterStatus():'')}
 
 nmap <silent> ]l <Plug>(ale_previous_wrap)
 nmap <silent> [l <Plug>(ale_next_wrap)

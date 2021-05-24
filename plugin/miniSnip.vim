@@ -17,4 +17,4 @@ function! LoadTemplate() abort
 endfunction
 
 autocmd vimrc BufNewFile * call LoadTemplate()
-autocmd vimrc FileType typescript let b:miniSnip_opening="{{" | let b:miniSnip_closing="}}"
+autocmd vimrc FileType typescript let b:miniSnip_opening="<{" | let b:miniSnip_closing="}>"

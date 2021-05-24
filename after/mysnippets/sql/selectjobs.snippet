@@ -6,3 +6,5 @@ from
     left outer join
 	master.sys.syslogins AS l
 		on s.owner_sid = l.sid
+order by
+    s.name

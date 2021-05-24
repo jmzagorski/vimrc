@@ -2,6 +2,7 @@
 view
 sessions
 pack
+.viminfo
 .*/
 
 /* misc files */
