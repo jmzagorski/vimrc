@@ -6,5 +6,12 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme PaperColor
+try
+  colorscheme PaperColor
+catch /^Vim\%((\a\+)\)\=:E185/
+  echohl WarningMsg
+  echom "PaperColor theme not found. This usually happens with a fresh install of vim. Run PackInstall to get it."
+  echoh1 None
+endtry
+
 set background=light
