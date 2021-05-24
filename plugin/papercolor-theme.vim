@@ -9,8 +9,9 @@ endif
 try
   colorscheme PaperColor
 catch /^Vim\%((\a\+)\)\=:E185/
-  echohl WarningMsg
-  echom "PaperColor theme not found. This usually happens with a fresh install of vim. Run PackInstall to get it."
+  echohl ErrorMsg
+  silent! echoerr "PaperColor theme not found. This usually happens with a fresh install of vim. Run PackInstall to get it."
+  echom v:errmsg | redraw!
   echoh1 None
 endtry
 
