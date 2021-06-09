@@ -37,13 +37,11 @@ function! s:init_minpac() abort
     " TODO dont check for directory check for init function,
     " maybe try to packadd it first
     if !isdirectory(s:dir) && !exists('*minpac#init')
-      if confirm('minpac is not installed. Would you like to install it now?', "&Yes\n&No", 2) == 1
-        if executable('git')
-          silent! call mkdir(s:dir, 'p')
-          silent! execute printf('!git clone https://github.com/k-takata/minpac.git %s', s:dir)
-        else
-          throw '[plugpac] Git is not installed. minpac cannot be installed'
-        endif
+      if executable('git')
+        silent! call mkdir(s:dir, 'p')
+        silent! execute printf('!git clone https://github.com/k-takata/minpac.git %s', s:dir)
+      else
+        throw '[plugpac] Git is not installed. minpac cannot be installed'
       endif
     endif
 

@@ -52,6 +52,8 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+set shiftround
+set autoindent
 set smarttab
 set number relativenumber
 set backspace=indent,eol,start
@@ -75,6 +77,7 @@ if has("multi_byte")
       let &termencoding = &encoding
     endif
     set encoding=utf-8
+    scriptencoding utf-8
   endif
   setglobal fileencoding=utf-8
   set fileencodings=ucs-bom,utf-8,latin1
@@ -100,8 +103,6 @@ set wildmode=list:longest,full
 set wildignore+=*/node_modules/*,*/.git/*,*/obj/*,*/bin/*,*/wwwroot/*,*/dist/*
 if executable('rg')
   set grepprg=rg\ -H\ --no-heading\ --vimgrep
-else
-  set grepprg=grep\ -n\ -r\ $*\ /dev/null
 endif
 " midtext search
 vnoremap // y/<C-R>"<CR>
