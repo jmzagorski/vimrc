@@ -103,6 +103,8 @@ set wildmode=list:longest,full
 set wildignore+=*/node_modules/*,*/.git/*,*/obj/*,*/bin/*,*/wwwroot/*,*/dist/*
 if executable('rg')
   set grepprg=rg\ -H\ --no-heading\ --vimgrep
+else
+  let &grepprg='grep -n -R --exclude=' . shellescape(&wildignore) . ' $*'
 endif
 " midtext search
 vnoremap // y/<C-R>"<CR>
