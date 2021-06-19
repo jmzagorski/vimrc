@@ -3,8 +3,8 @@ if get(b:, 'current_compiler', '') ==# ''
 endif
 
 " https://vi.stackexchange.com/questions/9936/set-tabulation-size-when-functions-parameters-are-written-on-multiple-lines
-set cinoptions=(4,W4
-set foldmethod=indent
+setlocal cinoptions=(4,W4
+setlocal foldmethod=indent
 let b:match_words = '\s*#\s*region.*$:\s*#\s*endregion'
 
 let g:vimrc_testing_cs = {

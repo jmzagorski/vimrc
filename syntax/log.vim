@@ -10,7 +10,7 @@ if exists("b:current_syntax")
 endif
 
 if has("gui_running")
-  set lines=32 columns=160
+  setglobal lines=32 columns=160
 endif
 
 syntax off

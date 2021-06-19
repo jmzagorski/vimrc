@@ -1,1 +1,1 @@
-autocmd BufRead,BufNewFile *.cshtml set ft=html
+autocmd BufRead,BufNewFile *.cshtml setlocal filetype=html

@@ -2,7 +2,7 @@
 Plugin 'tpope/vim-obsession'
 
 " plugin might not be downloaded yet
-set statusline+=\ %{(exists('*ObsessionStatus')?ObsessionStatus():'')}
+setglobal statusline+=\ %{(exists('*ObsessionStatus')?ObsessionStatus():'')}
 
 if has("unix")
   let g:vimrc_session_path = $MYVIMRCPATH . '/sessions'
@@ -14,7 +14,7 @@ let g:vimrc_default_session_name = 'Session'
 
 " global do no play well with packadd
 if match(&sessionoptions, 'globals') != -1
-  set sessionoptions-=globals
+  setglobal sessionoptions-=globals
 endif
 
 " Makes a session based on the current working directory

@@ -3,7 +3,6 @@ Plugin 'NLKNguyen/papercolor-theme'
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
 endif
 
 try
@@ -15,4 +14,4 @@ catch /^Vim\%((\a\+)\)\=:E185/
   echoh1 None
 endtry
 
-set background=light
+setglobal background=light

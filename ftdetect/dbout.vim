@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.dbout set filetype=dbout
+au BufNewFile,BufRead *.dbout setlocal filetype=dbout

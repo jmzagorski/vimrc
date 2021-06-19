@@ -11,11 +11,11 @@ if isdirectory(wsldir)
 endif
 
 if has('patch-8.1.1880')
-  set completeopt=longest,menuone,popuphidden
-  set completepopup=highlight:Pmenu,border:off
+  setglobal completeopt=longest,menuone,popuphidden
+  setglobal completepopup=highlight:Pmenu,border:off
 else
-  set completeopt=longest,menuone,preview
-  set previewheight=5
+  setglobal completeopt=longest,menuone,preview
+  setglobal previewheight=5
 endif
 
 let g:OmniSharp_server_type = 'roslyn'
