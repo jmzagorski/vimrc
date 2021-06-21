@@ -24,7 +24,7 @@ else
   endif
 
   if has('persistent_undo')
-    setlocal undofile
+    set undofile
     setglobal undodir=$MYVIMRCPATH/.undo//
     if !isdirectory($MYVIMRCPATH . '/.undo')
       call mkdir($MYVIMRCPATH . '/.undo')
@@ -38,17 +38,17 @@ setglobal noerrorbells visualbell t_vb=
 "
 "{{{ Visuals / UI
 setglobal lazyredraw
-setlocal number relativenumber
+set number relativenumber
 setglobal splitbelow
 setglobal splitright
 if exists('+breakindent')
-  setlocal breakindent
+  set breakindent
   setglobal showbreak=\\\ \ 
 endif
 setglobal diffopt+=iwhite
 " MUST BE BEFORE THE COLOR HIGHLIGHTING WHEN NOT USING MATCH
 syntax on
-setlocal cursorline
+set cursorline
 setglobal showmatch
 setglobal showmode
   " highlight white space at end of line and anything over 80 lines
@@ -71,14 +71,14 @@ if has('folding')
   "open all folds by default
   setglobal foldlevelstart=99
 endif
-setlocal synmaxcol=200
+set synmaxcol=200
 "unix/windows compatibility
 if has('mksession')
   if has('win32')
     setglobal viewoptions+=unix,slash
   endif
 endif
-setlocal colorcolumn=80,100
+set colorcolumn=80,100
 " make sure this is the first thing on the status line after all plugins are loaded
 setglobal laststatus=2
 setglobal statusline=
@@ -108,15 +108,15 @@ setglobal thesaurus+=~/.vim/thesaurus
 setglobal dictionary+=/usr/share/dict/words
 autocmd vimrc FileType * execute 'setlocal dict+='.$MYVIMRCPATH.'/words/'.&filetype.'.txt'
 
-setlocal softtabstop=4
-setlocal shiftwidth=4
-setlocal expandtab
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 setglobal smarttab
 setglobal shiftround
-setlocal autoindent
+set autoindent
 " sync with clipboard
 setglobal clipboard^=unnamed,unnamedplus
-setlocal nomodeline
+set nomodeline
 setglobal backspace=indent,eol,start
 setglobal virtualedit=block
 "}}}
@@ -156,7 +156,7 @@ autocmd vimrc QuickFixCmdPost [^l]* cwindow
 autocmd vimrc QuickFixCmdPost l* lwindow
 setglobal path+=**
 setglobal ignorecase
-setlocal infercase
+set infercase
 setglobal smartcase
 setglobal incsearch
 setglobal hlsearch

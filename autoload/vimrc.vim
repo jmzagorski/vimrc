@@ -54,7 +54,7 @@ function! vimrc#set_unicode(...) abort
     setglobal encoding=utf-8
     scriptencoding utf-8
   endif
-  setlocal fileencoding=utf-8
+  set fileencoding=utf-8
   setglobal fileencodings=ucs-bom,utf-8,latin1
 endfunction
 
