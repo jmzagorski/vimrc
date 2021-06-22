@@ -32,7 +32,7 @@ FROM
              ON  imp.[principal_id] = perm.[major_id]
 WHERE
     princ.[type] IN ('S', 'U', 'G')
-    and ulogin.name = 'USPHC\OES0S7GGPSCCSR'
+    and ulogin.name = '${Login}'
     AND -- No need for these system accounts
     princ.[name] NOT IN ('sys', 'INFORMATION_SCHEMA')
 ORDER BY
