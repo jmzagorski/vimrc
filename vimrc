@@ -141,6 +141,8 @@ setglobal fileformats=unix,mac,dos
 " needs to be set before listchars
 if has("multi_byte")
   call vimrc#set_unicode()
+
+  scriptencoding=&encoding
 endif
 " listchars is here since it needt to be after unicode is set, just in case a
 " unicode char is used
@@ -168,7 +170,7 @@ setglobal showfulltag
 if executable('rg')
   set grepprg=rg\ -H\ --no-heading\ --vimgrep
 else
-  let &grepprg='grep -n -R --exclude=' . shellescape(&wildignore) . ' $*'
+  set grepprg=grep\ -rn\ --exclude-dir=node_modules\ --exclude-dir=.git\ $*
 endif
 " midtext search
 vnoremap // y/<C-R>"<CR>

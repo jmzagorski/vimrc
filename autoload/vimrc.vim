@@ -52,10 +52,11 @@ function! vimrc#set_unicode(...) abort
       let &termencoding = &encoding
     endif
     setglobal encoding=utf-8
-    scriptencoding utf-8
+    set fileencoding=utf-8
   endif
-  set fileencoding=utf-8
   setglobal fileencodings=ucs-bom,utf-8,latin1
+
+  return &encoding
 endfunction
 
 function! vimrc#get_tabline(...) abort

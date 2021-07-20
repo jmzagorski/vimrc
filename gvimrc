@@ -17,7 +17,9 @@ endif
 
 map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR>
 
+setglobal visualbell
 " must be in here and vimrc since it is reset after vimrc is set
-setglobal visualbell t_vb=
+" if not set you will get a flash when at beginning or ending of file
+setglobal t_vb=
 " shrinks the cmdheight, which looks bigger in gvim
 setglobal linespace=0
