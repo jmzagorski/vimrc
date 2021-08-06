@@ -1,0 +1,8 @@
+USE [${1}]
+GO
+CREATE USER [${2}] FOR LOGIN [${~2}]
+GO
+USE [${~1}]
+GO
+ALTER ROLE [${3}] ADD MEMBER [${~2}]${+}
+GO
