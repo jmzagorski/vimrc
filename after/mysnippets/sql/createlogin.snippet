@@ -1,13 +1,13 @@
 USE [master]
 GO
-CREATE LOGIN [${~1:login}] FROM WINDOWS WITH DEFAULT_DATABASE=[${~2:dbname}}]
+CREATE LOGIN [${login}] FROM WINDOWS WITH DEFAULT_DATABASE=[${dbname}]
 GO
 USE [${~2}]
 GO
 CREATE USER [${~1}] FOR LOGIN [${~1}] WITH DEFAULT_SCHEMA=[dbo]
 GO
 EXEC sp_addrolemember N'db_datareader', N'${~1}'
-GRANT DELETE ON ${3:TableName} TO [${~1}]
-GRANT INSERT ON ${3:TableName} TO [${~1}]
-GRANT UPDATE ON ${3:TableName} TO [${~1}]
+GRANT DELETE ON ${TableName} TO [${~1}]
+GRANT INSERT ON ${~3} TO [${~1}]
+GRANT UPDATE ON ${~3} TO [${~1}]
 GO

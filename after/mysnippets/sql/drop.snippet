@@ -1,5 +1,5 @@
 use master
 go
-alter database [${3}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
-drop database [${3}]
+alter database [${dbname}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+drop database [${~1}]
 go

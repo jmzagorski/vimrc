@@ -1,8 +1,8 @@
-USE [${1}]
+USE [${db}]
 GO
-CREATE USER [${2}] FOR LOGIN [${~2}]
+CREATE USER [${login}] FOR LOGIN [${~2}]
 GO
 USE [${~1}]
 GO
-ALTER ROLE [${3}] ADD MEMBER [${~2}]${+}
+ALTER ROLE [${db_datareader}] ADD MEMBER [${~2}]${+}
 GO
