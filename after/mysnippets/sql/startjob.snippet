@@ -1,2 +1,2 @@
 exec msdb.dbo.sp_start_job N'${Job_Name}';
-exec msdb.dbo.sp_help_job @Job_name = '${1}'${+}
+exec msdb.dbo.sp_help_job @Job_name = '${~1}'${+}
