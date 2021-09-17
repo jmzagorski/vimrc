@@ -45,7 +45,6 @@ if exists('+breakindent')
   set breakindent
   setglobal showbreak=\\\ \ 
 endif
-setglobal diffopt+=iwhite
 " MUST BE BEFORE THE COLOR HIGHLIGHTING WHEN NOT USING MATCH
 syntax on
 set cursorline
@@ -104,8 +103,8 @@ setglobal statusline+=\|
 "}}}
 
 "{{{ Editing
-setglobal thesaurus+=~/.vim/thesaurus
-setglobal dictionary+=/usr/share/dict/words
+setglobal thesaurus+=~/words.ths
+setglobal dictionary+=/usr/share/dict/words,~/words.dic
 autocmd vimrc FileType * execute 'setlocal dict+='.$MYVIMRCPATH.'/words/'.&filetype.'.txt'
 
 set softtabstop=4
@@ -156,6 +155,8 @@ setglobal showcmd
 "{{{ Search
 autocmd vimrc QuickFixCmdPost [^l]* cwindow
 autocmd vimrc QuickFixCmdPost l* lwindow
+set complete+=k
+setglobal shortmess-=S
 setglobal path+=**
 setglobal ignorecase
 set infercase
@@ -170,7 +171,7 @@ setglobal showfulltag
 if executable('rg')
   set grepprg=rg\ -H\ --no-heading\ --vimgrep
 else
-  set grepprg=grep\ -rn\ --exclude-dir=node_modules\ --exclude-dir=.git\ $*
+  set grepprg=grep\ -rn\ --exclude-dir=node_modules\ --exclude-dir=.git\ --exclude-dir=bin\ --exclude-dir=obj\ $*
 endif
 " midtext search
 vnoremap // y/<C-R>"<CR>
@@ -189,6 +190,7 @@ nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
 nnoremap <leader><leader> <C-^>
 nnoremap Y y$
+setglobal scrolloff=5
 "}}}
 
 "{{{ Tabs
@@ -218,14 +220,16 @@ cnoreabbrev tf <C-R>=vimrc#open_testfile()<CR>
 if (has('termguicolors'))
   setglobal termguicolors
 endif
+" WSL bug when scrolling
+set t_ut=
 " }}}
 
 " {{{ Browsing
 let g:netrw_banner=0
 "tree
 let g:netrw_liststyle = 3
-" open in previous window
-let g:netrw_browse_split = 4
+" open in same window
+" let g:netrw_browse_split = 4
 " split right
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
