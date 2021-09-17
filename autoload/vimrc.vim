@@ -45,3 +45,41 @@ function! vimrc#open_testfile(...) abort
 
   return expand("%:t:r") . testing.suffix
 endfunction
+
+function! vimrc#set_unicode(...) abort
+  if &encoding !~? '^u'
+    if &termencoding == ""
+      let &termencoding = &encoding
+    endif
+    setglobal encoding=utf-8
+    set fileencoding=utf-8
+  endif
+  setglobal fileencodings=ucs-bom,utf-8,latin1
+
+  return &encoding
+endfunction
+
+function! vimrc#get_tabline(...) abort
+  let s = ''
+
+  for i in range(tabpagenr('$'))
+    let tabnr = i + 1 " range() starts at 0
+    let winnr = tabpagewinnr(tabnr)
+    " local work directory
+    let lwd = fnamemodify(getcwd(winnr, tabnr), ':t')
+    " if the current tab is in the loop, select it
+    let s .= (tabnr == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
+    let s .= ' ' . tabnr
+    let s .= ' ' . lwd . ' '
+
+    let buflist = tabpagebuflist(tabnr)
+    let bufnr = buflist[winnr - 1]
+    let bufname = fnamemodify(bufname(bufnr), ':t')
+    let bufmodified = getbufvar(bufnr, "&mod")
+    if bufmodified | let s .= '+ ' | endif
+  endfor
+
+  let s .= '%#TabLineFill#'
+
+  return s
+endfunction

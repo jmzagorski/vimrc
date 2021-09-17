@@ -3,15 +3,15 @@ Plugin 'tpope/vim-fugitive'
 augroup vimrc_fugitive_commands
   autocmd!
   if !has('win32')
-    autocmd BufReadPost fugitive://* set bufhidden=delete
+    autocmd BufReadPost fugitive://* setlocal bufhidden=delete
   else
-    autocmd BufReadPost fugitive:\\* set bufhidden=delete
+    autocmd BufReadPost fugitive:\\* setlocal bufhidden=delete
   endif
 augroup END
 
-set statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
+setglobal statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
 
-set tags^=./.git/tags;
+setglobal tags^=./.git/tags;
 
 nnoremap <Leader>gs :vert Git<CR>
 nnoremap <Leader>gd :Gdiffsplit<CR>
