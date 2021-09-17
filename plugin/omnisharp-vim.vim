@@ -1,14 +1,8 @@
 Plugin 'OmniSharp/omnisharp-vim'
 
-let wsldir = expand('/mnt/c/Users/$USERNAME/AppData/Local/omnisharp-vim/omnisharp-roslyn/')
-
 let g:OmniSharp_server_stdio = 1
 
 let g:OmniSharp_loglevel = 'debug'
-
-if isdirectory(wsldir)
-  let g:OmniSharp_server_path = wsldir . 'OmniSharp.exe'
-endif
 
 if has('patch-8.1.1880')
   set completeopt=longest,menuone,popuphidden
