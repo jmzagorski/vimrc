@@ -22,7 +22,6 @@ let g:OmniSharp_diagnostic_exclude_paths = [
 \ 'bin\\',
 \ 'obj\\',
 \ '[Tt]emp\\',
-\ '[Tt]ests\.cs',
 \ '\.nuget\\',
 \ '\<AssemblyInfo\.cs\>'
 \]
