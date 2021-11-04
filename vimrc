@@ -97,6 +97,7 @@ setglobal statusline+=\ %{&ft!=#''?&ft:'no\ ft'}  " file type
 setglobal statusline+=\ %*                        " restore highlight
 setglobal statusline+=\|
 setglobal statusline+=\ %p%%                      " percentage in lines
+setglobal statusline+=\ %{strwidth(getline('.'))} " line length
 setglobal statusline+=\ %l,%c                     " current line & column
 setglobal statusline+=\ %*                        " restore highlight
 setglobal statusline+=\|
