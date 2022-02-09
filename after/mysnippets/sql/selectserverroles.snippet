@@ -1,0 +1,9 @@
+select
+    roles.name as RolePrincipalName
+    , members.name as MemberPrincipalName
+from
+    sys.server_role_members as server_role_members
+    inner join sys.server_principals as roles
+        on server_role_members.role_principal_id = roles.principal_id
+    inner join sys.server_principals AS members 
+        on server_role_members.member_principal_id = members.principal_id;
