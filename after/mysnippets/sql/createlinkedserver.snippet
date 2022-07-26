@@ -1,0 +1,3 @@
+EXEC master.dbo.sp_addlinkedserver @server = N'${FriendlyName}', @srvproduct=N'${MSSQL}', @provider=N'${SQLNCLI}', @datasrc=N'${SRC}'
+EXEC master.dbo.sp_addlinkedsrvlogin @rmtsrvname=N'${0}',@useself=N'True',@locallogin=NULL,@rmtuser=NULL,@rmtpassword=NULL
+GO
