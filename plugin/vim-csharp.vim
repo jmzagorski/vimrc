@@ -1,1 +1,0 @@
-Plugin 'OrangeT/vim-csharp'
