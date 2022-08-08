@@ -3,7 +3,9 @@
 packadd limelight.vim
 packadd goyo.vim
 
+setlocal syntax=markdown
 setlocal showbreak=\ \ \ 
+setlocal nospell
 
 " presentation mode
 nmap <F5> :setlocal relativenumber! number! showmode! showcmd! hidden! ruler! colorcolumn=0<CR>
@@ -11,20 +13,14 @@ nmap <F3> :call FindExecuteCommand()<CR>
 
 " jump to slides
 if executable('toilet')
-  nmap <leader>F :.!toilet -w 200 -f standard<CR>
-  nmap <leader>f :.!toilet -w 200 -f small<CR>
-  nmap <leader>1 :.!toilet -w 200 -f term -F border<CR>
+  nmap <leader>B :read !toilet -w 200 -f smblock<CR>
+  nmap <leader>F :read !toilet -w 200 -f standard<CR>
+  nmap <leader>f :read !toilet -w 200 -f small<CR>
+  nmap <leader>1 :read !toilet -w 200 -f term -F border<CR>
 endif
 
-iabbrev * •
 iabbrev - ⁃
 iabbrev -V ✓
-
-" TODO put in autoload
-
-function! JumpLastBuffer()
-  execute "buffer " . len(Buffers())
-endfunction
 
 let g:presentationBoundsDisplayed = 0
 
@@ -37,3 +33,9 @@ function! FindExecuteCommand()
     redraw
   endif
 endfunction
+
+if filereadable("syntax.vim")
+  source syntax.vim
+elseif filereadable("../syntax.vim")
+  source ../syntax.vim
+endif
