@@ -236,5 +236,8 @@ call plugpac#begin()
 runtime! macros/matchit.vim
 " }}}
 
+" {{{ netrw
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+" }}}
+
 " vim:set foldmethod=marker foldlevelstart=0
-"
