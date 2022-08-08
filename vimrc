@@ -170,7 +170,7 @@ setglobal wildmode=list:longest,full
 setglobal wildignore+=*/node_modules/*,*/.git/*,*/obj/*,*/bin/*,*/wwwroot/*,*/dist/*
 setglobal showfulltag
 if executable('rg')
-  set grepprg=rg\ -H\ --no-heading\ --vimgrep
+  set grepprg=rg\ -H\ --no-heading\ --hidden\ --vimgrep
 else
   set grepprg=grep\ -rn\ --exclude-dir=node_modules\ --exclude-dir=.git\ --exclude-dir=bin\ --exclude-dir=obj\ $*
 endif
@@ -216,7 +216,9 @@ cnoreabbrev GIt Git
 cnoreabbrev todo Todo
 cnoreabbrev tf <C-R>=vimrc#open_testfile()<CR>
 " }}}
-
+"
+"
+"
 " {{{ Terminal
 if (has('termguicolors'))
   setglobal termguicolors
@@ -235,3 +237,4 @@ runtime! macros/matchit.vim
 " }}}
 
 " vim:set foldmethod=marker foldlevelstart=0
+"
