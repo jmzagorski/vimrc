@@ -11,6 +11,8 @@ augroup END
 
 setglobal statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
 
+let g:fugitive_summary_format='%an:\ %s'
+
 setglobal tags^=./.git/tags;
 
 nnoremap <Leader>gs :vert Git<CR>
