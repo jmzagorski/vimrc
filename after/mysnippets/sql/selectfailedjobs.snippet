@@ -1,10 +1,9 @@
-select
+${+}select
     j.name
     , js.step_name
     , jh.sql_severity
     , jh.message
-    , jh.run_date
-    , jh.run_time
+    , msdb.dbo.agent_datetime(run_date,run_time)
 from
     msdb.dbo.sysjobs AS j
     inner join msdb.dbo.sysjobsteps AS js
@@ -13,4 +12,3 @@ from
 	on jh.job_id = j.job_id AND jh.step_id = js.step_id
 where
     jh.run_status = 0
-

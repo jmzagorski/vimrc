@@ -1,0 +1,15 @@
+${+}use ssisdb
+SELECT
+    OM.operation_message_id
+    , OM.operation_id
+    , OM.message_time
+    , OM.message_type
+    , OM.message_source_type
+    , OM.message
+    , OM.extended_info_id
+FROM
+    catalog.operation_messages AS OM
+WHERE
+    OM.message_type = 120
+order by
+    OM.message_time desc

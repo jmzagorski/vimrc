@@ -1,4 +1,4 @@
-select
+${+}select
     sp.name as login
     , sp.type_desc as login_type
     , sl.password_hash
@@ -13,6 +13,6 @@ left join
     sys.sql_logins sl
     on sp.principal_id = sl.principal_id
 where
-    sp.type not in ('G', 'R')
+    sp.type not in ('R')
 order
     by sp.name;

@@ -1,0 +1,13 @@
+${+}select
+    object_name(major_id)
+    , user_name(grantee_principal_id)
+    , permission_name
+from
+    sys.database_permissions p
+where
+    p.class = 1
+    and objectproperty(major_id, 'IsMSSHipped') = 0
+order by
+    object_name(major_id)
+    , user_name(grantee_principal_id)
+    , permission_name
