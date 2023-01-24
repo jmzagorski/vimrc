@@ -1,4 +1,4 @@
-Plugin 'majutsushi/tagbar', { 'type': 'opt' }
+Plugin 'majutsushi/tagbar'
 
 nnoremap <silent> <Leader>b TagbarOpen fj<CR>
 

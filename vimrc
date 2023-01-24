@@ -48,6 +48,7 @@ endif
 " MUST BE BEFORE THE COLOR HIGHLIGHTING WHEN NOT USING MATCH
 syntax on
 set cursorline
+set nowrap
 setglobal showmatch
 setglobal showmode
   " highlight white space at end of line and anything over 80 lines
@@ -191,7 +192,8 @@ nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
 nnoremap <leader><leader> <C-^>
 nnoremap Y y$
-setglobal scrolloff=5
+" keep cursor in center of screen
+setglobal scrolloff=999
 "}}}
 
 "{{{ Tabs
