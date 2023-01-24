@@ -1,5 +1,5 @@
 if get(b:, 'current_compiler', '') ==# ''
-  compiler msbuild
+  compiler dotnet
 endif
 
 " https://vi.stackexchange.com/questions/9936/set-tabulation-size-when-functions-parameters-are-written-on-multiple-lines
