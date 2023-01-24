@@ -6,6 +6,7 @@ let g:miniSnip_ext="snippet"
 let g:miniSnip_opening="${"
 let g:miniSnip_closing="}"
 let g:miniSnip_delimChg="`"
+let g:miniSnip_trigger="<f5>"
 
 function! LoadTemplate() abort
   let buf = expand('%:t')
