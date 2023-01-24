@@ -12,9 +12,9 @@ let g:ale_linters = {
   \'javascript': ['eslint'],
   \'typescript': ['tsserver', 'eslint'],
   \'rust': ['cargo', 'rls', 'rustfmt'],
-  \'markdown':['languagetool','proselint'],
-  \'text':['languagetool','proselint'],
-  \'vimwiki':['languagetool','proselint'],
+  \'markdown':['vale'],
+  \'text':['vale'],
+  \'vimwiki':['vale'],
 \}
 
 let g:ale_fixers = {
@@ -62,3 +62,17 @@ nmap <silent> ]l <Plug>(ale_previous_wrap)
 nmap <silent> [l <Plug>(ale_next_wrap)
 nnoremap <LocalLeader>fx :ALEFix<CR>
 nnoremap <LocalLeader>rs :ALEReset<CR>
+
+let g:ale_markdown_vale_use_global = 1
+let g:ale_text_vale_use_global = 1
+let g:ale_vimwiki_vale_use_global = 1
+" This is the path to the script above.
+let g:ale_markdown_vale_executable = expand('~/valelint.sh')
+let g:ale_text_vale_executable = 'home/jmzagorski/valelint.sh'
+let g:ale_vimwiki_vale_executable = expand('~/valelint.sh')
+" /data matches the path in Docker.
+let g:ale_filename_mappings = {
+\ 'vale': [
+\   ['/home/jmzagorski', '/home/valeuser'],
+\ ],
+\}
