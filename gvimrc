@@ -23,3 +23,5 @@ setglobal visualbell
 setglobal t_vb=
 " shrinks the cmdheight, which looks bigger in gvim
 setglobal linespace=0
+
+let g:netrw_browsex_viewer='start msedge'
