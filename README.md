@@ -20,7 +20,7 @@
 - Rust
 - Powershell
 - C#
-- Documentation (markdown, toml, yaml)
+- Documentation (toml, yaml)
 - HTML / CSS
 - Javascript / Typescript
 - Docker
