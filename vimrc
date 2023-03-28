@@ -227,6 +227,8 @@ if (has('termguicolors'))
 endif
 " WSL bug when scrolling
 set t_ut=
+" open terminal relative to file
+map <F6> :silent let $VIM_DIR=expand('%:p:h')<CR>:terminal bash<CR>cd $VIM_DIR<CR>
 " }}}
 
 " {{{ Plugins
