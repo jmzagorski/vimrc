@@ -3,10 +3,7 @@ Plugin 'Jorengarenar/miniSnip'
 " TODO bug, singular in docs
 let g:miniSnip_dirs=[ $MYVIMRCPATH . '/after/mysnippets' ]
 let g:miniSnip_ext="snippet"
-let g:miniSnip_opening="${"
-let g:miniSnip_closing="}"
-let g:miniSnip_delimChg="`"
-let g:miniSnip_trigger="<f5>"
+let g:miniSnip_trigger="<Tab>"
 
 function! LoadTemplate() abort
   let buf = expand('%:t')
@@ -18,4 +15,5 @@ function! LoadTemplate() abort
 endfunction
 
 autocmd vimrc BufNewFile * call LoadTemplate()
-autocmd vimrc FileType typescript let b:miniSnip_opening="<{" | let b:miniSnip_closing="}>"
+autocmd vimrc FileType typescript let b:miniSnip_opening="{{" | let b:miniSnip_closing="}}"
+autocmd vimrc FileType cs let b:miniSnip_opening="{{" | let b:miniSnip_closing="}}"

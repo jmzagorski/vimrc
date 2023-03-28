@@ -1,13 +1,13 @@
-public static IEnumerable<object[]> ${TheoryName} => new[]
+public static IEnumerable<object[]> {{TheoryName}} => new[]
 {
-    new object[] { ${+} }
+    new object[] { {{+}} }
 };
 
-[Theory, MemberData(nameof(${~1}))]
-public void ${~1}_ExceptionThrown(${args})
+[Theory, MemberData(nameof({{~1}}))]
+public void {{~1}}_ExceptionThrown({{args}})
 {
     /* Arrange */
-    void shouldThrow() => new ${sut}(${args_vars})
+    void shouldThrow() => new {{sut}}({{args_vars}})
 
     /* Act */
     var ex = Record.Exception(shouldThrow);

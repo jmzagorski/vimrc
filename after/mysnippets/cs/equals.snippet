@@ -1,11 +1,11 @@
 public override bool Equals(object unknown)
 {
-    if (unknown is ${!substitute(expand('%:t'), '\.cs', '', '')} other)
+    if (unknown is {{!substitute(expand('%:t'), '\.cs', '', '')}} other)
     {
-	return ${PropertyName}.Equals(other.${~2});
+	return {{PropertyName}}.Equals(other.{{~2}});
     }
 
-    return base.Equals(unknown);${+}
+    return base.Equals(unknown);{{+}}
 }
 
 public override int GetHashCode()
@@ -13,7 +13,7 @@ public override int GetHashCode()
     unchecked
     {
         int hash = 17;
-        hash = hash * 23 + ${~2}.GetHashCode();
+        hash = hash * 23 + {{~2}}.GetHashCode();
 
         return hash;
     }
