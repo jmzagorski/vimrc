@@ -6,6 +6,7 @@ let g:ale_sign_error = ':('
 let g:ale_sign_warning = ':\'
 let g:ale_sign_style_error = ':('
 let g:ale_sign_style_warning = ':\'
+let g:ale_floating_preview = 1
 
 let g:ale_linters = {
   \'cs': ['OmniSharp'],
@@ -15,6 +16,7 @@ let g:ale_linters = {
   \'markdown':['languagetool','proselint'],
   \'text':['languagetool','proselint'],
   \'vimwiki':['languagetool','proselint'],
+  \'yaml': ['yamllint'],
 \}
 
 let g:ale_fixers = {
@@ -61,4 +63,6 @@ setglobal statusline^=\ %{(exists('*ale#Env')?LinterStatus():'')}
 nmap <silent> ]l <Plug>(ale_previous_wrap)
 nmap <silent> [l <Plug>(ale_next_wrap)
 nnoremap <LocalLeader>fx :ALEFix<CR>
+nnoremap <LocalLeader>dc :ALEHover<CR>
 nnoremap <LocalLeader>rs :ALEReset<CR>
+nnoremap <LocalLeader>nm :ALERename<CR>

@@ -7,9 +7,9 @@ let g:user_emmet_leader_key = '<C-e>'
 function! s:zen_html_tab() abort
 	let line = getline('.')
 	if match(line, '<.*>') < 0
-		return "\<c-e>,"
+          return "\<c-e>,"
 	endif
-	return "\<c-e>n"
+          return "\<c-e>n"
 endfunction
 
 autocmd vimrc FileType html,cjsx,jsx,rs imap <buffer><expr><tab> <sid>zen_html_tab()
