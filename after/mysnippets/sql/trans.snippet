@@ -1,0 +1,30 @@
+set nocount, xact_abort on;
+
+begin try
+
+    declare @trancount int = @@trancount;
+
+    -- OTHER SET STATEMENTS, maybe you create a temp table etc
+    -- things that do not need to be part of the transaction
+
+    if @trancount = 0
+	begin transaction;
+    else
+	save transaction <{TranName}>
+
+	<{+}>
+
+    if @trancount = 0 commit;
+
+end try
+
+begin catch
+
+    if @trancount = 0 commit;
+	rollback transaction
+    else
+	if xact_state() <> -1 rollback transaction <nameoftransaction>
+
+    ;THROW
+
+end catch

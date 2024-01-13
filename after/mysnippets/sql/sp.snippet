@@ -1,49 +1,20 @@
-create procedure ${dbo}.${ProcName}
-	@${Params}
+set ansi_nulls on
+go
+set quoted_identifier on
+go
+-- =============================================
+-- Author:	<{LastFirst}>
+-- Create date: <{Date}>
+-- Description:	<{Description}>
+-- =============================================
+create procedure <{procname}>
+    @<{params}>
 as
 begin
 
-    set nocount on;
-    -- this will help runtime errors,
-    -- specifically if there is a timeout the transaction will abort
-    set xact_abort on;
+    set nocount, xact_abort on;
 
-    begin try
-	declare @trancount int = @@TRANCOUNT;
-	/* LOGIC
-	    - if trancount is zero that means the caller is not calling us from another
-            transaction
-	    - if trancount is not zero that means a transaction is in progress.
-              We want to save my trans so it has no affect on @@TRANCOUNT and we do
-              not want to rollback because that should be left to the caller to decide
-	*/
-	    if @trancount = 0
-		begin transaction
-	    else
-		save transaction $2;
+    {{trans}}
 
-	    ${+}
-
-	    if @trancount = 0
-		commit;
-    end try
-    begin catch
-	declare @error int, @message varchar(4000), @xstate int;
-	select
-		@error = error_number()
-		, @message = error_message()
-		, @xstate = xact_state();
-	-- if the entire transaction is doomed
-	if @xstate = -1
-		rollback;
-	-- the transaction is commitable and this procedure is the only one
-	if @xstate = 1 and @trancount = 0
-		rollback
-	-- the transaction is commitable and this is a nested transaction
-	if @xstate = 1 and @trancount > 0
-		rollback transaction $2;
-	-- rethrow the error to the caller so we do not swallow it
-	raiserror ('$2: %d: %s', 16, 1, @error, @message) ;
-    end catch
 end
 go
