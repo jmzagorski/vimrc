@@ -10,7 +10,7 @@ let g:ale_floating_preview = 1
 
 let g:ale_linters = {
   \'cs': ['OmniSharp'],
-  \'javascript': ['eslint'],
+  \'javascript': ['eslint', 'tsserver'],
   \'typescript': ['tsserver', 'eslint'],
   \'rust': ['cargo', 'rls', 'rustfmt'],
   \'markdown':['languagetool','proselint'],
@@ -25,7 +25,8 @@ let g:ale_fixers = {
 \    'css': ['prettier'],
 \    'scss': ['prettier'],
 \    'html': ['prettier'],
-\    'rust': ['rustfmt']
+\    'rust': ['rustfmt'],
+\    'yaml': ['yamllint']
 \}
 let g:ale_lint_delay=1000
 nnoremap gd :ALEGoToDefinition<CR>
