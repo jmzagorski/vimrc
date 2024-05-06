@@ -12,4 +12,4 @@ function! s:zen_html_tab() abort
           return "\<c-e>n"
 endfunction
 
-autocmd vimrc FileType html,cjsx,jsx,rs imap <buffer><expr><tab> <sid>zen_html_tab()
+autocmd vimrc FileType html,cjsx,jsx,rs imap <buffer><expr><C-e> <sid>zen_html_tab()
