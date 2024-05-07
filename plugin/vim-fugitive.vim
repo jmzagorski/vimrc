@@ -26,3 +26,11 @@ nnoremap <Leader>gc :Git commit<CR>
 command! -bar -nargs=? Gbranch :Git checkout -b <q-args>
 command! -bar Gpushnewbranch execute(':Git push -u origin ' . FugitiveHead())
 command! -bar Gpullstash execute(':Git stash | Git pull | Git stash pop')
+command! -bar -nargs=? Greview execute 'args `git diff --name-only ' . (<q-args> == '' ? 'main' : <q-args>) . '...`'
+
+function! DiffSplitWithBranch()
+    let l:branch = input('Enter branch name: ')
+    execute 'Gdiffsplit ' . l:branch
+endfunction
+
+nnoremap <leader>pr :Gdiffsplit main
