@@ -1,4 +1,4 @@
-${+}use ssisdb
+${+}
 SELECT
     OM.operation_message_id
     , OM.operation_id
@@ -8,7 +8,7 @@ SELECT
     , OM.message
     , OM.extended_info_id
 FROM
-    catalog.operation_messages AS OM
+    ssisdb.catalog.operation_messages AS OM
 WHERE
     OM.message_type = 120
 order by
