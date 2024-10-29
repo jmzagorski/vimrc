@@ -32,16 +32,6 @@ command! -nargs=? -complete=customlist,fugitive#CompleteObject Greview :call Rev
 command! -nargs=0 NextDiff :execute 'bdelete' | :execute 'next' | :execute 'Gdiffsplit ' . g:myfugitive_compare_branch
 command! -nargs=0 PrevDiff :execute 'bdelete' | :execute 'next' | :execute 'Gdiffsplit ' . g:myfugitive_compare_branch
 
-" function! ReviewBranch(branch)
-"   if !empty(a:branch)
-"     echow 'Comparing against branch ' . a:branch
-"     let g:my_git_review_branch=a:branch
-"   endif
-
-"   execute 'args `git diff --name-only ' . g:my_git_review_branch . '...`'
-" endfunction
-
-
 function! ReviewBranch(branch)
   if !empty(a:branch)
     echow 'Comparing against branch ' . a:branch
