@@ -29,8 +29,6 @@ command! -bar Gpushnewbranch execute(':Git push -u origin ' . FugitiveHead())
 command! -bar Gpullstash execute(':Git stash | Git pull | Git stash pop')
 " command! -bar -nargs=? Greview execute 'args `git diff --name-only ' . (<q-args> == '' ? 'main' : <q-args>) . '...`'
 command! -nargs=? -complete=customlist,fugitive#CompleteObject Greview :call ReviewBranch(<q-args>)
-command! -nargs=0 NextDiff :execute 'bdelete' | :execute 'next' | :execute 'Gdiffsplit ' . g:myfugitive_compare_branch
-command! -nargs=0 PrevDiff :execute 'bdelete' | :execute 'next' | :execute 'Gdiffsplit ' . g:myfugitive_compare_branch
 
 function! ReviewBranch(branch)
   if !empty(a:branch)
