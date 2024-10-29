@@ -108,10 +108,12 @@ setglobal statusline+=\|
 setglobal thesaurus+=~/words.ths
 setglobal dictionary+=/usr/share/dict/words,~/words.dic
 autocmd vimrc FileType * execute 'setlocal dict+='.$MYVIMRCPATH.'/words/'.&filetype.'.txt'
-
-set softtabstop=4
+"{{{ tabs not spaces
+set noexpandtab
+set tabstop=4
 set shiftwidth=4
-set expandtab
+set softtabstop=4
+"}}}
 setglobal smarttab
 setglobal shiftround
 set autoindent
