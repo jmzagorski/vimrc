@@ -3,7 +3,7 @@ Plugin 'Jorengarenar/miniSnip'
 " TODO bug, singular in docs
 let g:miniSnip_dirs=[ $MYVIMRCPATH . '/after/mysnippets' ]
 let g:miniSnip_ext="snippet"
-let g:miniSnip_trigger="<F5>"
+let g:miniSnip_trigger="<C-s>"
 
 function! LoadTemplate() abort
   let buf = expand('%:t')
