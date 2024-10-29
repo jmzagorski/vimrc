@@ -243,6 +243,7 @@ runtime! macros/matchit.vim
 " {{{ netrw
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 let g:netrw_browsex_viewer='firefox'
+nnoremap <leader>- :Ex<CR>
 " }}}
 
 " vim:set foldmethod=marker foldlevelstart=0
