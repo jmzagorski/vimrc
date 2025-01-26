@@ -61,8 +61,8 @@ endfunction
 setglobal statusline+=%=
 setglobal statusline^=\ %{(exists('*ale#Env')?LinterStatus():'')}
 
-nmap <silent> ]l <Plug>(ale_previous_wrap)
-nmap <silent> [l <Plug>(ale_next_wrap)
+nnoremap <silent> ]l <Plug>(ale_previous_wrap)
+nnoremap <silent> [l <Plug>(ale_next_wrap)
 nnoremap <LocalLeader>fx :ALEFix<CR>
 nnoremap <LocalLeader>dc :ALEHover<CR>
 nnoremap <LocalLeader>rs :ALEReset<CR>
