@@ -149,7 +149,7 @@ if has("multi_byte")
 endif
 " listchars is here since it needt to be after unicode is set, just in case a
 " unicode char is used
-setglobal listchars=tab:...,space:.,nbsp:~,trail:_,precedes:>,extends:<
+setglobal listchars=tab:>-,space:.,nbsp:~,trail:_,precedes:>,extends:<
 "}}}
 
 "{{{ Ouput
