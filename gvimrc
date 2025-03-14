@@ -9,7 +9,7 @@ setglobal guioptions-=r  " remove right-hand scroll bar
 setglobal guioptions-=L  " remove left-hand scroll bar
 setglobal guioptions-=e  " remove left-hand scroll bar
 if has('win32')
-  setglobal guifont=Roboto\ Mono:h11,Iosevka:h11,JetBrains_Mono:h11,Cascadia_Code:h11,Consolas:h11
+  setglobal guifont=Cascadia_Mono:h12,Roboto\ Mono:h11,Iosevka:h11,JetBrains_Mono:h11,Consolas:h11
   autocmd gvimrc GUIEnter * simalt ~x
 else
   setglobal guifont=Roboto\ Mono\ 11,Iosevka\ 11,Ubuntu\ Mono\ 11
