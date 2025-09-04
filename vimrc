@@ -149,7 +149,7 @@ if has("multi_byte")
 endif
 " listchars is here since it needt to be after unicode is set, just in case a
 " unicode char is used
-setglobal listchars=tab:>-,space:.,nbsp:~,trail:_,precedes:>,extends:<
+setglobal listchars=tab:>-,nbsp:~,trail:.,precedes:>,extends:<
 "}}}
 
 "{{{ Ouput
@@ -157,8 +157,9 @@ setglobal showcmd
 "}}}
 "
 "{{{ Search
-autocmd vimrc QuickFixCmdPost [^l]* cwindow
-autocmd vimrc QuickFixCmdPost l* lwindow
+autocmd vimrc QuickFixCmdPost [^l]* nested cwindow | if len(getqflist()) > 0 | cfirst | endif
+autocmd vimrc QuickFixCmdPost l* nested lwindow | if len(getloclist(0)) > 0 | lfirst | endif
+autocmd vimrc QuickFixCmdPost * redraw!
 set complete+=k
 setglobal shortmess-=S
 setglobal path+=**
@@ -170,11 +171,12 @@ setglobal hlsearch
 setglobal wildmenu
 setglobal wildignorecase
 setglobal wildmode=list:longest,full
-setglobal wildignore+=*/node_modules/*,*/.git/*,*/obj/*,*/bin/*,*/wwwroot/*,*/dist/*
+setglobal wildignore+=tags,*/node_modules/*,*/.git/*,*/obj/*,*/bin/*,*/wwwroot/*,*/dist/*
 setglobal showfulltag
 if executable('rg')
-  set grepprg=rg\ -H\ --no-heading\ --hidden\ --vimgrep
-else
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  set grepformat=%f:%l:%c:%m
+elseif executable('grep')
   set grepprg=grep\ -rn\ --exclude-dir=node_modules\ --exclude-dir=.git\ --exclude-dir=bin\ --exclude-dir=obj\ $*
 endif
 " midtext search
@@ -244,8 +246,13 @@ runtime! macros/matchit.vim
 
 " {{{ netrw
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
-let g:netrw_browsex_viewer='firefox'
-nnoremap <leader>- :Ex<CR>
+let g:netrw_winsize = 30
+let g:netrw_banner = 0
+autocmd vimrc BufEnter * if isdirectory(expand('%:p')) | execute 'Ex ' expand('%:p') | endif
 " }}}
+
+if filereadable(".localvimrc")
+    source local.vimrc
+endif
 
 " vim:set foldmethod=marker foldlevelstart=0
