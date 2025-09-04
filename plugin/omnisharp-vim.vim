@@ -30,7 +30,7 @@ augroup vimrc_omnisharp_commands
 
   " The following commands are contextual, based on the cursor position.
   autocmd FileType cs nmap <silent> <buffer> t<C-f> :OmniSharpRunTestsInFile<CR>
-  autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+  autocmd FileType cs nmap <silent> <buffer> gd :OmniSharpGotoDefinition split<CR>
   autocmd FileType cs nmap <silent> <buffer> <LocalLeader>fu <Plug>(omnisharp_find_usages)
   autocmd FileType cs nmap <silent> <buffer> <LocalLeader>fi <Plug>(omnisharp_find_implementations)
   autocmd FileType cs nmap <silent> <buffer> <LocalLeader>pd <Plug>(omnisharp_preview_definition)

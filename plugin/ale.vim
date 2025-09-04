@@ -12,7 +12,7 @@ let g:ale_linters = {
   \'cs': ['OmniSharp'],
   \'javascript': ['eslint', 'tsserver'],
   \'typescript': ['tsserver', 'eslint'],
-  \'rust': ['cargo', 'rls', 'rustfmt'],
+  \'rust': ['analyzer', 'cargo'],
   \'markdown':['languagetool','proselint'],
   \'text':['languagetool','proselint'],
   \'vimwiki':['languagetool','proselint'],
@@ -26,10 +26,11 @@ let g:ale_fixers = {
 \    'scss': ['prettier'],
 \    'html': ['prettier'],
 \    'rust': ['rustfmt'],
-\    'yaml': ['yamllint']
+\    'yaml': ['yamllint'],
+\   'json': ['prettier']
 \}
 let g:ale_lint_delay=1000
-nnoremap gd :ALEGoToDefinition<CR>
+let g:ale_default_navigation='split'
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:ale_rust_cargo_check_tests = 1
 let b:ale_rust_rls_config = {
@@ -67,3 +68,6 @@ nnoremap <LocalLeader>fx :ALEFix<CR>
 nnoremap <LocalLeader>dc :ALEHover<CR>
 nnoremap <LocalLeader>rs :ALEReset<CR>
 nnoremap <LocalLeader>nm :ALERename<CR>
+nnoremap gd :ALEGoToDefinition<CR>
+nnoremap <LocalLeader>fu :ALEFindReferences<CR>
+nnoremap <LocalLeader>rr :ALERepeatSelection<CR>
