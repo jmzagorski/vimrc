@@ -1,0 +1,10 @@
+select  
+    O.name AS [Object Name],
+    c.name, 
+    ep.value AS [Extended property]
+from 
+    sys.columns as c inner join 
+    sys.all_objects as O on c.object_id = O.object_id left join 
+    sys.extended_properties EP on ep.major_id = c.object_id AND ep.minor_id = c.column_id   
+where
+    O.name = '${table name}'
