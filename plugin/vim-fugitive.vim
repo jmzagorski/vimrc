@@ -14,8 +14,6 @@ setglobal statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
 let g:fugitive_summary_format='%an:\ %s'
 let g:my_git_review_branch='main'
 
-setglobal tags^=./.git/tags;
-
 nnoremap <Leader>gs :vert Git<CR>
 nnoremap <Leader>gd :Gdiffsplit<CR>
 nnoremap <Leader>gb :Git blame<CR>
@@ -47,6 +45,8 @@ function! ReviewBranch(branch)
 
   " Update the argument list with sorted files
   execute 'args ' . join(l:files, ' ')
+
+  execute 'Gdiffsplit ' . g:my_git_review_branch
 endfunction
 
 function! DiffSplitWithBranch()
@@ -58,3 +58,8 @@ nnoremap <leader>pr :execute 'Gdiffsplit ' . g:my_git_review_branch<CR>
 nnoremap <leader>nd :NextDiff<CR>
 nnoremap <leader>pd :PrevDiff<CR>
 nnoremap <leader>gt :e ./.git/COMMIT_DRAFT.md<CR>
+
+augroup GitDiffAutoMap
+  autocmd!
+  autocmd BufEnter * if &diff | nnoremap <buffer> ]a <C-W><C-O>:next<CR>:execute 'Gdiffsplit ' . g:my_git_review_branch<CR> |
+augroup END
