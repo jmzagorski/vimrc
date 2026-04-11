@@ -1,2 +1,2 @@
-au BufNewFile,BufRead *.njk :setfiletype yaml.htmldjango
+au BufNewFile,BufRead *.njk :setfiletype htmldjango
 
