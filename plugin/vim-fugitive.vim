@@ -9,7 +9,7 @@ augroup vimrc_fugitive_commands
   endif
 augroup END
 
-setglobal statusline^=\ %{(exists('*FugitiveHead')?FugitiveHead():'')}
+setglobal statusline^=%{exists('*FugitiveHead')?FugitiveHead():''}
 
 let g:fugitive_summary_format='%an:\ %s'
 let g:my_git_review_branch='main'
@@ -47,6 +47,7 @@ function! ReviewBranch(branch)
   execute 'args ' . join(l:files, ' ')
 
   execute 'Gdiffsplit ' . g:my_git_review_branch
+  :call <SID>FocusNonFugitiveWindow()
 endfunction
 
 function! DiffSplitWithBranch()
@@ -61,5 +62,33 @@ nnoremap <leader>gt :e ./.git/COMMIT_DRAFT.md<CR>
 
 augroup GitDiffAutoMap
   autocmd!
-  autocmd BufEnter * if &diff | nnoremap <buffer> ]a <C-W><C-O>:next<CR>:execute 'Gdiffsplit ' . g:my_git_review_branch<CR> |
+  autocmd OptionSet diff if &diff |
+        \ nnoremap <buffer> ]a :call <SID>ReviewNext('next')<CR> |
+        \ nnoremap <buffer> [a :call <SID>ReviewNext('prev')<CR> |
+        \ endif
 augroup END
+
+function! s:FocusNonFugitiveWindow() abort
+  " If current buffer is a fugitive:// buffer, jump to the other window
+  if bufname('%') =~# '^fugitive://'
+    wincmd w
+  endif
+endfunction
+
+function! s:ReviewNext(direction) abort
+  if &modified
+    Gwrite
+  endif
+
+  execute "normal! \<C-W>\<C-O>"
+
+  if a:direction ==# 'next'
+    next
+  elseif a:direction ==# 'prev'
+    previous
+  endif
+
+  execute 'Gdiffsplit ' . g:my_git_review_branch
+
+  call <SID>FocusNonFugitiveWindow()
+endfunction
