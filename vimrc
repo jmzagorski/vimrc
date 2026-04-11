@@ -160,6 +160,8 @@ setglobal showcmd
 autocmd vimrc QuickFixCmdPost [^l]* nested cwindow | if len(getqflist()) > 0 | cfirst | endif
 autocmd vimrc QuickFixCmdPost l* nested lwindow | if len(getloclist(0)) > 0 | lfirst | endif
 autocmd vimrc QuickFixCmdPost * redraw!
+" save buffer before quickfix command runs
+autocmd vimrc QuickFixCmdPre [^l]* :w
 set complete+=k
 setglobal shortmess-=S
 setglobal path+=**
@@ -250,9 +252,5 @@ let g:netrw_winsize = 30
 let g:netrw_banner = 0
 autocmd vimrc BufEnter * if isdirectory(expand('%:p')) | execute 'Ex ' expand('%:p') | endif
 " }}}
-
-if filereadable(".localvimrc")
-    source local.vimrc
-endif
 
 " vim:set foldmethod=marker foldlevelstart=0
