@@ -1,0 +1,20 @@
+select
+     sysobjects.name as trigger_name
+    , user_name(sysobjects.uid) as trigger_owner
+    , s.name as table_schemas
+    , object_name(parent_obj) as table_name
+    , objectproperty( id, 'ExecIsUpdateTrigger') as isupdate
+    , objectproperty( id, 'ExecIsDeleteTrigger') as isdelete
+    , objectproperty( id, 'ExecIsInsertTrigger') as isinsert
+    , objectproperty( id, 'ExecIsAfterTrigger') as isafter
+    , objectproperty( id, 'ExecIsInsteadOfTrigger') as isinsteadof
+    , objectproperty(id, 'ExecIsTriggerDisabled') as [disabled]
+from
+	sysobjects
+	inner join sysusers
+		on sysobjects.uid = sysusers.uid
+	inner join sys.tables t
+		on sysobjects.parent_obj = t.object_id
+	inner join sys.schemas s
+		on t.schema_id = s.schema_id
+	where sysobjects.type = 'TR'
